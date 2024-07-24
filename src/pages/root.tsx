@@ -7,10 +7,14 @@ export default function RootLayout() {
   return (
     <>
       <Header />
-      <ContentContainerStyle>
+      <StyledContentContainer>
         <Outlet />
-      </ContentContainerStyle>
+      </StyledContentContainer>
     </>
   );
 }
-const ContentContainerStyle = styled.div``;
+const StyledContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

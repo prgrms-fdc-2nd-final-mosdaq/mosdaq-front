@@ -5,6 +5,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './pages/root';
 
 const HomePage = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/Login'));
+const MyPage = lazy(() => import('./pages/MyPage'));
+const QuizPage = lazy(() => import('./pages/Quiz'));
 
 const router = createBrowserRouter([
   {
@@ -16,6 +19,30 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={null}>
             <HomePage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/login',
+        element: (
+          <Suspense fallback={null}>
+            <Login />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/mypage',
+        element: (
+          <Suspense fallback={null}>
+            <MyPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/quiz',
+        element: (
+          <Suspense fallback={null}>
+            <QuizPage />
           </Suspense>
         ),
       },
