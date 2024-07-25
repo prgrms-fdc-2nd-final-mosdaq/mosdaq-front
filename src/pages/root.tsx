@@ -14,7 +14,8 @@ export default function RootLayout() {
   );
 }
 const StyledContentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: 960px;
+  /* min-width: 480px; */
+  width: 100%;
+  /* border: 1px solid black; */
 `;

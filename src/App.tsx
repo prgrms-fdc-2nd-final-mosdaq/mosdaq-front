@@ -3,9 +3,10 @@
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './pages/root';
+import MovieListPage from './pages/MovieList';
 
 const HomePage = lazy(() => import('./pages/Home'));
-const Login = lazy(() => import('./pages/Login'));
+const LoginPage = lazy(() => import('./pages/Login'));
 const MyPage = lazy(() => import('./pages/MyPage'));
 const QuizPage = lazy(() => import('./pages/Quiz'));
 
@@ -26,7 +27,15 @@ const router = createBrowserRouter([
         path: '/login',
         element: (
           <Suspense fallback={null}>
-            <Login />
+            <LoginPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/movie-list',
+        element: (
+          <Suspense fallback={null}>
+            <MovieListPage />
           </Suspense>
         ),
       },
