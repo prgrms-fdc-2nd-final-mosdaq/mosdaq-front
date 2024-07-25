@@ -4,7 +4,7 @@ import colors from '../../constants/colors';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary';
-  size?: 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large';
 }
 
 export function Button({
@@ -17,7 +17,7 @@ export function Button({
 
 const StyledButton = styled.button<{
   variant: 'primary' | 'secondary';
-  size: 'medium' | 'large';
+  size: 'small' | 'medium' | 'large';
 }>`
   outline: none;
   border: 0 solid transparent;
@@ -43,14 +43,18 @@ const TYPE_VARIANTS = {
   `,
   secondary: `
     color: ${colors.grey700};
-    background-color: ${colors.grey100};
+    background-color: ${colors.white};
     &:hover {
-      background-color: ${colors.grey300};
+      background-color: ${colors.grey50};
     }
   `,
 };
 
 const SIZE_VARIANTS = {
+  small: `
+    font-size: 14px;
+    padding: 5.5px 12px;
+  `,
   medium: `
     font-size: 15px;
     padding: 11px 16px;
