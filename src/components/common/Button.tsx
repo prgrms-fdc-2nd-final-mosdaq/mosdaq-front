@@ -45,7 +45,7 @@ const TYPE_VARIANTS = {
     color: ${colors.grey700};
     background-color: ${colors.white};
     &:hover {
-      background-color: ${colors.grey50};
+      background-color: ${colors.grey100};
     }
   `,
 };
