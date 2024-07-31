@@ -52,6 +52,7 @@ const StyledNav = styled.nav`
 
 const StyledLoginButton = styled(Button)`
   background-color: crimson;
+  font-weight: 700;
   color: ${colors.white};
   &:hover {
     background-color: red;
