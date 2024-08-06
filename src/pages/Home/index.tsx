@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import Banner from '../../components/home/Banner';
 import Upcoming from '../../components/home/Upcoming';

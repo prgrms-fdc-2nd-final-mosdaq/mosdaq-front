@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useGoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../../hooks/api/auth/useAuth';
 
 export default function CustomGoogleLoginButton() {
@@ -23,6 +22,11 @@ const StyledButton = styled.button`
   justify-content: center;
   cursor: pointer;
 
+  &:hover {
+    // hover 스타일 추가 필요
+    background-color: grey;
+  }
+
   span {
     font-family: 'noto Sans';
     position: relative;
@@ -40,7 +44,7 @@ const StyledButton = styled.button`
       position: absolute;
       left: -30px;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-60%);
     }
   }
 `;

@@ -16,7 +16,6 @@ export const useAuth = () => {
     },
     onSuccess: (response: Token) => {
       const { accessToken, refreshToken } = response;
-
       setItem('accessToken', accessToken);
       setItem('refreshToken', refreshToken);
       setIsLoggedIn(true);
@@ -29,7 +28,6 @@ export const useAuth = () => {
 
   const handleGoogleLoginSuccess = async (response: any) => {
     const credential = response.code;
-    console.log(response);
 
     if (credential) {
       mutation.mutate(credential);

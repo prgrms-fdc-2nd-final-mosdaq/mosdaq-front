@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
 import { useEffect } from 'react';
 import CustomGoogleLoginButton from './CustomGoogleLoginButton';
+import loginTriangle from '@/assets/images/login/login-triangle.svg';
+import loginMovieStock from '@/assets/images/login/login-movieStock.svg';
+import loginDescription from '@/assets/images/login/login-description.svg';
+import loginWarning from '@/assets/images/login/login-warning.svg';
 
 export default function LoginPage() {
   const { isLoggedIn } = useAuthStore();
@@ -20,29 +23,29 @@ export default function LoginPage() {
         <div className="login-left">
           <img
             className="login-triangle"
-            src="/login-triangle.svg"
+            src={loginTriangle}
             alt="site description"
           />
           <img
             className="login-movieStock"
-            src="/login-movieStock.svg"
+            src={loginMovieStock}
             alt="site description"
           />
           <img
             className="login-description"
-            src="/login-description.svg"
+            src={loginDescription}
             alt="site description"
           />
           <img
             className="login-warning"
-            src="/login-warning.svg"
+            src={loginWarning}
             alt="site description"
           />
         </div>
 
         <div className="login-right">
           <h1>mosdaq</h1>
-          <h2>sns 계정으로 로그인하기</h2>
+          <h2>SNS 계정으로 로그인하기</h2>
           <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
             <CustomGoogleLoginButton />
           </GoogleOAuthProvider>
@@ -53,10 +56,9 @@ export default function LoginPage() {
 }
 
 const StyledLoginPage = styled.main`
-  background-color: red;
-  /* height: 100%; */
+  background-color: #c1c1c1;
   height: 100dvh;
-  width: 100%;
+  width: 100dvw;
   display: flex;
   align-items: center;
 
@@ -65,7 +67,7 @@ const StyledLoginPage = styled.main`
     width: 100%;
     height: 100%;
     max-width: 1655px;
-    max-height: 868px;
+    max-height: 861px;
     margin: 0 auto;
     border-radius: 32px;
     display: flex;
@@ -106,7 +108,6 @@ const StyledLoginPage = styled.main`
     }
 
     .login-right {
-      /* background-color: orange; */
       width: 100%;
       height: 100%;
       border-radius: 0 32px 32px 0;
