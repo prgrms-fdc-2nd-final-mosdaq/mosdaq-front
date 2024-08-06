@@ -4,6 +4,8 @@ const inverseGrey50 = '#202027';
 const inverseGrey100 = '#2c2c35';
 
 const colors = {
+  greyscale8: '#B1B1B1',
+  watcha: '#FF0558',
   grey50: '#f9fafb',
   grey100,
   grey200: '#e5e8eb',
