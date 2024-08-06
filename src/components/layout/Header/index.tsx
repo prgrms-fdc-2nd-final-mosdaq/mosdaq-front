@@ -70,6 +70,11 @@ const HeaderContainer = styled.section`
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid ${colors.greyscale8};
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: ${colors.white};
 
   @media (max-width: 768px) {
     padding: 0.5rem;
