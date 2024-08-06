@@ -77,6 +77,14 @@ a {
   text-decoration:none;
   color:inherit;
 }
+
+// 잘난 고딕 ttf
+@font-face {
+    font-family: 'JalnanGothic';
+    src: url('../fonts/JalnanGothic.ttf') format('truetype'); /* 폰트 파일 경로 */
+    font-weight: normal; /* 폰트 두께 */
+    font-style: normal; /* 폰트 스타일 */
+  }
 `;
 
 export default GlobalStyle;

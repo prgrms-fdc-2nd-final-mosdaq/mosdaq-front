@@ -4,16 +4,19 @@ import { fetchPostGoogleOAuthLogin } from '../../../apis/auth.api';
 import { setItem } from '../../../utils/localStorage';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../../../store/authStore';
+import { useGoogleLogin } from '@react-oauth/google';
 
 export const useAuth = () => {
   const navigate = useNavigate();
   const { setIsLoggedIn } = useAuthStore();
+
   const mutation = useMutation<Token, Error, string>({
     mutationFn: async (token: string) => {
       return fetchPostGoogleOAuthLogin(token);
     },
     onSuccess: (response: Token) => {
       const { accessToken, refreshToken } = response;
+
       setItem('accessToken', accessToken);
       setItem('refreshToken', refreshToken);
       setIsLoggedIn(true);
@@ -25,7 +28,9 @@ export const useAuth = () => {
   });
 
   const handleGoogleLoginSuccess = async (response: any) => {
-    const credential = response.credential;
+    const credential = response.code;
+    console.log(response);
+
     if (credential) {
       mutation.mutate(credential);
     } else {
@@ -37,5 +42,11 @@ export const useAuth = () => {
     console.log('Login Failed');
   };
 
-  return { handleGoogleLoginSuccess, handleGoogleLoginError, mutation };
+  const googleLogin = useGoogleLogin({
+    onSuccess: handleGoogleLoginSuccess,
+    onError: handleGoogleLoginError,
+    flow: 'auth-code',
+  });
+
+  return { googleLogin, mutation };
 };
