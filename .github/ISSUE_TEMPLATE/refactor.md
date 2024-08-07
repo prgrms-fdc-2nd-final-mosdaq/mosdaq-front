@@ -1,5 +1,5 @@
 ---
-name: "[REFACTOR]"
+name: REFACTOR
 about: Refactor 관련 이슈 템플릿입니다.
 title: "[REFACTOR]"
 labels: Refactor
