@@ -15,7 +15,7 @@ export default function RootLayout() {
 }
 
 const StyledContentContainer = styled.div`
-  max-width: 960px;
+  max-width: 1200px;
   min-width: 480px;
   width: 100%;
 
