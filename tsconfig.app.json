@@ -22,6 +22,7 @@
     // "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
 
     /*import alias 절대 경로 */
     "baseUrl": ".",
