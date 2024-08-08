@@ -9,6 +9,8 @@ import loginMovieStock from '@/assets/images/login/login-movieStock.svg';
 import loginDescription from '@/assets/images/login/login-description.svg';
 import loginWarning from '@/assets/images/login/login-warning.svg';
 import Header from '@/components/layout/Header';
+import colors from '@/constants/colors';
+import loginBg from '/login-bg.svg';
 
 export default function LoginPage() {
   const { isLoggedIn } = useAuthStore();
@@ -62,8 +64,8 @@ export default function LoginPage() {
 }
 
 const StyledLoginPage = styled.main`
-  background-color: #c1c1c1;
-  height: 100dvh;
+  background-color: ${colors.greyscale1};
+  height: calc(100dvh - 58.8px);
   width: 100dvw;
   display: flex;
   align-items: center;
@@ -83,7 +85,7 @@ const StyledLoginPage = styled.main`
       max-width: 690px;
       height: 100%;
       max-height: 861px;
-      background-image: url('/login-bg.svg');
+      background-image: url(${loginBg});
       background-size: cover;
       border-radius: 32px 0 0 32px;
       position: relative;
@@ -126,7 +128,7 @@ const StyledLoginPage = styled.main`
         margin-top: 48px;
         margin-bottom: 100px;
         font-size: 64px;
-        color: #ff0558;
+        color: ${colors.watcha};
         font-weight: bold;
       }
 
@@ -134,7 +136,7 @@ const StyledLoginPage = styled.main`
         text-align: center;
         font-size: 20px;
         font-weight: bold;
-        color: #636363;
+        color: ${colors.greyscale11};
         margin-bottom: 20px;
       }
     }
