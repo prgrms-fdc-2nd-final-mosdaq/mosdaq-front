@@ -3,11 +3,12 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
 import { useEffect } from 'react';
-import CustomGoogleLoginButton from './CustomGoogleLoginButton';
+import CustomGoogleLoginButton from '../../components/login/CustomGoogleLoginButton';
 import loginTriangle from '@/assets/images/login/login-triangle.svg';
 import loginMovieStock from '@/assets/images/login/login-movieStock.svg';
 import loginDescription from '@/assets/images/login/login-description.svg';
 import loginWarning from '@/assets/images/login/login-warning.svg';
+import Header from '@/components/layout/Header';
 
 export default function LoginPage() {
   const { isLoggedIn } = useAuthStore();
@@ -18,40 +19,45 @@ export default function LoginPage() {
   }, [isLoggedIn]);
 
   return (
-    <StyledLoginPage>
-      <div className="login-wrap">
-        <div className="login-left">
-          <img
-            className="login-triangle"
-            src={loginTriangle}
-            alt="site description"
-          />
-          <img
-            className="login-movieStock"
-            src={loginMovieStock}
-            alt="site description"
-          />
-          <img
-            className="login-description"
-            src={loginDescription}
-            alt="site description"
-          />
-          <img
-            className="login-warning"
-            src={loginWarning}
-            alt="site description"
-          />
-        </div>
+    <>
+      <Header />
+      <StyledLoginPage>
+        <div className="login-wrap">
+          <div className="login-left">
+            <img
+              className="login-triangle"
+              src={loginTriangle}
+              alt="site description"
+            />
+            <img
+              className="login-movieStock"
+              src={loginMovieStock}
+              alt="site description"
+            />
+            <img
+              className="login-description"
+              src={loginDescription}
+              alt="site description"
+            />
+            <img
+              className="login-warning"
+              src={loginWarning}
+              alt="site description"
+            />
+          </div>
 
-        <div className="login-right">
-          <h1>mosdaq</h1>
-          <h2>SNS 계정으로 로그인하기</h2>
-          <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-            <CustomGoogleLoginButton />
-          </GoogleOAuthProvider>
+          <div className="login-right">
+            <h1>mosdaq</h1>
+            <h2>SNS 계정으로 로그인하기</h2>
+            <GoogleOAuthProvider
+              clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
+            >
+              <CustomGoogleLoginButton />
+            </GoogleOAuthProvider>
+          </div>
         </div>
-      </div>
-    </StyledLoginPage>
+      </StyledLoginPage>
+    </>
   );
 }
 

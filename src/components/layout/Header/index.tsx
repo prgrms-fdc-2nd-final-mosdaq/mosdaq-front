@@ -71,7 +71,7 @@ const HeaderContainer = styled.section`
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid ${colors.greyscale8};
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   z-index: 1000;
