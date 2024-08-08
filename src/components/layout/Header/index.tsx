@@ -6,6 +6,36 @@ import { Button } from '../../common/Button';
 import mainLogo from '../../../assets/images/mainLogo.png';
 import mypageLogo from '../../../assets/images/mypageLogo.png';
 
+export default function Header() {
+  return (
+    <HeaderContainer>
+      <HeaderContent>
+        <LeftSection>
+          <Link to="/">
+            <MainLogo src={mainLogo} alt="Main Logo" />
+          </Link>
+          <Nav>
+            <NavButton as={Link} to="/movie-list">
+              영화 투표
+            </NavButton>
+            <NavButton as={Link} to="/quiz">
+              영화 퀴즈
+            </NavButton>
+          </Nav>
+        </LeftSection>
+        <RightSection>
+          <LoginButton as={Link} to="/login">
+            로그인
+          </LoginButton>
+          <Link to="/mypage">
+            <MypageLogo src={mypageLogo} alt="MyPage Logo" />
+          </Link>
+        </RightSection>
+      </HeaderContent>
+    </HeaderContainer>
+  );
+}
+
 const BaseButton = styled(Button).attrs(() => ({
   variant: 'secondary',
   size: 'small',
@@ -22,7 +52,6 @@ const BaseButton = styled(Button).attrs(() => ({
 
 const NavButton = styled(BaseButton)`
   background-color: ${colors.white};
-  }
 `;
 
 const LoginButton = styled(BaseButton)`
@@ -34,34 +63,6 @@ const LoginButton = styled(BaseButton)`
     background-color: ${colors.greyscale8};
   }
 `;
-
-const Header = () => (
-  <HeaderContainer>
-    <HeaderContent>
-      <LeftSection>
-        <Link to="/">
-          <MainLogo src={mainLogo} alt="Main Logo" />
-        </Link>
-        <Nav>
-          <NavButton as={Link} to="/movie-list">
-            영화 투표
-          </NavButton>
-          <NavButton as={Link} to="/quiz">
-            영화 퀴즈
-          </NavButton>
-        </Nav>
-      </LeftSection>
-      <RightSection>
-        <LoginButton as={Link} to="/login">
-          로그인
-        </LoginButton>
-        <Link to="/mypage">
-          <MypageLogo src={mypageLogo} alt="MyPage Logo" />
-        </Link>
-      </RightSection>
-    </HeaderContent>
-  </HeaderContainer>
-);
 
 const HeaderContainer = styled.section`
   width: 100%;
@@ -118,5 +119,3 @@ const MainLogo = styled.img`
 const MypageLogo = styled.img`
   width: 40x;
 `;
-
-export default Header;
