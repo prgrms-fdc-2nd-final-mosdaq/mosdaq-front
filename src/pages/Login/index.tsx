@@ -8,9 +8,9 @@ import loginTriangle from '@/assets/images/login/login-triangle.svg';
 import loginMovieStock from '@/assets/images/login/login-movieStock.svg';
 import loginDescription from '@/assets/images/login/login-description.svg';
 import loginWarning from '@/assets/images/login/login-warning.svg';
+import loginBg from '@/assets/images/login/login-bg.svg';
 import Header from '@/components/layout/Header';
 import colors from '@/constants/colors';
-import loginBg from '/login-bg.svg';
 
 export default function LoginPage() {
   const { isLoggedIn } = useAuthStore();
@@ -71,7 +71,7 @@ const StyledLoginPage = styled.main`
   align-items: center;
 
   .login-wrap {
-    background-color: white;
+    background-color: ${colors.background};
     width: 100%;
     height: 100%;
     max-width: 1655px;

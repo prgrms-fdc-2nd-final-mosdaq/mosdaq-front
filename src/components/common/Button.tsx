@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 import colors from '../../constants/colors';
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary';
   size?: 'small' | 'medium' | 'large';
 }

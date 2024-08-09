@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../../../store/authStore';
 import { useGoogleLogin } from '@react-oauth/google';
 
-export const useAuth = () => {
+export const useGoogleOAuth = () => {
   const navigate = useNavigate();
   const { setIsLoggedIn } = useAuthStore();
 
@@ -22,6 +22,7 @@ export const useAuth = () => {
       navigate('/');
     },
     onError: (error) => {
+      //:TODO
       console.log('로그인 실패:', error);
     },
   });
@@ -32,11 +33,13 @@ export const useAuth = () => {
     if (credential) {
       mutation.mutate(credential);
     } else {
+      //:TODO
       console.error('Credential is missing');
     }
   };
 
   const handleGoogleLoginError = () => {
+    //:TODO
     console.log('Login Failed');
   };
 

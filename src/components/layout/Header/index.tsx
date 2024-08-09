@@ -5,8 +5,11 @@ import colors from '../../../constants/colors';
 import { Button } from '../../common/Button';
 import mainLogo from '../../../assets/images/mainLogo.png';
 import mypageLogo from '../../../assets/images/mypageLogo.png';
+import useAuthStore from '@/store/authStore';
+import Logout from '@/components/login/Logout';
 
 export default function Header() {
+  const { isLoggedIn } = useAuthStore();
   return (
     <HeaderContainer>
       <HeaderContent>
@@ -24,9 +27,13 @@ export default function Header() {
           </Nav>
         </LeftSection>
         <RightSection>
-          <LoginButton as={Link} to="/login">
-            로그인
-          </LoginButton>
+          {isLoggedIn ? (
+            <Logout />
+          ) : (
+            <LoginButton as={Link} to="/login">
+              로그인
+            </LoginButton>
+          )}
           <Link to="/mypage">
             <MypageLogo src={mypageLogo} alt="MyPage Logo" />
           </Link>
@@ -54,7 +61,7 @@ const NavButton = styled(BaseButton)`
   background-color: ${colors.white};
 `;
 
-const LoginButton = styled(BaseButton)`
+export const LoginButton = styled(BaseButton)`
   background-color: ${colors.watcha};
   color: ${colors.white};
   border-radius: 7px;
