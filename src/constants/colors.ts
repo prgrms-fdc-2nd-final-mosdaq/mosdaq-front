@@ -19,6 +19,8 @@ const colors = {
   watcha: '#FF0558',
   watcha2: '#FF73A1',
   watcha3: '#FFBFD4',
+  crimson: '#DC143C',
+  red: '#FF0000',
 
   black: '#000000',
   white: '#ffffff',
