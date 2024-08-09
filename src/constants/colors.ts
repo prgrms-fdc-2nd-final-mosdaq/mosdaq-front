@@ -1,3 +1,8 @@
+const white = '#ffffff';
+const grey100 = '#f2f4f6';
+const inverseGrey50 = '#202027';
+const inverseGrey100 = '#2c2c35';
+
 const colors = {
   greyscale1: '#F1F1F1',
   greyscale2: '#EAEAEA',
@@ -17,6 +22,15 @@ const colors = {
 
   black: '#000000',
   white: '#ffffff',
+
+  background: white,
+  darkBackground: '#17171c',
+  greyBackground: grey100,
+  darkGreyBackground: '#101013',
+  layeredBackground: white,
+  darkLayeredBackground: inverseGrey50,
+  floatBackground: white,
+  darkFloatBackground: inverseGrey100,
 };
 
 export default colors;
