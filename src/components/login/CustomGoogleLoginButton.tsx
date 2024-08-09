@@ -16,7 +16,7 @@ export default function CustomGoogleLoginButton() {
 const StyledButton = styled.button`
   width: 578px;
   height: 44px;
-  background-color: ${colors.background};
+  background-color: ${colors.white};
   border: 1px solid ${colors.greyscale3};
   border-radius: 10px;
   display: flex;
