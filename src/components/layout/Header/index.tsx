@@ -8,6 +8,41 @@ import mypageLogo from '../../../assets/images/mypageLogo.png';
 import useAuthStore from '@/store/authStore';
 import Logout from '@/components/login/Logout';
 
+export default function Header() {
+  const { isLoggedIn } = useAuthStore();
+  return (
+    <HeaderContainer>
+      <HeaderContent>
+        <LeftSection>
+          <Link to="/">
+            <MainLogo src={mainLogo} alt="Main Logo" />
+          </Link>
+          <Nav>
+            <NavButton as={Link} to="/movie-list">
+              영화 투표
+            </NavButton>
+            <NavButton as={Link} to="/quiz">
+              영화 퀴즈
+            </NavButton>
+          </Nav>
+        </LeftSection>
+        <RightSection>
+          {isLoggedIn ? (
+            <Logout />
+          ) : (
+            <LoginButton as={Link} to="/login">
+              로그인
+            </LoginButton>
+          )}
+          <Link to="/mypage">
+            <MypageLogo src={mypageLogo} alt="MyPage Logo" />
+          </Link>
+        </RightSection>
+      </HeaderContent>
+    </HeaderContainer>
+  );
+}
+
 const BaseButton = styled(Button).attrs(() => ({
   variant: 'secondary',
   size: 'small',
@@ -36,44 +71,6 @@ export const LoginButton = styled(BaseButton)`
   }
 `;
 
-const Header = () => {
-  const { isLoggedIn } = useAuthStore();
-
-  return (
-    <HeaderContainer>
-      <HeaderContent>
-        <LeftSection>
-          <Link to="/">
-            <MainLogo src={mainLogo} alt="Main Logo" />
-          </Link>
-          <Nav>
-            <NavButton as={Link} to="/movie-list">
-              영화 투표
-            </NavButton>
-            <NavButton as={Link} to="/quiz">
-              영화 퀴즈
-            </NavButton>
-          </Nav>
-        </LeftSection>
-        <RightSection>
-          {isLoggedIn ? (
-            <Logout />
-          ) : (
-            <LoginButton as={Link} to="/login">
-              로그인
-            </LoginButton>
-          )}
-
-          {/* 마이페이지 링크 */}
-          <Link to="/mypage">
-            <MypageLogo src={mypageLogo} alt="MyPage Logo" />
-          </Link>
-        </RightSection>
-      </HeaderContent>
-    </HeaderContainer>
-  );
-};
-
 const HeaderContainer = styled.section`
   width: 100%;
   padding: 0.25rem 1rem;
@@ -81,7 +78,7 @@ const HeaderContainer = styled.section`
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid ${colors.greyscale8};
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   z-index: 1000;
@@ -129,5 +126,3 @@ const MainLogo = styled.img`
 const MypageLogo = styled.img`
   width: 40x;
 `;
-
-export default Header;

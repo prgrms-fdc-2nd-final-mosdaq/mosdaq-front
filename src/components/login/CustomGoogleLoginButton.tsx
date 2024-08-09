@@ -17,7 +17,7 @@ const StyledButton = styled.button`
   width: 578px;
   height: 44px;
   background-color: ${colors.background};
-  border: 1px solid #d8d8d8;
+  border: 1px solid ${colors.greyscale3};
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -25,8 +25,7 @@ const StyledButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    // hover 스타일 추가 필요
-    background-color: grey;
+    background-color: ${colors.greyscale1};
   }
 
   span {
@@ -34,7 +33,6 @@ const StyledButton = styled.button`
     position: relative;
     line-height: 140%;
     font-size: 16px;
-    color: #232323;
 
     &:before {
       content: '';

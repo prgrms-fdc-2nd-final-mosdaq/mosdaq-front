@@ -22,6 +22,7 @@ export const useGoogleOAuth = () => {
       navigate('/');
     },
     onError: (error) => {
+      //:TODO
       console.log('로그인 실패:', error);
     },
   });
@@ -32,11 +33,13 @@ export const useGoogleOAuth = () => {
     if (credential) {
       mutation.mutate(credential);
     } else {
+      //:TODO
       console.error('Credential is missing');
     }
   };
 
   const handleGoogleLoginError = () => {
+    //:TODO
     console.log('Login Failed');
   };
 
