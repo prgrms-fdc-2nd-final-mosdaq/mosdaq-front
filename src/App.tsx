@@ -40,6 +40,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: '/login',
+        element: (
+          <Suspense fallback={null}>
+            <LoginPage />
+          </Suspense>
+        ),
+      },
+      {
         path: '/quiz',
         element: (
           <Suspense fallback={null}>
@@ -48,14 +56,6 @@ const router = createBrowserRouter([
         ),
       },
     ],
-  },
-  {
-    path: '/login',
-    element: (
-      <Suspense fallback={null}>
-        <LoginPage />
-      </Suspense>
-    ),
   },
 ]);
 
