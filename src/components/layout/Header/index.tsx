@@ -96,7 +96,7 @@ const HeaderContent = styled.header`
   align-items: center;
   width: 100%;
   max-width: 1200px;
-  height: 50px;
+  height: 68px;
 
   @media (max-width: 768px) {
     height: auto;
@@ -121,7 +121,7 @@ const Nav = styled.nav`
 `;
 
 const MainLogo = styled.img`
-  width: 130px;
+  width: 150px;
 `;
 
 const MypageLogo = styled.img`
