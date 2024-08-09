@@ -9,7 +9,6 @@ import loginMovieStock from '@/assets/images/login/login-movieStock.svg';
 import loginDescription from '@/assets/images/login/login-description.svg';
 import loginWarning from '@/assets/images/login/login-warning.svg';
 import loginBg from '@/assets/images/login/login-bg.svg';
-import Header from '@/components/layout/Header';
 import colors from '@/constants/colors';
 
 export default function LoginPage() {
@@ -21,45 +20,40 @@ export default function LoginPage() {
   }, [isLoggedIn]);
 
   return (
-    <>
-      <Header />
-      <StyledLoginPage>
-        <div className="login-wrap">
-          <div className="login-left">
-            <img
-              className="login-triangle"
-              src={loginTriangle}
-              alt="site description"
-            />
-            <img
-              className="login-movieStock"
-              src={loginMovieStock}
-              alt="site description"
-            />
-            <img
-              className="login-description"
-              src={loginDescription}
-              alt="site description"
-            />
-            <img
-              className="login-warning"
-              src={loginWarning}
-              alt="site description"
-            />
-          </div>
-
-          <div className="login-right">
-            <h1>mosdaq</h1>
-            <h2>SNS 계정으로 로그인하기</h2>
-            <GoogleOAuthProvider
-              clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
-            >
-              <CustomGoogleLoginButton />
-            </GoogleOAuthProvider>
-          </div>
+    <StyledLoginPage>
+      <div className="login-wrap">
+        <div className="login-left">
+          <img
+            className="login-triangle"
+            src={loginTriangle}
+            alt="site description"
+          />
+          <img
+            className="login-movieStock"
+            src={loginMovieStock}
+            alt="site description"
+          />
+          <img
+            className="login-description"
+            src={loginDescription}
+            alt="site description"
+          />
+          <img
+            className="login-warning"
+            src={loginWarning}
+            alt="site description"
+          />
         </div>
-      </StyledLoginPage>
-    </>
+
+        <div className="login-right">
+          <h1>mosdaq</h1>
+          <h2>SNS 계정으로 로그인하기</h2>
+          <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+            <CustomGoogleLoginButton />
+          </GoogleOAuthProvider>
+        </div>
+      </div>
+    </StyledLoginPage>
   );
 }
 
