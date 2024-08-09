@@ -2,17 +2,18 @@ import { HTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
 import colors from '@/constants/colors';
 
+// 색상 키 타입 정의
+type ColorKey = keyof typeof colors;
+
 interface Props extends HTMLAttributes<HTMLSpanElement> {
   typography?: 'h1' | 'h2' | 'h3' | 'p';
-  color?: string;
+  color?: ColorKey;
 }
 
-export function Txt({
-  typography = 'p',
-  color = colors.black,
-  ...props
-}: Props) {
-  return <StyledText typography={typography} color={color} {...props} />;
+export function Txt({ typography = 'p', color = 'black', ...props }: Props) {
+  return (
+    <StyledText typography={typography} color={colors[color]} {...props} />
+  );
 }
 
 const StyledText = styled.span<{
