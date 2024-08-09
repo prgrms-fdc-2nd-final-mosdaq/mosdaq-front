@@ -3,11 +3,13 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
 import { useEffect } from 'react';
-import CustomGoogleLoginButton from './CustomGoogleLoginButton';
+import CustomGoogleLoginButton from '../../components/login/CustomGoogleLoginButton';
 import loginTriangle from '@/assets/images/login/login-triangle.svg';
 import loginMovieStock from '@/assets/images/login/login-movieStock.svg';
 import loginDescription from '@/assets/images/login/login-description.svg';
 import loginWarning from '@/assets/images/login/login-warning.svg';
+import loginBg from '@/assets/images/login/login-bg.svg';
+import colors from '@/constants/colors';
 
 export default function LoginPage() {
   const { isLoggedIn } = useAuthStore();
@@ -56,14 +58,14 @@ export default function LoginPage() {
 }
 
 const StyledLoginPage = styled.main`
-  background-color: #c1c1c1;
+  background-color: ${colors.greyBackground};
   height: 100dvh;
   width: 100dvw;
   display: flex;
   align-items: center;
 
   .login-wrap {
-    background-color: white;
+    background-color: ${colors.background};
     width: 100%;
     height: 100%;
     max-width: 1655px;
@@ -77,7 +79,7 @@ const StyledLoginPage = styled.main`
       max-width: 690px;
       height: 100%;
       max-height: 861px;
-      background-image: url('/login-bg.svg');
+      background-image: url(${loginBg});
       background-size: cover;
       border-radius: 32px 0 0 32px;
       position: relative;
@@ -120,7 +122,7 @@ const StyledLoginPage = styled.main`
         margin-top: 48px;
         margin-bottom: 100px;
         font-size: 64px;
-        color: #ff0558;
+        color: ${colors.watcha};
         font-weight: bold;
       }
 

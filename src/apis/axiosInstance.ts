@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { getItem, removeItem, setItem } from '../utils/localStorage';
 import { BASE_URL } from '../constants/url';
-import { redirect } from 'react-router-dom';
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -12,13 +11,12 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
-// 로컬스토리지 사용시 주석해제
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = getItem('accessToken');
 
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`; // Authorization 헤더에 토큰 추가
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
@@ -52,9 +50,14 @@ axiosInstance.interceptors.response.use(
           //logout
           removeItem('accessToken');
           removeItem('refreshToken');
-          redirect('/login');
+          window.location.href = '/login';
         }
       }
+    } else if (error.response && error.response.status === 403) {
+      // 토큰 탈취 가능성(재로그인 필요)
+      removeItem('accessToken');
+      removeItem('refreshToken');
+      window.location.href = '/login';
     }
     return Promise.reject(error);
   },

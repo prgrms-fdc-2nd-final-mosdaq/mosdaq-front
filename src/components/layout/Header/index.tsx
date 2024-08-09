@@ -5,6 +5,8 @@ import colors from '../../../constants/colors';
 import { Button } from '../../common/Button';
 import mainLogo from '../../../assets/images/mainLogo.png';
 import mypageLogo from '../../../assets/images/mypageLogo.png';
+import useAuthStore from '@/store/authStore';
+import Logout from '@/components/login/Logout';
 
 const BaseButton = styled(Button).attrs(() => ({
   variant: 'secondary',
@@ -22,10 +24,9 @@ const BaseButton = styled(Button).attrs(() => ({
 
 const NavButton = styled(BaseButton)`
   background-color: ${colors.white};
-  }
 `;
 
-const LoginButton = styled(BaseButton)`
+export const LoginButton = styled(BaseButton)`
   background-color: ${colors.watcha};
   color: ${colors.white};
   border-radius: 7px;
@@ -35,33 +36,43 @@ const LoginButton = styled(BaseButton)`
   }
 `;
 
-const Header = () => (
-  <HeaderContainer>
-    <HeaderContent>
-      <LeftSection>
-        <Link to="/">
-          <MainLogo src={mainLogo} alt="Main Logo" />
-        </Link>
-        <Nav>
-          <NavButton as={Link} to="/movie-list">
-            영화 투표
-          </NavButton>
-          <NavButton as={Link} to="/quiz">
-            영화 퀴즈
-          </NavButton>
-        </Nav>
-      </LeftSection>
-      <RightSection>
-        <LoginButton as={Link} to="/login">
-          로그인
-        </LoginButton>
-        <Link to="/mypage">
-          <MypageLogo src={mypageLogo} alt="MyPage Logo" />
-        </Link>
-      </RightSection>
-    </HeaderContent>
-  </HeaderContainer>
-);
+const Header = () => {
+  const { isLoggedIn } = useAuthStore();
+
+  return (
+    <HeaderContainer>
+      <HeaderContent>
+        <LeftSection>
+          <Link to="/">
+            <MainLogo src={mainLogo} alt="Main Logo" />
+          </Link>
+          <Nav>
+            <NavButton as={Link} to="/movie-list">
+              영화 투표
+            </NavButton>
+            <NavButton as={Link} to="/quiz">
+              영화 퀴즈
+            </NavButton>
+          </Nav>
+        </LeftSection>
+        <RightSection>
+          {isLoggedIn ? (
+            <Logout />
+          ) : (
+            <LoginButton as={Link} to="/login">
+              로그인
+            </LoginButton>
+          )}
+
+          {/* 마이페이지 링크 */}
+          <Link to="/mypage">
+            <MypageLogo src={mypageLogo} alt="MyPage Logo" />
+          </Link>
+        </RightSection>
+      </HeaderContent>
+    </HeaderContainer>
+  );
+};
 
 const HeaderContainer = styled.section`
   width: 100%;

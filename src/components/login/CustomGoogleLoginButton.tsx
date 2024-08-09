@@ -1,8 +1,10 @@
 import styled from 'styled-components';
-import { useAuth } from '../../hooks/api/auth/useAuth';
+import { useGoogleOAuth } from '../../hooks/api/auth/useGoogleOAuth';
+import colors from '@/constants/colors';
+import googleLogo from '@/assets/images/login/login-google.svg';
 
 export default function CustomGoogleLoginButton() {
-  const { googleLogin } = useAuth();
+  const { googleLogin } = useGoogleOAuth();
 
   return (
     <StyledButton type="button" onClick={() => googleLogin()}>
@@ -14,7 +16,7 @@ export default function CustomGoogleLoginButton() {
 const StyledButton = styled.button`
   width: 578px;
   height: 44px;
-  background-color: white;
+  background-color: ${colors.background};
   border: 1px solid #d8d8d8;
   border-radius: 10px;
   display: flex;
@@ -39,7 +41,7 @@ const StyledButton = styled.button`
       display: block;
       width: 24px;
       height: 24px;
-      background-image: url('/login-google.svg');
+      background-image: url(${googleLogo});
       background-size: cover;
       position: absolute;
       left: -30px;

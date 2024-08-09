@@ -10,6 +10,16 @@ export const fetchPostGoogleOAuthLogin = async (token: string) => {
   return res.data;
 };
 
+export const fetchPostLogout = async (token: string) => {
+  const res = await axiosInstance.post(
+    'auth/logout',
+    { refreshToken: token },
+    { withCredentials: true },
+  );
+
+  return res.data;
+};
+
 export const fetchGetUserInfo = async () => {
   const res = await axiosInstance.get('/users');
 
