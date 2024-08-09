@@ -1,17 +1,22 @@
 import { HTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
+import colors from '@/constants/colors';
 
 interface Props extends HTMLAttributes<HTMLSpanElement> {
-  typography?: 'h1' | 'h5' | 'p';
-  color: string;
+  typography?: 'h1' | 'h2' | 'h3' | 'p';
+  color?: string;
 }
 
-export function Txt({ typography = 'p', color, ...props }: Props) {
+export function Txt({
+  typography = 'p',
+  color = colors.black,
+  ...props
+}: Props) {
   return <StyledText typography={typography} color={color} {...props} />;
 }
 
 const StyledText = styled.span<{
-  typography: 'h1' | 'h5' | 'p';
+  typography: 'h1' | 'h2' | 'h3' | 'p';
   color: string;
 }>`
   margin: 0;
@@ -24,27 +29,19 @@ const StyledText = styled.span<{
 
 const TYPOGRAPH_VARIANT = {
   h1: css`
-    font-size: 56px;
+    font-size: 48px;
     font-weight: 900;
   `,
   h2: css`
-    font-size: 48px;
+    font-size: 40px;
     font-weight: 800;
   `,
   h3: css`
-    font-size: 40px;
-    font-weight: 700;
-  `,
-  h4: css`
-    font-size: 36px;
-    font-weight: 700;
-  `,
-  h5: css`
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 700;
   `,
   p: css`
-    font-size: 15px;
+    font-size: 24px;
     font-weight: 400;
   `,
 };

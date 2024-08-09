@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import colors from '../../../constants/colors';
+import { Txt } from '../../common/Txt';
 import { Button } from '../../common/Button';
 import mainLogo from '../../../assets/images/mainLogo.png';
 import mypageLogo from '../../../assets/images/mypageLogo.png';
@@ -19,10 +20,10 @@ export default function Header() {
           </Link>
           <Nav>
             <NavButton as={Link} to="/movie-list">
-              영화 투표
+              <Txt>영화 투표</Txt>
             </NavButton>
             <NavButton as={Link} to="/quiz">
-              영화 퀴즈
+              <Txt>영화 퀴즈</Txt>
             </NavButton>
           </Nav>
         </LeftSection>
