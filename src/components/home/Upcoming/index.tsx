@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import arrow from '../../../assets/images/arrow.png';
 import styled from 'styled-components';
 import colors from '../../../constants/colors';
 import { Txt } from '../../common/Txt';
 import { Movie } from '../../../models/movie.model';
 import { useCarousel } from '@/hooks/useCarousel';
+import { useGetPollingMovie } from '@/hooks/api/main-movie/useGetPollingMovie';
 
 interface CarouselProps {
   movieList: Movie[];
@@ -82,62 +83,17 @@ const Arrow = styled.div<{ direction: 'left' | 'right' }>`
   ${({ direction }) => (direction === 'left' ? 'left: 10px;' : 'right: 10px;')}
 `;
 
-const movieData = {
-  movieList: [
-    {
-      movieId: 1,
-      movieTitle: 'Movie 1',
-      posterUrl: 'https://via.placeholder.com/200x150?text=Movie+1',
-      up: 0,
-      down: 0,
-      pollCount: 0,
-      myPollResult: 'none',
-    },
-    {
-      movieId: 2,
-      movieTitle: 'Movie 2',
-      posterUrl: 'https://via.placeholder.com/200x150?text=Movie+2',
-      up: 0,
-      down: 0,
-      pollCount: 0,
-      myPollResult: 'none',
-    },
-    {
-      movieId: 3,
-      movieTitle: 'Movie 3',
-      posterUrl: 'https://via.placeholder.com/200x150?text=Movie+3',
-      up: 0,
-      down: 0,
-      pollCount: 0,
-      myPollResult: 'none',
-    },
-    {
-      movieId: 4,
-      movieTitle: 'Movie 4',
-      posterUrl: 'https://via.placeholder.com/200x150?text=Movie+4',
-      up: 0,
-      down: 0,
-      pollCount: 0,
-      myPollResult: 'none',
-    },
-    {
-      movieId: 5,
-      movieTitle: 'Movie 5',
-      posterUrl: 'https://via.placeholder.com/200x150?text=Movie+5',
-      up: 0,
-      down: 0,
-      pollCount: 0,
-      myPollResult: 'none',
-    },
-  ],
-  movieListCount: 5,
-};
-
 export default function Upcoming() {
+  const { pollingMovie, isLoading } = useGetPollingMovie();
+
+  if (isLoading) {
+    return <Txt>Loading...</Txt>;
+  }
+
   return (
     <div>
-      <Txt>Upcoming</Txt>
-      <Carousel movieList={movieData.movieList} />
+      <Txt typography="h2">개봉 예정 영화</Txt>
+      <Carousel movieList={pollingMovie?.movieList ?? []} />
     </div>
   );
 }
