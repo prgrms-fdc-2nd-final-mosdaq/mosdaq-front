@@ -6,7 +6,7 @@ import colors from '@/constants/colors';
 type ColorKey = keyof typeof colors;
 
 interface Props extends HTMLAttributes<HTMLSpanElement> {
-  typography?: 'h1' | 'h2' | 'h3' | 'p';
+  typography?: Typography;
   color?: ColorKey;
 }
 
