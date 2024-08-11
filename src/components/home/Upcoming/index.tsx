@@ -1,17 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import arrow from '../../../assets/images/arrow.png';
 import styled from 'styled-components';
 import colors from '../../../constants/colors';
 import { Txt } from '../../common/Txt';
-import { Movie } from '../../../models/movie.model';
 import { useCarousel } from '@/hooks/useCarousel';
-import { useGetPollingMovie } from '@/hooks/api/main-movie/useGetPollingMovie';
+import { useMovieStore } from '@/store/useMovieStore';
 
-interface CarouselProps {
-  movieList: Movie[];
-}
-
-const Carousel: React.FC<CarouselProps> = ({ movieList }) => {
+const Carousel: React.FC = () => {
+  const { movieList } = useMovieStore();
   const { currentMovies, nextSlide, prevSlide } = useCarousel(movieList);
 
   return (
@@ -84,7 +80,11 @@ const Arrow = styled.div<{ direction: 'left' | 'right' }>`
 `;
 
 export default function Upcoming() {
-  const { pollingMovie, isLoading } = useGetPollingMovie();
+  const { fetchMovies, isLoading } = useMovieStore();
+
+  useEffect(() => {
+    fetchMovies();
+  }, [fetchMovies]);
 
   if (isLoading) {
     return <Txt>Loading...</Txt>;
@@ -93,7 +93,7 @@ export default function Upcoming() {
   return (
     <div>
       <Txt typography="h2">개봉 예정 영화</Txt>
-      <Carousel movieList={pollingMovie?.movieList ?? []} />
+      <Carousel />
     </div>
   );
 }
