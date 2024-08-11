@@ -21,7 +21,7 @@ const StyledButton = styled.button<{
 }>`
   outline: none;
   border: 0 solid transparent;
-  border-radius: 7px;
+  border-radius: 8px;
   cursor: pointer;
   transition:
     background 0.2s ease,
@@ -35,32 +35,27 @@ const StyledButton = styled.button<{
 
 const TYPE_VARIANTS = {
   primary: `
-    color: ${colors.grey50};
-    background-color: ${colors.blue500};
+    background-color: ${colors.white};
     &:hover {
-      background-color: ${colors.blue600};
+      background-color: ${colors.greyscale1};
     }
   `,
   secondary: `
-    color: ${colors.grey700};
-    background-color: ${colors.white};
-    &:hover {
-      background-color: ${colors.grey100};
-    }
-  `,
+  background-color: ${colors.watcha};
+  &:hover {
+    background-color: ${colors.watcha2};
+  }
+`,
 };
 
 const SIZE_VARIANTS = {
   small: `
-    font-size: 14px;
     padding: 5.5px 12px;
   `,
   medium: `
-    font-size: 15px;
     padding: 11px 16px;
   `,
   large: `
-    font-size: 17px;
     padding: 11px 22px;
   `,
 };
