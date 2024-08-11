@@ -2,43 +2,22 @@ import React, { useState } from 'react';
 import arrow from '../../../assets/images/arrow.png';
 import styled from 'styled-components';
 import colors from '../../../constants/colors';
-import { Button } from '../../common/Button';
 import { Txt } from '../../common/Txt';
-
-interface Movie {
-  movieId: number;
-  movieTitle: string;
-  posterUrl: string;
-  up: number;
-  down: number;
-  pollCount: number;
-  myPollResult: string;
-}
+import { Movie } from '../../../models/movie.model';
+import { useCarousel } from '@/hooks/useCarousel';
 
 interface CarouselProps {
   movieList: Movie[];
 }
 
 const Carousel: React.FC<CarouselProps> = ({ movieList }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === movieList.length - 1 ? 0 : prevIndex + 1,
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? movieList.length - 1 : prevIndex - 1,
-    );
-  };
+  const { currentMovies, nextSlide, prevSlide } = useCarousel(movieList);
 
   return (
     <CarouselContainer>
       <Arrow direction="left" onClick={prevSlide} />
       <ImageWrapper>
-        {movieList.slice(currentIndex, currentIndex + 3).map((movie) => (
+        {currentMovies.map((movie) => (
           <ImageContainer key={movie.movieId}>
             <Image src={movie.posterUrl} alt={movie.movieTitle} />
             <Title>{movie.movieTitle}</Title>
