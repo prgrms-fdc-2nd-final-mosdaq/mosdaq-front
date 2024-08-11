@@ -38,12 +38,11 @@ const Carousel: React.FC<CarouselProps> = ({ movieList }) => {
     <CarouselContainer>
       <Arrow direction="left" onClick={prevSlide} />
       <ImageWrapper>
-        {movieList.slice(currentIndex, currentIndex + 3).map((movie, index) => (
-          <Image
-            src={movie.posterUrl}
-            alt={movie.movieTitle}
-            key={movie.movieId}
-          />
+        {movieList.slice(currentIndex, currentIndex + 3).map((movie) => (
+          <ImageContainer key={movie.movieId}>
+            <Image src={movie.posterUrl} alt={movie.movieTitle} />
+            <Title>{movie.movieTitle}</Title>
+          </ImageContainer>
         ))}
       </ImageWrapper>
       <Arrow direction="right" onClick={nextSlide} />
@@ -65,11 +64,25 @@ const ImageWrapper = styled.div`
   transition: transform 0.5s ease-in-out;
 `;
 
+const ImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+`;
+
 const Image = styled.img`
   width: 200px;
   height: 150px;
   object-fit: cover;
-  margin: 0 10px;
+`;
+
+const Title = styled.div`
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  color: ${colors.black};
 `;
 
 const Arrow = styled.div<{ direction: 'left' | 'right' }>`
@@ -144,7 +157,7 @@ const movieData = {
 export default function Upcoming() {
   return (
     <div>
-      <Txt typography="h1">개봉 예정 영화</Txt>
+      <Txt>Upcoming</Txt>
       <Carousel movieList={movieData.movieList} />
     </div>
   );
