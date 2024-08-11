@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import arrow from '../../../assets/images/arrow.png';
+import arrow from '@/assets/arrow.svg';
 import styled from 'styled-components';
 import colors from '../../../constants/colors';
 import { Txt } from '../../common/Txt';
@@ -92,7 +92,7 @@ export default function Upcoming() {
 
   return (
     <div>
-      <Txt typography="h2">개봉 예정 영화</Txt>
+      <Txt typography="h1">개봉 예정 영화</Txt>
       <Carousel />
     </div>
   );
