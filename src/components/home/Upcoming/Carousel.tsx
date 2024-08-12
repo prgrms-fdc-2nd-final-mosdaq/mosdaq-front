@@ -2,7 +2,7 @@ import arrow from '../../../assets/images/arrow.png';
 import styled from 'styled-components';
 import colors from '../../../constants/colors';
 import { Movie } from '../../../models/movie.model';
-import { useCarousel } from '@/hooks/useCarousel';
+import { useCarousel } from '@/hooks/api/main-movie/useCarousel';
 
 interface CarouselProps {
   movieList: Movie[];
