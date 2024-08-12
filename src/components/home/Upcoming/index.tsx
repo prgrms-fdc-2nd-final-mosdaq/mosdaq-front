@@ -1,5 +1,18 @@
-import React from 'react';
+import { Txt } from '../../common/Txt';
+import { useGetPollingMovie } from '@/hooks/api/main-movie/useGetPollingMovie';
+import Carousel from './Carousel';
 
 export default function Upcoming() {
-  return <div>Upcoming</div>;
+  const { pollingMovie, isLoading } = useGetPollingMovie();
+
+  if (isLoading) {
+    return <Txt>Loading...</Txt>;
+  }
+
+  return (
+    <div>
+      <Txt typography="Pretendard48bold">개봉 예정 영화</Txt>
+      <Carousel movieList={pollingMovie?.movieList ?? []} />
+    </div>
+  );
 }
