@@ -32,7 +32,7 @@ const StyledQuizContainer = styled.div`
 const StyledQuizTitle = styled.div`
   align-self: flex-start;
   margin-left: 50px;
-  padding-top: 40px;
+  padding-top: 20px;
   padding-bottom: 20px;
 `;
 
