@@ -1,11 +1,11 @@
 import arrow from '../../../assets/images/main/arrow.png';
 import styled from 'styled-components';
-import { Movie } from '../../../models/movie.model';
-import { useCarousel } from '@/hooks/api/main-movie/useCarousel';
+import { IMovie } from '../../../models/main-movie.model';
+import { useCarousel } from '@/hooks/useCarousel';
 import { Txt } from '@/components/common/Txt';
 
 interface CarouselProps {
-  movieList: Movie[];
+  movieList: IMovie[];
 }
 
 export default function Carousel({ movieList }: CarouselProps) {

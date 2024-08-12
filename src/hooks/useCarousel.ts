@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Movie } from '@/models/movie.model';
+import { IMovie } from '@/models/main-movie.model';
 
-export function useCarousel(movieList: Movie[]) {
+// TODO: 라이브러리 사용 고려
+export function useCarousel(movieList: IMovie[]) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
