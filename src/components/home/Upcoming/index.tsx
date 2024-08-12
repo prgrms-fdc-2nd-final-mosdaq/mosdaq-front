@@ -11,7 +11,7 @@ export default function Upcoming() {
 
   return (
     <div>
-      <Txt typography="h2">개봉 예정 영화</Txt>
+      <Txt typography="Pretendard48bold">개봉 예정 영화</Txt>
       <Carousel movieList={pollingMovie?.movieList ?? []} />
     </div>
   );

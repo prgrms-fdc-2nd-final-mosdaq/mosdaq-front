@@ -1,8 +1,8 @@
-import arrow from '../../../assets/images/arrow.png';
+import arrow from '../../../assets/images/main/arrow.png';
 import styled from 'styled-components';
-import colors from '../../../constants/colors';
 import { Movie } from '../../../models/movie.model';
 import { useCarousel } from '@/hooks/api/main-movie/useCarousel';
+import { Txt } from '@/components/common/Txt';
 
 interface CarouselProps {
   movieList: Movie[];
@@ -18,7 +18,7 @@ export default function Carousel({ movieList }: CarouselProps) {
         {currentMovies.map((movie) => (
           <ImageContainer key={movie.movieId}>
             <Image src={movie.posterUrl[0]} alt={movie.movieTitle} />
-            <Title>{movie.movieTitle}</Title>
+            <Title typography="Pretendard20bold">{movie.movieTitle}</Title>
           </ImageContainer>
         ))}
       </ImageWrapper>
@@ -39,32 +39,30 @@ const CarouselContainer = styled.div`
 const ImageWrapper = styled.div`
   display: flex;
   transition: transform 0.5s ease-in-out;
+  padding: 0 50px;
 `;
 
 const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 10px;
+  margin: 0 52px;
 `;
 
 const Image = styled.img`
-  width: 200px;
-  height: 150px;
+  width: 400px;
+  height: 570px;
   object-fit: cover;
 `;
 
-const Title = styled.div`
-  margin-top: 10px;
-  font-size: 16px;
-  font-weight: 600;
+const Title = styled(Txt)`
+  margin-top: 20px;
   text-align: center;
-  color: ${colors.black};
 `;
 
 const Arrow = styled.div<{ direction: 'left' | 'right' }>`
-  width: 30px;
-  height: 30px;
+  width: 96px;
+  height: 96px;
   background-image: url(${arrow});
   background-size: contain;
   background-repeat: no-repeat;
