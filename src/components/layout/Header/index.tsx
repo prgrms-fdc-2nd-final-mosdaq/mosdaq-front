@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import colors from '../../../constants/colors';
 import { Txt } from '../../common/Txt';
 import { Button } from '../../common/Button';
-import mainLogo from '../../../assets/images/mainLogo.png';
-import mypageLogo from '../../../assets/images/mypageLogo.png';
+import mainLogo from '../../../assets/images/main/mainLogo.png';
+import mypageLogo from '../../../assets/images/main/mypageLogo.png';
 import useAuthStore from '@/store/authStore';
 import LogoutButton from '@/components/layout/Header/LogoutButton';
 
