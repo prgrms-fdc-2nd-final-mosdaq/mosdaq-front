@@ -31,6 +31,9 @@ const colors = {
   darkLayeredBackground: inverseGrey50,
   floatBackground: white,
   darkFloatBackground: inverseGrey100,
+  bannerShadow1: '136, 136, 136',
+  bannerShadow2: '125, 125, 125',
+  bannerShadow3: '115, 115, 115',
 };
 
 export default colors;
