@@ -1,3 +1,4 @@
+import { IPollingMovies } from '@/models/main-movie.model';
 import axiosInstance from './axiosInstance';
 
 export const fetchGetMainBannerMovie = async () => {
@@ -7,7 +8,9 @@ export const fetchGetMainBannerMovie = async () => {
 };
 
 export const fetchGetMainPollingMovie = async () => {
-  const res = await axiosInstance.get('/main-movie?poll=true');
+  const res = await axiosInstance.get<IPollingMovies>(
+    '/main-movie/poll?poll=true',
+  );
 
   return res.data;
 };

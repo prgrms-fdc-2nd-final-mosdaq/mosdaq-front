@@ -1,8 +1,7 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchGetMainBannerMovie } from '../../../apis/main-movie.api';
 import { BannerMovie } from '@/models/movie.model';
-import { useQueryClient } from '@tanstack/react-query';
 
 export interface BannerResponse {
   movieList: BannerMovie[];
@@ -10,7 +9,6 @@ export interface BannerResponse {
 }
 
 export const useGetBannerMovie = () => {
-  const queryClient = useQueryClient();
   const { data, isLoading, refetch, isError, isPending } =
     useQuery<BannerResponse>({
       queryKey: ['bannerMovie'],
@@ -19,5 +17,31 @@ export const useGetBannerMovie = () => {
       refetchOnWindowFocus: true,
     });
 
-  return { data, isLoading, isPending };
+  const [centerIndex, setCenterIndex] = useState(0);
+
+  const handleLeftClick = () => {
+    if (centerIndex >= 4) setCenterIndex(0);
+    else setCenterIndex(centerIndex + 1);
+  };
+
+  const handleRightClick = () => {
+    if (data?.movieListCount) {
+      if (centerIndex <= 0) setCenterIndex(data?.movieListCount - 1);
+      else setCenterIndex(centerIndex - 1);
+    }
+  };
+
+  const handleClick = (index: number) => {
+    setCenterIndex(index);
+  };
+
+  return {
+    data,
+    isLoading,
+    isPending,
+    centerIndex,
+    handleClick,
+    handleLeftClick,
+    handleRightClick,
+  };
 };

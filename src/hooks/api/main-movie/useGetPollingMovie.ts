@@ -8,9 +8,10 @@ export const useGetPollingMovie = () => {
     staleTime: 0,
     refetchOnWindowFocus: true,
   });
+  // console.log(data);
 
   return {
-    pollingMovie: data,
+    pollingMovies: data,
     isLoading,
     refetch,
   };

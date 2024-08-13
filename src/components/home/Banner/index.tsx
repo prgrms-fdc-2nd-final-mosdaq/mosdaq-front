@@ -1,67 +1,63 @@
 import { useGetBannerMovie } from '@/hooks/api/main-movie/useGetBannerMovie';
-import React, { useState } from 'react';
 import ImgCard from './ImgCard';
 import styled from 'styled-components';
+import { Txt } from '@/components/common/Txt';
+import BannerArrow from '@/assets/images/main/banner-arrow.svg';
 
 export default function Banner() {
-  const { data } = useGetBannerMovie();
-  const [centerIndex, setCenterIndex] = useState(0);
+  const { data, centerIndex, handleClick, handleLeftClick, handleRightClick } =
+    useGetBannerMovie();
 
-  const handleLeftClick = () => {
-    if (centerIndex >= 4) setCenterIndex(0);
-    else setCenterIndex(centerIndex + 1);
-  };
-
-  const handleRightClick = () => {
-    if (data?.movieListCount) {
-      if (centerIndex <= 0) setCenterIndex(data?.movieListCount - 1);
-      else setCenterIndex(centerIndex - 1);
-    }
-  };
-
-  const handleClick = (index: number) => {
-    setCenterIndex(index);
-  };
   return (
     <StyledBannerWrapper>
-      <div className="wrapper">
-        {/* 버튼 디자인 보류 */}
-        <button className="left-button" onClick={handleLeftClick} />
-        <button className="right-button" onClick={handleRightClick} />
-        <div className="img-container">
-          {data?.movieList.map((movie, index) => (
-            <ImgCard
-              src={movie.posterUrl[0]}
-              index={index}
-              movieListCount={data.movieListCount}
-              key={movie.movieId}
-              centerIndex={centerIndex}
-              onClick={() => handleClick(index)}
-            />
-          ))}
-        </div>
+      <div className="indicator">
+        <Txt className="text" typography="Pretendard24bold" color="watcha">
+          주가 변동을 확인하세요!
+        </Txt>
+      </div>
+      <div className="img-container">
+        {data?.movieList.map((movie, index) => (
+          <ImgCard
+            movie={movie}
+            index={index}
+            movieListCount={data.movieListCount}
+            key={movie.movieId}
+            centerIndex={centerIndex}
+            onClick={() => handleClick(index)}
+            handleLeftClick={handleLeftClick}
+            handleRightClick={handleRightClick}
+          />
+        ))}
       </div>
     </StyledBannerWrapper>
   );
 }
 
 const StyledBannerWrapper = styled.div`
-  width: 100dvw;
-  /* height: 100dvh; */
-  // height 임시
   height: 800px;
-  border: 1px solid black;
+  position: relative;
+  padding-top: 94px;
 
-  .wrapper {
+  .indicator {
     width: 100%;
-    max-width: 1590px;
-    height: 100%;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
 
-    .left-button {
-    }
-
-    .right-button {
+    .text {
+      margin-left: 80px;
+      margin-bottom: 20px;
+      position: relative;
+      &:before {
+        content: '';
+        position: absolute;
+        background-image: url(${BannerArrow});
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 36px;
+        height: 36px;
+        left: -36px;
+        top: 10px;
+      }
     }
   }
   .img-container {

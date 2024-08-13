@@ -4,93 +4,68 @@ import styled from 'styled-components';
 import colors from '../../../constants/colors';
 import { Txt } from '../../common/Txt';
 import { Button } from '../../common/Button';
-import mainLogo from '../../../assets/images/mainLogo.png';
-import mypageLogo from '../../../assets/images/mypageLogo.png';
+import mainLogo from '../../../assets/images/main/mainLogo.png';
+import mypageLogo from '../../../assets/images/main/mypageLogo.png';
 import useAuthStore from '@/store/authStore';
-import Logout from '@/components/login/Logout';
+import LogoutButton from '@/components/layout/Header/LogoutButton';
 
 export default function Header() {
   const { isLoggedIn } = useAuthStore();
   return (
-    <HeaderContainer>
-      <HeaderContent>
-        <LeftSection>
+    <StyledHeaderContainer>
+      <StyledHeaderContent>
+        <StyledLeftSection>
           <Link to="/">
-            <MainLogo src={mainLogo} alt="Main Logo" />
+            <StyledMainLogo src={mainLogo} alt="Main Logo" />
           </Link>
-          <Nav>
-            <NavButton as={Link} to="/movie-list">
-              <Txt>영화 투표</Txt>
-            </NavButton>
-            <NavButton as={Link} to="/quiz">
-              <Txt>영화 퀴즈</Txt>
-            </NavButton>
-          </Nav>
-        </LeftSection>
-        <RightSection>
+          <StyledNav>
+            <Button size="small">
+              <Txt>
+                <Link to="/movie-list">영화 투표</Link>
+              </Txt>
+            </Button>
+            <Button size="small">
+              <Txt>
+                <Link to="/quiz">영화 퀴즈</Link>
+              </Txt>
+            </Button>
+          </StyledNav>
+        </StyledLeftSection>
+        <StyledRightSection>
           {isLoggedIn ? (
-            <Logout />
+            // TODO: 로그아웃 버튼은 마이페이지에 두면 어떨까요?
+            <LogoutButton />
           ) : (
-            <LoginButton as={Link} to="/login">
-              로그인
-            </LoginButton>
+            <Button size="small" variant="secondary">
+              <Txt color="white">
+                <Link to="/login">로그인</Link>
+              </Txt>
+            </Button>
           )}
           <Link to="/mypage">
-            <MypageLogo src={mypageLogo} alt="MyPage Logo" />
+            <StyledMypageLogo src={mypageLogo} alt="MyPage Logo" />
           </Link>
-        </RightSection>
-      </HeaderContent>
-    </HeaderContainer>
+        </StyledRightSection>
+      </StyledHeaderContent>
+    </StyledHeaderContainer>
   );
 }
 
-const BaseButton = styled(Button).attrs(() => ({
-  variant: 'secondary',
-  size: 'small',
-}))`
-  text-decoration: none;
-  color: inherit;
-  display: inline-flex;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-weight: 700;
-`;
-
-const NavButton = styled(BaseButton)`
-  background-color: ${colors.white};
-`;
-
-export const LoginButton = styled(BaseButton)`
-  background-color: ${colors.watcha};
-  color: ${colors.white};
-  border-radius: 7px;
-
-  &:hover {
-    background-color: ${colors.greyscale8};
-  }
-`;
-
-const HeaderContainer = styled.section`
+const StyledHeaderContainer = styled.section`
   width: 100%;
   padding: 0.25rem 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid ${colors.greyscale8};
+  border-bottom: 1px solid ${colors.greyscale2};
   position: relative;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  background-color: ${colors.white};
 
   @media (max-width: 768px) {
     padding: 0.5rem;
   }
 `;
 
-const HeaderContent = styled.header`
+const StyledHeaderContent = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -103,27 +78,27 @@ const HeaderContent = styled.header`
   }
 `;
 
-const LeftSection = styled.div`
+const StyledLeftSection = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const RightSection = styled.div`
+const StyledRightSection = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
 `;
 
-const Nav = styled.nav`
+const StyledNav = styled.nav`
   display: flex;
   gap: 0.5rem;
   margin-left: 0.5rem;
 `;
 
-const MainLogo = styled.img`
+const StyledMainLogo = styled.img`
   width: 150px;
 `;
 
-const MypageLogo = styled.img`
+const StyledMypageLogo = styled.img`
   width: 40x;
 `;
