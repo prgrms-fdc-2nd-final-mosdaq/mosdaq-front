@@ -19,21 +19,21 @@ export const useGetBannerMovie = () => {
 
   const [centerIndex, setCenterIndex] = useState(0);
 
-  const handleLeftClick = () => {
+  const handleLeftClick = useCallback(() => {
     if (centerIndex >= 4) setCenterIndex(0);
     else setCenterIndex(centerIndex + 1);
-  };
+  }, [centerIndex]);
 
-  const handleRightClick = () => {
+  const handleRightClick = useCallback(() => {
     if (data?.movieListCount) {
       if (centerIndex <= 0) setCenterIndex(data?.movieListCount - 1);
       else setCenterIndex(centerIndex - 1);
     }
-  };
+  }, [centerIndex, data?.movieListCount]);
 
-  const handleClick = (index: number) => {
+  const handleClick = useCallback((index: number) => {
     setCenterIndex(index);
-  };
+  }, []);
 
   return {
     data,
