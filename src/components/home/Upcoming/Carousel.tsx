@@ -9,6 +9,7 @@ interface CarouselProps {
 }
 
 export default function Carousel({ movieList }: CarouselProps) {
+  console.log(movieList);
   const { currentMovies, nextSlide, prevSlide } = useCarousel(movieList);
 
   return (
@@ -19,6 +20,7 @@ export default function Carousel({ movieList }: CarouselProps) {
           <ImageContainer key={movie.movieId}>
             <Image src={movie.posterUrl[0]} alt={movie.movieTitle} />
             <Title typography="Pretendard20bold">{movie.movieTitle}</Title>
+            <VotingStatus myPollResult={movie.myPollResult} />
           </ImageContainer>
         ))}
       </ImageWrapper>
@@ -76,4 +78,16 @@ const Arrow = styled.div<{ direction: 'left' | 'right' }>`
       : 'translateY(-50%)'};
   z-index: 1;
   ${({ direction }) => (direction === 'left' ? 'left: 10px;' : 'right: 10px;')}
+`;
+
+const VotingStatus = styled.div<{ myPollResult: string }>`
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: 2px solid #000; /* Border color */
+  border-radius: 12px; /* Rounded corners */
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+  background-color: ${({ myPollResult: voted }) =>
+    voted ? '#e0ffe0' : '#ffe0e0'}; /* Background based on voting status */
 `;

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { IMovie } from '@/models/main-movie.model';
 
-// TODO: 라이브러리 사용 고려
 export function useCarousel(movieList: IMovie[]) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
