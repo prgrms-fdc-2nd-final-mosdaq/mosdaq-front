@@ -1,11 +1,15 @@
 export interface Movie {
   movieId: number;
   movieTitle: string;
-  posterUrl: string;
-  up: number;
-  down: number;
-  pollCount: number;
-  myPollResult: string;
+  posterUrl: string[];
+}
+
+export interface BannerMovie extends Movie {
+  countryCode: string;
+  beforePrice: number;
+  afterPrice: number;
+  beforePriceDate: string;
+  afterPriceDate: string;
 }
 
 export interface MovieDetail extends Movie {}
