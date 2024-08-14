@@ -13,12 +13,18 @@ const movieTitles = [
   '아바타',
 ];
 
-export default function QuizLanding() {
+interface IQuizLandingProps {
+  setQuizStatus: React.Dispatch<
+    React.SetStateAction<'waiting' | 'doing' | 'ended'>
+  >;
+}
+
+export default function QuizWaiting({ setQuizStatus }: IQuizLandingProps) {
   // TODO: 배경화면도 전환되도록 할까 고민
   const { currentTitleIndex, fade } = useMovieTitleRotator(movieTitles);
 
   return (
-    <StyledQuizLanding>
+    <StyledQuizWaiting>
       <StyledLandingDescription>
         <StyledMovieTitle fade={fade}>
           <Txt typography="Pretendard40bold">
@@ -30,16 +36,20 @@ export default function QuizLanding() {
         </Txt>
       </StyledLandingDescription>
 
-      <StyledButton>
+      <StyledButton
+        onClick={() => {
+          setQuizStatus('doing');
+        }}
+      >
         <Txt color="white" typography="Pretendard32regular">
           퀴즈 풀기
         </Txt>
       </StyledButton>
-    </StyledQuizLanding>
+    </StyledQuizWaiting>
   );
 }
 
-const StyledQuizLanding = styled.div`
+const StyledQuizWaiting = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${colors.watcha};

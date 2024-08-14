@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import QuizLanding from './QuizLanding';
+import QuizWaiting from './QuizWaiting';
+import QuizDoing from './QuizDoing';
 
 export default function QuizContents() {
+  const [quizStatus, setQuizStatus] = useState<'waiting' | 'doing' | 'ended'>(
+    'waiting',
+  );
+
   return (
     <StyledQuizContents>
-      <QuizLanding />
+      {quizStatus === 'waiting' && (
+        <QuizWaiting setQuizStatus={setQuizStatus} />
+      )}
+      {quizStatus === 'doing' && <QuizDoing />}
     </StyledQuizContents>
   );
 }
