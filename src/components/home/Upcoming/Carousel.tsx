@@ -39,6 +39,7 @@ const CarouselContainer = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
+  margin-top: 100px;
 `;
 
 const ImageWrapper = styled.div`
@@ -61,7 +62,7 @@ const Image = styled.img`
 `;
 
 const Title = styled(Txt)`
-  margin-top: 20px;
+  margin-top: 30px;
   text-align: center;
 `;
 
