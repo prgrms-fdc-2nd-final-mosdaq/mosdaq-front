@@ -17,7 +17,9 @@ export const fetchGetMainPollingMovie = async () => {
 };
 
 export const fetchGetMainPolledMovie = async () => {
-  const res = await axiosInstance.get('/main-movie?poll=false');
+  const res = await axiosInstance.get<IPollingMovies>(
+    '/main-movie/poll?poll=false',
+  );
 
   return res.data;
 };

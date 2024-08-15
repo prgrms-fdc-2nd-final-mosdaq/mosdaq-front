@@ -3,12 +3,15 @@ import styled from 'styled-components';
 import { IMovie } from '../../../models/main-movie.model';
 import { useCarousel } from '@/hooks/useCarousel';
 import { Txt } from '@/components/common/Txt';
+import VoteButtons from './voteButtons';
+import VotingStatus from './votingStatus';
 
 interface CarouselProps {
   movieList: IMovie[];
 }
 
 export default function Carousel({ movieList }: CarouselProps) {
+  console.log(movieList);
   const { currentMovies, nextSlide, prevSlide } = useCarousel(movieList);
 
   return (
@@ -19,6 +22,8 @@ export default function Carousel({ movieList }: CarouselProps) {
           <ImageContainer key={movie.movieId}>
             <Image src={movie.posterUrl[0]} alt={movie.movieTitle} />
             <Title typography="Pretendard20bold">{movie.movieTitle}</Title>
+            <VotingStatus myPollResult={movie.myPollResult} />
+            <VoteButtons />
           </ImageContainer>
         ))}
       </ImageWrapper>
@@ -34,6 +39,7 @@ const CarouselContainer = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
+  margin-top: 100px;
 `;
 
 const ImageWrapper = styled.div`
@@ -56,7 +62,7 @@ const Image = styled.img`
 `;
 
 const Title = styled(Txt)`
-  margin-top: 20px;
+  margin-top: 30px;
   text-align: center;
 `;
 
