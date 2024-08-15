@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import { IMovie } from '../../../models/main-movie.model';
 import { useCarousel } from '@/hooks/useCarousel';
 import { Txt } from '@/components/common/Txt';
-import colors from '@/constants/colors';
-import upIcon from '../../../assets/images/main/mainUpBtn.png';
-import downIcon from '../../../assets/images/main/mainDownBtn.png';
+import VoteButtons from './voteButtons';
+import VotingStatus from './votingStatus';
 
 interface CarouselProps {
   movieList: IMovie[];
@@ -82,78 +81,4 @@ const Arrow = styled.div<{ direction: 'left' | 'right' }>`
       : 'translateY(-50%)'};
   z-index: 1;
   ${({ direction }) => (direction === 'left' ? 'left: 10px;' : 'right: 10px;')}
-`;
-
-const VotingStatus = ({ myPollResult }: { myPollResult: string }) => (
-  <VotingStatusContainer>
-    <Txt typography="Pretendard20bold" color="watcha">
-      {myPollResult ? 'Voted' : 'Voting Now'}
-    </Txt>
-  </VotingStatusContainer>
-);
-
-const VotingStatusContainer = styled.div`
-  margin-top: 15px;
-  padding: 8px 16px;
-  border: 2px solid;
-  border-radius: 12px;
-  text-align: center;
-  color: ${colors.watcha};
-  background-color: ${colors.white};
-`;
-
-const VoteButtons = () => (
-  <VoteContainer>
-    <VoteButtonWrapper>
-      <VoteButton>
-        <Icon src={upIcon} alt="UpImg" />
-      </VoteButton>
-      <VoteText typography="Pretendard20bold" color="watcha">
-        상승
-      </VoteText>
-    </VoteButtonWrapper>
-    <VsText typography="Pretendard24bold" color="watcha">
-      vs
-    </VsText>
-    <VoteButtonWrapper>
-      <VoteButton>
-        <Icon src={downIcon} alt="DownImg" />
-      </VoteButton>
-      <VoteText typography="Pretendard20bold" color="watcha">
-        하락
-      </VoteText>
-    </VoteButtonWrapper>
-  </VoteContainer>
-);
-
-const VoteContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-`;
-
-const VoteButtonWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const VoteButton = styled.button`
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-`;
-
-const Icon = styled.img`
-  width: 40px;
-  height: 44px;
-`;
-
-const VoteText = styled(Txt)`
-  margin-top: 5px;
-`;
-
-const VsText = styled(Txt)`
-  margin: 0 20px;
 `;
