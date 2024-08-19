@@ -30,13 +30,13 @@ export default function Header() {
           </StyledNav>
         </StyledLeftSection>
         <StyledRightSection>
-          {!isLoggedIn ? (
+          {isLoggedIn ? null : (
             <Button size="small" variant="secondary">
               <Txt typography="Pretendard24regular" color="white">
                 <Link to="/login">로그인</Link>
               </Txt>
             </Button>
-          ) : null}
+          )}
           <Link to="/mypage">
             <StyledMypageLogo src={mypageLogo} alt="MyPage Logo" />
           </Link>
@@ -97,4 +97,5 @@ const StyledMainLogo = styled.img`
 const StyledMypageLogo = styled.img`
   padding-left: 20px;
   width: 40x;
+  padding-left: 20px;
 `;
