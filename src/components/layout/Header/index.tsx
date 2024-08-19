@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import colors from '../../../constants/colors';
@@ -96,6 +95,7 @@ const StyledMainLogo = styled.img`
 `;
 
 const StyledMypageLogo = styled.img`
+  padding-left: 20px;
   width: 40x;
   padding-left: 20px;
 `;
