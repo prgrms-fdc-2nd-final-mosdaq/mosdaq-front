@@ -2,12 +2,31 @@ import upIcon from '../../../assets/images/main/mainUpBtn.png';
 import downIcon from '../../../assets/images/main/mainDownBtn.png';
 import styled from 'styled-components';
 import { Txt } from '@/components/common/Txt';
+import { useUpdateVote } from '@/hooks/api/main-movie/useUpdateVote';
+import { IMovie } from '@/models/main-movie.model';
 
-export default function voteButtons() {
+interface VoteButtonsProps {
+  movieId: IMovie['movieId'];
+}
+
+export default function voteButtons({ movieId }: VoteButtonsProps) {
+  const { updateVote } = useUpdateVote();
+
+  const handleVote = (movieId: number, voteType: 'up' | 'down') => {
+    console.log(
+      `Vote button clicked for movieId: ${movieId}, voteType: ${voteType}`,
+    );
+    updateVote(movieId, voteType);
+  };
+
   return (
     <VoteContainer>
       <VoteButtonWrapper>
-        <VoteButton src={upIcon} alt="upImg" onClick={() => {}} />
+        <VoteButton
+          src={upIcon}
+          alt="upImg"
+          onClick={() => handleVote(movieId, 'up')}
+        />
         <VoteText typography="Pretendard20bold" color="watcha">
           상승
         </VoteText>
@@ -16,7 +35,11 @@ export default function voteButtons() {
         vs
       </VsText>
       <VoteButtonWrapper>
-        <VoteButton src={downIcon} alt="DownImg" onClick={() => {}} />
+        <VoteButton
+          src={downIcon}
+          alt="DownImg"
+          onClick={() => handleVote(movieId, 'down')}
+        />
         <VoteText typography="Pretendard20bold" color="watcha">
           하락
         </VoteText>

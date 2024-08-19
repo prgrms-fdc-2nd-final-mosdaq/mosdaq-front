@@ -23,7 +23,7 @@ export default function Carousel({ movieList }: CarouselProps) {
             <Image src={movie.posterUrl[0]} alt={movie.movieTitle} />
             <Title typography="Pretendard20bold">{movie.movieTitle}</Title>
             <VotingStatus myPollResult={movie.myPollResult} />
-            <VoteButtons />
+            <VoteButtons movieId={movie.movieId} />
           </ImageContainer>
         ))}
       </ImageWrapper>
