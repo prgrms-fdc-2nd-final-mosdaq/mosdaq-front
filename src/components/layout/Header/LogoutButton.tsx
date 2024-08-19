@@ -6,7 +6,9 @@ export default function LogoutButton() {
 
   return (
     <Button size="small" variant="secondary" onClick={() => mutation.mutate()}>
-      <Txt color="white">로그아웃</Txt>
+      <Txt typography="Pretendard24regular" color="white">
+        로그아웃
+      </Txt>
     </Button>
   );
 }
