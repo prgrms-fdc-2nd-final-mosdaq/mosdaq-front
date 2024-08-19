@@ -23,6 +23,10 @@ const colors = {
   red: '#FF0000',
   redRGB: '255, 0, 0',
 
+  antiWatcha: '#05FFA6',
+  antiWatcha2: '#05A6FF',
+  antiWatcha3: '#0558FF',
+
   black: '#000000',
   white: '#ffffff',
 

@@ -11,16 +11,25 @@ const movieTitles = [
   '다크 나이트',
   '인셉션',
   '아바타',
+  '라라랜드',
+  '포레스트 검프',
+  '쇼생크 탈출',
 ];
 
-export default function QuizLanding() {
+interface IQuizLandingProps {
+  setQuizStatus: React.Dispatch<
+    React.SetStateAction<'waiting' | 'doing' | 'ended'>
+  >;
+}
+
+export default function QuizWaiting({ setQuizStatus }: IQuizLandingProps) {
   // TODO: 배경화면도 전환되도록 할까 고민
   const { currentTitleIndex, fade } = useMovieTitleRotator(movieTitles);
 
   return (
-    <StyledQuizLanding>
+    <StyledQuizWaiting>
       <StyledLandingDescription>
-        <StyledMovieTitle fade={fade}>
+        <StyledMovieTitle $fade={fade}>
           <Txt typography="Pretendard40bold">
             {movieTitles[currentTitleIndex]}
           </Txt>
@@ -30,16 +39,20 @@ export default function QuizLanding() {
         </Txt>
       </StyledLandingDescription>
 
-      <StyledButton>
+      <StyledButton
+        onClick={() => {
+          setQuizStatus('doing');
+        }}
+      >
         <Txt color="white" typography="Pretendard32regular">
           퀴즈 풀기
         </Txt>
       </StyledButton>
-    </StyledQuizLanding>
+    </StyledQuizWaiting>
   );
 }
 
-const StyledQuizLanding = styled.div`
+const StyledQuizWaiting = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${colors.watcha};
@@ -58,11 +71,11 @@ const StyledLandingDescription = styled.div`
 `;
 
 interface IStyledMovieTitleProps {
-  fade: boolean;
+  $fade: boolean;
 }
 
 const StyledMovieTitle = styled.span<IStyledMovieTitleProps>`
-  opacity: ${(props) => (props.fade ? 1 : 0)};
+  opacity: ${(props) => (props.$fade ? 1 : 0)};
   transition: opacity 0.5s ease-in-out;
 `;
 

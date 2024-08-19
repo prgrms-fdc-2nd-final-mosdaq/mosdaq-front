@@ -8,8 +8,11 @@ export default function QuizContainer() {
   return (
     <StyledQuizContainer>
       <StyledQuizTitle>
-        <Txt typography="Pretendard40bold">
-          개봉 후 주가가 어떻게 변했을까요?
+        <Txt typography="Pretendard36bold">
+          개봉 후 제작(배급)사 주가가 어떻게 변했을까요?
+          <Txt typography="Pretendard16regular" color="greyscale11">
+            (개봉 4주 전, 개봉 4주 후 주가 변화)
+          </Txt>
         </Txt>
       </StyledQuizTitle>
       <StyledMacBookBezel>

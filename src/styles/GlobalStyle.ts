@@ -1,7 +1,15 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+/* Pretendard 폰트를 직접 정의하고 font-display를 설정 */
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700&display=swap');
+  font-weight: 400;
+  font-display: block; /* 폰트 로드 전에 텍스트가 보이지 않도록 설정 */
+}
 
+/* 초기화 스타일 */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -60,7 +68,7 @@ html {
 }
 body {
   font-weight: 400;
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   line-height: 1.2;
 }
 
