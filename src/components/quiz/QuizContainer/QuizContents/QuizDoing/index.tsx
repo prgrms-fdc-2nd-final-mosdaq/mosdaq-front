@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGetRandomQuizs } from '@/hooks/quiz/useGetRandomQuizs';
 import styled from 'styled-components';
 
@@ -20,6 +20,10 @@ export default function QuizDoing({
   const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [isResult, setIsResult] = useState(false);
+
+  useEffect(() => {
+    setCorrectCount(0);
+  }, []);
 
   return (
     <StyledQuizDoing>
