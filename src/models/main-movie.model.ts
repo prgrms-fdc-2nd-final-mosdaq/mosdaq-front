@@ -5,7 +5,7 @@ export interface IMovie {
   up: number;
   down: number;
   pollCount: number;
-  myPollResult: string;
+  myPollResult: 'up' | 'down' | null;
 }
 
 export interface IPollingMovies {

@@ -26,10 +26,11 @@ export const fetchGetMainPolledMovie = async () => {
 
 export const fetchPostPollMovie = async (
   movieId: number,
-  myPollResult: string,
+  pollResult: 'up' | 'down',
 ) => {
-  console.log('Sending request to server:', { movieId, myPollResult });
-  const res = await axiosInstance.put(`/poll/${movieId}`, { myPollResult });
+  console.log('Sending request to server:', { movieId, pollResult });
+  const res = await axiosInstance.put(`/poll/${movieId}`, { pollResult });
+
   console.log('Server response:', res.data);
   return res.data;
 };

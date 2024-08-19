@@ -12,7 +12,7 @@ interface VoteButtonsProps {
 export default function voteButtons({ movieId }: VoteButtonsProps) {
   const { updateVote } = useUpdateVote(movieId);
 
-  const handleVoteUpdate = (voteType: string) => {
+  const handleVoteUpdate = (voteType: 'up' | 'down') => {
     updateVote(voteType);
   };
 

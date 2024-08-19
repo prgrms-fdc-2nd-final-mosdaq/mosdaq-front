@@ -3,13 +3,13 @@ import { create } from 'zustand';
 
 type State = {
   movies: IMovie[];
-  isVoted: IMovie['myPollResult'] | null;
+  isVoted: 'up' | 'down' | null;
 };
 
 type Action = {
   setMovies: (movies: IMovie[]) => void;
-  setIsVoted: (isVoted: string) => void;
-  updateMovieVote: (movieId: number, voteType: string) => void;
+  setIsVoted: (isVoted: 'up' | 'down' | null) => void;
+  updateMovieVote: (movieId: number, voteType: 'up' | 'down' | null) => void;
 };
 
 const useVoteStore = create<State & Action>((set, get) => ({

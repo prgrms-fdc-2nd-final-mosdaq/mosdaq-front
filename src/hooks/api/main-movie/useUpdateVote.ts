@@ -1,13 +1,17 @@
 import { fetchPostPollMovie } from '@/apis/main-movie.api';
 import { useMutation } from '@tanstack/react-query';
-import { IMovie } from '@/models/main-movie.model';
 import useVoteStore from '@/store/voteStore';
 
 export const useUpdateVote = (movieId: number) => {
   const { updateMovieVote, setMovies } = useVoteStore();
-
   const { mutate } = useMutation({
-    mutationFn: async (myPollResult: string) => {
+    mutationFn: async (myPollResult: 'up' | 'down') => {
+      console.log(
+        'Mutation function called with movieId:',
+        movieId,
+        'myPollResult:',
+        myPollResult,
+      );
       return fetchPostPollMovie(movieId, myPollResult);
     },
     onSuccess: (data, variables) => {
@@ -19,7 +23,7 @@ export const useUpdateVote = (movieId: number) => {
     },
   });
 
-  const updateVote = (myPollResult: string) => {
+  const updateVote = (myPollResult: 'up' | 'down') => {
     console.log('Update vote called with myPollResult:', myPollResult);
     mutate(myPollResult);
   };
