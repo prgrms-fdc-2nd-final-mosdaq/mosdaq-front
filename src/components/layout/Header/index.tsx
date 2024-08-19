@@ -6,6 +6,7 @@ import { Button } from '../../common/Button';
 import mainLogo from '../../../assets/images/main/mainLogo.png';
 import mypageLogo from '../../../assets/images/main/mypageLogo.png';
 import useAuthStore from '@/store/authStore';
+import LogoutButton from './LogoutButton';
 
 export default function Header() {
   const { isLoggedIn } = useAuthStore();
@@ -30,9 +31,12 @@ export default function Header() {
           </StyledNav>
         </StyledLeftSection>
         <StyledRightSection>
-          {isLoggedIn ? null : (
+          {isLoggedIn ? (
+            // TODO: 로그아웃 버튼은 마이페이지에 두면 어떨까요?
+            <LogoutButton />
+          ) : (
             <Button size="small" variant="secondary">
-              <Txt typography="Pretendard24regular" color="white">
+              <Txt color="white">
                 <Link to="/login">로그인</Link>
               </Txt>
             </Button>
