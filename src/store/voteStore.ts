@@ -9,7 +9,7 @@ type State = {
 type Action = {
   setMovies: (movies: IMovie[]) => void;
   setIsVoted: (isVoted: 'up' | 'down' | null) => void;
-  updateMovieVote: (movieId: number, voteType: 'up' | 'down' | null) => void;
+  updateMovieVote: (movieId: number, voteType: 'up' | 'down') => void;
 };
 
 const useVoteStore = create<State & Action>((set, get) => ({
