@@ -9,8 +9,10 @@ export const useGetMovieQuiz = () => {
     refetchOnWindowFocus: true,
   });
 
+  // console.log(data);
+
   return {
-    movieQuiz: data,
+    movieQuizData: data,
     isLoading,
     refetch,
   };
