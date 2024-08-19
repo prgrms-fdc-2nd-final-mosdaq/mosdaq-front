@@ -24,9 +24,12 @@ export const fetchGetMainPolledMovie = async () => {
   return res.data;
 };
 
-export const fetchPostPollMovie = async (movieId: number, movie: IMovie) => {
-  const res = await axiosInstance.put(`/poll/${movieId}`, movie);
-  console.log('Server response:', res.data); // 서버 응답 데이터 확인
-
+export const fetchPostPollMovie = async (
+  movieId: number,
+  myPollResult: string,
+) => {
+  console.log('Sending request to server:', { movieId, myPollResult });
+  const res = await axiosInstance.put(`/poll/${movieId}`, { myPollResult });
+  console.log('Server response:', res.data);
   return res.data;
 };

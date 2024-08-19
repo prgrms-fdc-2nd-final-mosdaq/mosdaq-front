@@ -10,13 +10,10 @@ interface VoteButtonsProps {
 }
 
 export default function voteButtons({ movieId }: VoteButtonsProps) {
-  const { updateVote } = useUpdateVote();
+  const { updateVote } = useUpdateVote(movieId);
 
-  const handleVote = (movieId: number, voteType: 'up' | 'down') => {
-    console.log(
-      `Vote button clicked for movieId: ${movieId}, voteType: ${voteType}`,
-    );
-    updateVote(movieId, voteType);
+  const handleVoteUpdate = (voteType: string) => {
+    updateVote(voteType);
   };
 
   return (
@@ -25,7 +22,7 @@ export default function voteButtons({ movieId }: VoteButtonsProps) {
         <VoteButton
           src={upIcon}
           alt="upImg"
-          onClick={() => handleVote(movieId, 'up')}
+          onClick={() => handleVoteUpdate('up')}
         />
         <VoteText typography="Pretendard20bold" color="watcha">
           상승
@@ -38,7 +35,7 @@ export default function voteButtons({ movieId }: VoteButtonsProps) {
         <VoteButton
           src={downIcon}
           alt="DownImg"
-          onClick={() => handleVote(movieId, 'down')}
+          onClick={() => handleVoteUpdate('down')}
         />
         <VoteText typography="Pretendard20bold" color="watcha">
           하락
