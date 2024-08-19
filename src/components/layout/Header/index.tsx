@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import colors from '../../../constants/colors';
@@ -32,16 +31,13 @@ export default function Header() {
           </StyledNav>
         </StyledLeftSection>
         <StyledRightSection>
-          {isLoggedIn ? (
-            // TODO: 로그아웃 버튼은 마이페이지에 두면 어떨까요?
-            <LogoutButton />
-          ) : (
+          {!isLoggedIn ? (
             <Button size="small" variant="secondary">
-              <Txt color="white">
+              <Txt typography="Pretendard24regular" color="white">
                 <Link to="/login">로그인</Link>
               </Txt>
             </Button>
-          )}
+          ) : null}
           <Link to="/mypage">
             <StyledMypageLogo src={mypageLogo} alt="MyPage Logo" />
           </Link>
@@ -70,7 +66,7 @@ const StyledHeaderContent = styled.header`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1920px;
   height: 68px;
 
   @media (max-width: 768px) {
@@ -100,5 +96,6 @@ const StyledMainLogo = styled.img`
 `;
 
 const StyledMypageLogo = styled.img`
+  padding-left: 20px;
   width: 40x;
 `;
