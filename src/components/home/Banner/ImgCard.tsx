@@ -49,9 +49,10 @@ const ImgCard = forwardRef<HTMLDivElement, ImgCardProps>(
           </div>
           {index === centerIndex && (
             <div className="back">
-              <Txt className="movie-title" typography="Pretendard32bold">
-                {movie.movieTitle}
-              </Txt>
+              <div className="back-top">
+                <Txt typography="Pretendard32bold">{movie.movieTitle}</Txt>
+                <Txt typography="Pretendard24regular">{movie.companyName}</Txt>
+              </div>
               {/* TODO */}
               <div className="chart-zone">차트가 들어갑니다.</div>
               <div className="money-zone">
@@ -180,8 +181,11 @@ const StyledCard = styled.div<StyledCardProps>`
     display: flex;
     flex-direction: column;
 
-    .movie-title {
-      margin-left: 23px;
+    .back-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 23px;
     }
 
     .chart-zone {
