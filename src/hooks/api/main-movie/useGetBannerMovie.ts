@@ -9,39 +9,16 @@ export interface BannerResponse {
 }
 
 export const useGetBannerMovie = () => {
-  const { data, isLoading, refetch, isError, isPending } =
-    useQuery<BannerResponse>({
-      queryKey: ['bannerMovie'],
-      queryFn: fetchGetMainBannerMovie,
-      staleTime: 0,
-      refetchOnWindowFocus: true,
-    });
-
-  const [centerIndex, setCenterIndex] = useState(0);
-
-  const handleLeftClick = useCallback(() => {
-    if (centerIndex >= 4) setCenterIndex(0);
-    else setCenterIndex(centerIndex + 1);
-  }, [centerIndex]);
-
-  const handleRightClick = useCallback(() => {
-    if (data?.movieListCount) {
-      if (centerIndex <= 0) setCenterIndex(data?.movieListCount - 1);
-      else setCenterIndex(centerIndex - 1);
-    }
-  }, [centerIndex, data?.movieListCount]);
-
-  const handleClick = useCallback((index: number) => {
-    setCenterIndex(index);
-  }, []);
+  const { data, isError, isPending } = useQuery<BannerResponse>({
+    queryKey: ['bannerMovie'],
+    queryFn: fetchGetMainBannerMovie,
+    staleTime: 0,
+    refetchOnWindowFocus: true,
+  });
 
   return {
     data,
-    isLoading,
     isPending,
-    centerIndex,
-    handleClick,
-    handleLeftClick,
-    handleRightClick,
+    isError,
   };
 };

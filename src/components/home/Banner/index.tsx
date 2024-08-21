@@ -3,10 +3,52 @@ import ImgCard from './ImgCard';
 import styled from 'styled-components';
 import { Txt } from '@/components/common/Txt';
 import BannerArrow from '@/assets/images/main/banner-arrow.svg';
+import { useEffect, useRef } from 'react';
+import { useBannerMovie } from '@/hooks/main-movie/useBannerMovie';
 
 export default function Banner() {
-  const { data, centerIndex, handleClick, handleLeftClick, handleRightClick } =
-    useGetBannerMovie();
+  const { data, isPending } = useGetBannerMovie();
+  const {
+    centerIndex,
+    isCardFliped,
+    setIsCardFliped,
+    setCenterIndex,
+    handleClick,
+  } = useBannerMovie();
+  const imgCardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // 데이터가 없다 or 카드가 뒤집힌 상태= 배너가 자동 슬라이드 되지 않음
+    if (!data || isCardFliped) return;
+    const intervalId = setInterval(() => {
+      setCenterIndex((prevIndex) => (prevIndex + 1) % data?.movieListCount);
+      setIsCardFliped(false);
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, [centerIndex, data, setCenterIndex, isCardFliped]);
+
+  // 배너 외부 영역 클릭 감지
+  useEffect(() => {
+    function handleOutsideClick(e: MouseEvent) {
+      if (
+        data &&
+        imgCardRef.current &&
+        !imgCardRef.current.contains(e.target as Node)
+      ) {
+        setIsCardFliped(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [data, isCardFliped]);
+
+  //TODO : 로딩
+  if (isPending) return <div>로딩중입니다.</div>;
 
   return (
     <StyledBannerWrapper>
@@ -23,9 +65,10 @@ export default function Banner() {
             movieListCount={data.movieListCount}
             key={movie.movieId}
             centerIndex={centerIndex}
+            setCenterIndex={setCenterIndex}
+            isCardFliped={isCardFliped}
+            ref={imgCardRef}
             onClick={() => handleClick(index)}
-            handleLeftClick={handleLeftClick}
-            handleRightClick={handleRightClick}
           />
         ))}
       </div>

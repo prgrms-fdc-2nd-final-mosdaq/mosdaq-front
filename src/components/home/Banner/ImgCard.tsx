@@ -1,6 +1,6 @@
 import colors from '@/constants/colors';
 import { BannerMovie } from '@/models/movie.model';
-import { ImgHTMLAttributes } from 'react';
+import { ImgHTMLAttributes, useEffect, useRef, forwardRef } from 'react';
 import styled from 'styled-components';
 import { Txt } from '@/components/common/Txt';
 import {
@@ -13,88 +13,98 @@ interface ImgCardProps extends ImgHTMLAttributes<HTMLDivElement> {
   index: number;
   movieListCount: number;
   centerIndex: number;
-  handleLeftClick: () => void;
-  handleRightClick: () => void;
+  setCenterIndex: React.Dispatch<React.SetStateAction<number>>;
+  isCardFliped: boolean;
 }
 
-export default function ImgCard({
-  movie,
-  index,
-  movieListCount,
-  centerIndex,
-  handleLeftClick,
-  handleRightClick,
-  ...props
-}: ImgCardProps) {
-  return (
-    <StyledDiv
-      $index={index}
-      $movieListCount={movieListCount}
-      $centerIndex={centerIndex}
-      {...props}
-    >
-      <StyledCard className="card" $index={index} $centerIndex={centerIndex}>
-        <div className="front">
+const ImgCard = forwardRef<HTMLDivElement, ImgCardProps>(
+  (
+    {
+      movie,
+      index,
+      movieListCount,
+      centerIndex,
+      setCenterIndex,
+      isCardFliped,
+      ...props
+    }: ImgCardProps,
+    ref,
+  ) => {
+    return (
+      <StyledDiv
+        ref={centerIndex === index ? ref : null}
+        $index={index}
+        $movieListCount={movieListCount}
+        $centerIndex={centerIndex}
+        {...props}
+      >
+        <StyledCard
+          className="card"
+          $index={index}
+          $centerIndex={centerIndex}
+          $isCardFliped={isCardFliped}
+        >
+          <div className="front">
+            <img src={movie.posterUrl[0]} alt={movie.movieTitle} />
+          </div>
           {index === centerIndex && (
-            <>
-              <StyledButton className="left-button" onClick={handleLeftClick} />
-              <StyledButton
-                className="right-button"
-                onClick={handleRightClick}
-              />
-            </>
-          )}
-          <img src={movie.posterUrl[0]} />
-        </div>
-        {index === centerIndex && (
-          <div className="back">
-            <Txt className="movie-title" typography="Pretendard32bold">
-              {movie.movieTitle}
-            </Txt>
-            {/* TODO */}
-            <div className="chart-zone">차트가 들어갑니다.</div>
-            <div className="money-zone">
-              <div className="info">
-                <Txt typography="Pretendard24bold">개봉 4주 전</Txt>
-                <Txt typography="Pretendard24regular">
-                  {formatPriceByCountryCode(
-                    movie.beforePrice,
-                    movie.countryCode,
-                  )}
-                </Txt>
-              </div>
-              <div className="info">
-                <Txt typography="Pretendard24bold">개봉 4주 후</Txt>
-                <Txt typography="Pretendard24regular">
-                  {formatPriceByCountryCode(
-                    movie.afterPrice,
-                    movie.countryCode,
-                  )}
-                </Txt>
-              </div>
-              <div className="info">
-                <Txt typography="Pretendard24bold" color="watcha">
-                  수익률
-                </Txt>
-                <Txt typography="Pretendard24bold" color="watcha">
-                  {calculateStockReturnRate(
-                    movie.beforePrice,
-                    movie.afterPrice,
-                  )}
-                </Txt>
+            <div className="back">
+              <Txt className="movie-title" typography="Pretendard32bold">
+                {movie.movieTitle}
+              </Txt>
+              {/* TODO */}
+              <div className="chart-zone">차트가 들어갑니다.</div>
+              <div className="money-zone">
+                <div className="info">
+                  <Txt typography="Pretendard24bold">개봉 4주 전</Txt>
+                  <Txt typography="Pretendard24regular">
+                    {formatPriceByCountryCode(
+                      movie.beforePrice,
+                      movie.countryCode,
+                    )}
+                  </Txt>
+                </div>
+                <div className="info">
+                  <Txt typography="Pretendard24bold">개봉 4주 후</Txt>
+                  <Txt typography="Pretendard24regular">
+                    {formatPriceByCountryCode(
+                      movie.afterPrice,
+                      movie.countryCode,
+                    )}
+                  </Txt>
+                </div>
+                <div className="info">
+                  <Txt typography="Pretendard24bold" color="watcha">
+                    수익률
+                  </Txt>
+                  <Txt typography="Pretendard24bold" color="watcha">
+                    {calculateStockReturnRate(
+                      movie.beforePrice,
+                      movie.afterPrice,
+                    )}
+                  </Txt>
+                </div>
               </div>
             </div>
-          </div>
-        )}
-      </StyledCard>
-    </StyledDiv>
-  );
-}
+          )}
+        </StyledCard>
+      </StyledDiv>
+    );
+  },
+);
+
+export default ImgCard;
 
 type StyledDivProps = {
   $index: number;
   $movieListCount: number;
   $centerIndex: number;
+};
+
+type StyledCardProps = {
+  $index: number;
+  $centerIndex: number;
+  $isCardFliped: boolean;
 };
 
 const StyledDiv = styled.div<StyledDivProps>`
@@ -146,7 +156,7 @@ const StyledDiv = styled.div<StyledDivProps>`
   perspective: 1000px;
 `;
 
-const StyledCard = styled.div<Pick<StyledDivProps, '$index' | '$centerIndex'>>`
+const StyledCard = styled.div<StyledCardProps>`
   perspective-origin: center;
   transform-style: preserve-3d;
   transition: all 0.5s;
@@ -154,10 +164,10 @@ const StyledCard = styled.div<Pick<StyledDivProps, '$index' | '$centerIndex'>>`
   height: 100%;
   position: relative;
 
-  &:hover {
-    transform: ${(props) =>
-      props.$centerIndex === props.$index ? 'rotateY(180deg)' : 'none'};
-  }
+  transform: ${(props) =>
+    props.$centerIndex === props.$index && props.$isCardFliped
+      ? 'rotateY(180deg)'
+      : 'none'};
 
   .back {
     transform: rotateY(180deg);
@@ -206,45 +216,6 @@ const StyledCard = styled.div<Pick<StyledDivProps, '$index' | '$centerIndex'>>`
       width: 100%;
       height: 100%;
     }
-
-    .right-button {
-      right: 0;
-      &:before {
-        /* background-image: url(); */
-        background-size: contain;
-        background-repeat: no-repeat;
-      }
-    }
-
-    .left-button {
-      left: 0;
-      &:before {
-        /* background-image: url(); */
-        background-size: contain;
-        background-repeat: no-repeat;
-      }
-    }
-  }
-`;
-
-const StyledButton = styled.button`
-  border: 0;
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 100000;
-  background-color: ${colors.black};
-  opacity: 0.4;
-  &:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
   }
 `;
 
