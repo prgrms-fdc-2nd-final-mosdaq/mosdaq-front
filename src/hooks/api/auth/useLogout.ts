@@ -14,8 +14,8 @@ export const useLogout = () => {
       return fetchPostLogout(refreshToken);
     },
     onSettled: () => {
-      logout();
       navigate('/');
+      logout();
     },
   });
 
