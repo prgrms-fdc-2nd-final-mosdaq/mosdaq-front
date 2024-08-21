@@ -4,10 +4,16 @@ export interface Movie {
   posterUrl: string[];
 }
 
+export interface StockPriceList {
+  price: number;
+  date: string;
+}
+
 export interface BannerMovie extends Movie {
   countryCode: string;
   companyName: string;
-  stockPriceList: { price: number; date: string }[];
+  movieOpenDate: string;
+  stockPriceList: StockPriceList[];
 }
 
 export interface MovieDetail extends Movie {}

@@ -58,7 +58,7 @@ export default function Banner() {
           주가 변동을 확인하세요!
         </Txt>
       </div>
-      {/* <MyChart /> */}
+
       <div className="img-container">
         {data?.movieList.map((movie, index) => (
           <ImgCard

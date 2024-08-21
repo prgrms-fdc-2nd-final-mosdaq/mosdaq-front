@@ -7,6 +7,7 @@ import {
   formatPriceByCountryCode,
   calculateStockReturnRate,
 } from '@/utils/format';
+import MyChart from '@/components/common/Chart';
 
 interface ImgCardProps extends ImgHTMLAttributes<HTMLDivElement> {
   movie: BannerMovie;
@@ -59,8 +60,9 @@ const ImgCard = forwardRef<HTMLDivElement, ImgCardProps>(
                   {movie.companyName}
                 </Txt>
               </div>
-              {/* TODO */}
-              <div className="chart-zone">차트가 들어갑니다.</div>
+              <div className="chart-zone">
+                <MyChart stockPriceList={movie.stockPriceList} />
+              </div>
               <div className="money-zone">
                 <div className="info">
                   <Txt typography="Pretendard24bold">개봉 4주 전</Txt>
@@ -206,6 +208,8 @@ const StyledCard = styled.div<StyledCardProps>`
       flex: 1;
       // TODO:
       border: 1px solid black;
+      width: 430px;
+      height: 400px;
     }
 
     .money-zone {
