@@ -1,10 +1,23 @@
 import { Txt } from '@/components/common/Txt';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import colors from '@/constants/colors';
 import profileDefault from '@/assets/images/profile/profile-defaut.webp';
+import LogoutButton from './LogoutButton';
+import useAuthStore from '@/store/authStore';
+import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
+  const { isLoggedIn } = useAuthStore();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert('로그인이 필요한 서비스입니다.');
+      navigate('/login');
+    }
+  }, [isLoggedIn]);
+
   return (
     <StyledProfile>
       <StyledProfileImg src={profileDefault} alt="" />
@@ -12,6 +25,7 @@ export default function Profile() {
       <Txt typography="Pretendard24bold" color="watcha">
         총 {`1849`}포인트
       </Txt>
+      <LogoutButton />
     </StyledProfile>
   );
 }
