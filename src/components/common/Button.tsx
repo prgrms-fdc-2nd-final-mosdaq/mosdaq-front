@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import colors from '../../constants/colors';
 
 export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary';
-  size?: 'small' | 'medium' | 'large';
+  variant?: 'primary' | 'secondary' | 'third' | 'forth' | 'fifth';
+  size?: 'small' | 'medium' | 'large' | 'long';
 }
 
 export function Button({
@@ -16,8 +16,8 @@ export function Button({
 }
 
 const StyledButton = styled.button<{
-  variant: 'primary' | 'secondary';
-  size: 'small' | 'medium' | 'large';
+  variant: 'primary' | 'secondary' | 'third' | 'forth' | 'fifth';
+  size: 'small' | 'medium' | 'large' | 'long';
 }>`
   outline: none;
   border: 0 solid transparent;
@@ -41,11 +41,29 @@ const TYPE_VARIANTS = {
     }
   `,
   secondary: `
-  background-color: ${colors.watcha};
-  &:hover {
-    background-color: ${colors.watcha2};
-  }
-`,
+    background-color: ${colors.watcha};
+    &:hover {
+      background-color: ${colors.watcha2};
+    }
+  `,
+  third: `
+    background-color: #3182f6;
+    &:hover {
+      background-color: #2272eb;
+    }
+  `,
+  forth: `
+    background-color: red;
+    &:hover {
+      background-color: crimson;
+    }
+  `,
+  fifth: `
+    background-color: ${colors.greyscale1};
+    &:hover {
+      background-color: ${colors.greyscale2};
+    }
+  `,
 };
 
 const SIZE_VARIANTS = {
@@ -57,5 +75,9 @@ const SIZE_VARIANTS = {
   `,
   large: `
     padding: 11px 22px;
+  `,
+  long: `
+    border-radius: 20px;
+    padding: 11px 44px;
   `,
 };

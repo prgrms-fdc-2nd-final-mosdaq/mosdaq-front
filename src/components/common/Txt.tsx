@@ -21,6 +21,7 @@ type Typography =
   | 'h2'
   | 'h3'
   | 'p'
+  | 'Pretendard64bold'
   | 'Pretendard48bold'
   | 'Pretendard40bold'
   | 'Pretendard36bold'
@@ -72,6 +73,10 @@ const TYPOGRAPH_VARIANT = {
   p: css`
     font-size: 24px;
     font-weight: 400;
+  `,
+  Pretendard64bold: css`
+    font-size: 64px;
+    font-weight: 700;
   `,
   Pretendard48bold: css`
     font-size: 48px;
