@@ -7,10 +7,7 @@ export interface Movie {
 export interface BannerMovie extends Movie {
   countryCode: string;
   companyName: string;
-  beforePrice: number;
-  afterPrice: number;
-  beforePriceDate: string;
-  afterPriceDate: string;
+  stockPriceList: { price: number; date: string }[];
 }
 
 export interface MovieDetail extends Movie {}

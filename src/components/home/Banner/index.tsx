@@ -5,6 +5,7 @@ import { Txt } from '@/components/common/Txt';
 import BannerArrow from '@/assets/images/main/banner-arrow.svg';
 import { useEffect, useRef } from 'react';
 import { useBannerMovie } from '@/hooks/main-movie/useBannerMovie';
+import MyChart from '@/components/common/Chart';
 
 export default function Banner() {
   const { data, isPending } = useGetBannerMovie();
@@ -57,6 +58,7 @@ export default function Banner() {
           주가 변동을 확인하세요!
         </Txt>
       </div>
+      {/* <MyChart /> */}
       <div className="img-container">
         {data?.movieList.map((movie, index) => (
           <ImgCard

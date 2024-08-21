@@ -51,7 +51,13 @@ const ImgCard = forwardRef<HTMLDivElement, ImgCardProps>(
             <div className="back">
               <div className="back-top">
                 <Txt typography="Pretendard32bold">{movie.movieTitle}</Txt>
-                <Txt typography="Pretendard24regular">{movie.companyName}</Txt>
+                <Txt
+                  className="ellipsis"
+                  style={{ maxWidth: '100px' }}
+                  typography="Pretendard18regular"
+                >
+                  {movie.companyName}
+                </Txt>
               </div>
               {/* TODO */}
               <div className="chart-zone">차트가 들어갑니다.</div>
@@ -60,7 +66,7 @@ const ImgCard = forwardRef<HTMLDivElement, ImgCardProps>(
                   <Txt typography="Pretendard24bold">개봉 4주 전</Txt>
                   <Txt typography="Pretendard24regular">
                     {formatPriceByCountryCode(
-                      movie.beforePrice,
+                      movie.stockPriceList[0].price,
                       movie.countryCode,
                     )}
                   </Txt>
@@ -69,7 +75,8 @@ const ImgCard = forwardRef<HTMLDivElement, ImgCardProps>(
                   <Txt typography="Pretendard24bold">개봉 4주 후</Txt>
                   <Txt typography="Pretendard24regular">
                     {formatPriceByCountryCode(
-                      movie.afterPrice,
+                      movie.stockPriceList[movie.stockPriceList.length - 1]
+                        .price,
                       movie.countryCode,
                     )}
                   </Txt>
@@ -80,8 +87,9 @@ const ImgCard = forwardRef<HTMLDivElement, ImgCardProps>(
                   </Txt>
                   <Txt typography="Pretendard24bold" color="watcha">
                     {calculateStockReturnRate(
-                      movie.beforePrice,
-                      movie.afterPrice,
+                      movie.stockPriceList[0].price,
+                      movie.stockPriceList[movie.stockPriceList.length - 1]
+                        .price,
                     )}
                   </Txt>
                 </div>
@@ -186,6 +194,12 @@ const StyledCard = styled.div<StyledCardProps>`
       justify-content: space-between;
       align-items: center;
       padding: 0 23px;
+
+      .ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 
     .chart-zone {
