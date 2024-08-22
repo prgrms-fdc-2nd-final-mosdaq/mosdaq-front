@@ -1,12 +1,21 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-/* Pretendard 폰트를 직접 정의하고 font-display를 설정 */
+
 @font-face {
   font-family: 'Pretendard';
-  src: url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700&display=swap');
+  src: url('/fonts/Pretendard-Regular.woff') format('woff');
   font-weight: 400;
-  font-display: block; /* 폰트 로드 전에 텍스트가 보이지 않도록 설정 */
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/fonts/Pretendard-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
 }
 
 /* 초기화 스타일 */
