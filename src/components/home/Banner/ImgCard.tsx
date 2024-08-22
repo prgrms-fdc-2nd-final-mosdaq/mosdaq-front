@@ -1,15 +1,13 @@
 import colors from '@/constants/colors';
 import { BannerMovie } from '@/models/movie.model';
-import { ImgHTMLAttributes, useEffect, useRef, forwardRef } from 'react';
+import { HTMLAttributes, forwardRef } from 'react';
 import styled from 'styled-components';
 import { Txt } from '@/components/common/Txt';
-import {
-  formatPriceByCountryCode,
-  calculateStockReturnRate,
-} from '@/utils/format';
-import MyChart from '@/components/common/Chart';
+import BannerChart from '@/components/home/Banner/BannerChart';
+import StockPriceInfo from './StockPriceInfo';
+import StockProfitInfo from './StockProfitInfo';
 
-interface ImgCardProps extends ImgHTMLAttributes<HTMLDivElement> {
+interface ImgCardProps extends HTMLAttributes<HTMLDivElement> {
   movie: BannerMovie;
   index: number;
   movieListCount: number;
@@ -61,40 +59,28 @@ const ImgCard = forwardRef<HTMLDivElement, ImgCardProps>(
                 </Txt>
               </div>
               <div className="chart-zone">
-                <MyChart stockPriceList={movie.stockPriceList} />
+                <BannerChart
+                  stockPriceList={movie.stockPriceList}
+                  movieOpenDate={movie.movieOpenDate}
+                />
               </div>
               <div className="money-zone">
-                <div className="info">
-                  <Txt typography="Pretendard24bold">개봉 4주 전</Txt>
-                  <Txt typography="Pretendard24regular">
-                    {formatPriceByCountryCode(
-                      movie.stockPriceList[0].price,
-                      movie.countryCode,
-                    )}
-                  </Txt>
-                </div>
-                <div className="info">
-                  <Txt typography="Pretendard24bold">개봉 4주 후</Txt>
-                  <Txt typography="Pretendard24regular">
-                    {formatPriceByCountryCode(
-                      movie.stockPriceList[movie.stockPriceList.length - 1]
-                        .price,
-                      movie.countryCode,
-                    )}
-                  </Txt>
-                </div>
-                <div className="info">
-                  <Txt typography="Pretendard24bold" color="watcha">
-                    수익률
-                  </Txt>
-                  <Txt typography="Pretendard24bold" color="watcha">
-                    {calculateStockReturnRate(
-                      movie.stockPriceList[0].price,
-                      movie.stockPriceList[movie.stockPriceList.length - 1]
-                        .price,
-                    )}
-                  </Txt>
-                </div>
+                <StockPriceInfo
+                  price={movie.stockPriceList[0].price}
+                  countryCode={movie.countryCode}
+                />
+                <StockPriceInfo
+                  price={
+                    movie.stockPriceList[movie.stockPriceList.length - 1].price
+                  }
+                  countryCode={movie.countryCode}
+                />
+                <StockProfitInfo
+                  beforePrice={movie.stockPriceList[0].price}
+                  afterPrice={
+                    movie.stockPriceList[movie.stockPriceList.length - 1].price
+                  }
+                />
               </div>
             </div>
           )}
@@ -206,22 +192,12 @@ const StyledCard = styled.div<StyledCardProps>`
 
     .chart-zone {
       flex: 1;
-      // TODO:
-      border: 1px solid black;
-      width: 430px;
-      height: 400px;
     }
 
     .money-zone {
       display: flex;
       flex-direction: column;
       padding: 20px;
-
-      .info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
     }
   }
 

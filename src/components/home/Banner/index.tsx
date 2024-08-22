@@ -5,7 +5,6 @@ import { Txt } from '@/components/common/Txt';
 import BannerArrow from '@/assets/images/main/banner-arrow.svg';
 import { useEffect, useRef } from 'react';
 import { useBannerMovie } from '@/hooks/main-movie/useBannerMovie';
-import MyChart from '@/components/common/Chart';
 
 export default function Banner() {
   const { data, isPending } = useGetBannerMovie();
