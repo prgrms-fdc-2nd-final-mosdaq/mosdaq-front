@@ -6,6 +6,7 @@ import { Txt } from '@/components/common/Txt';
 import BannerChart from '@/components/home/Banner/BannerChart';
 import StockPriceInfo from './StockPriceInfo';
 import StockProfitInfo from './StockProfitInfo';
+import dayjs from 'dayjs';
 
 interface ImgCardProps extends HTMLAttributes<HTMLDivElement> {
   movie: BannerMovie;
@@ -61,7 +62,9 @@ const ImgCard = forwardRef<HTMLDivElement, ImgCardProps>(
               <div className="chart-zone">
                 <BannerChart
                   stockPriceList={movie.stockPriceList}
-                  movieOpenDate={movie.movieOpenDate}
+                  movieOpenDate={dayjs(movie.movieOpenDate).format(
+                    'YYYY-MM-DD',
+                  )}
                 />
               </div>
               <div className="money-zone">
@@ -173,7 +176,7 @@ const StyledCard = styled.div<StyledCardProps>`
     z-index: 1;
     background-color: ${colors.white};
     border-radius: 12px;
-
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 
