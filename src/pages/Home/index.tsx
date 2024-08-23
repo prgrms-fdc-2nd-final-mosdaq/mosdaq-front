@@ -19,7 +19,6 @@ export default function HomePage() {
 const StyledHomePage = styled.main`
   width: 100dvw;
   min-height: 100dvh;
-  background-color: rgba(${colors.redRGB}, 0.3);
 
   .wrap {
     width: 100%;
