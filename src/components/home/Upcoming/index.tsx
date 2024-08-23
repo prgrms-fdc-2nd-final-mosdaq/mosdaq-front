@@ -10,6 +10,7 @@ export default function Upcoming() {
     return <Txt>Loading...</Txt>;
   }
 
+  // 영화 목록이 로드되었을 때 Carousel 컴포넌트에 movieList 전달
   return (
     <div>
       <Txt typography="Pretendard48bold">개봉 예정 영화</Txt>

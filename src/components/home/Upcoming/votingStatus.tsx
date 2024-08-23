@@ -8,7 +8,6 @@ interface VotingStatusProps {
 }
 
 export default function votingStatus({ myPollResult }: VotingStatusProps) {
-  console.log(myPollResult);
   return (
     <VotingStatusContainer>
       {myPollResult === null ? (
