@@ -3,7 +3,8 @@ export interface IQuizInfo {
   moviePoster: string;
   fourWeeksBeforePrice: number;
   fourWeeksAfterPrice: number;
-  currency: string;
+  companyCountry: string;
+  companyName: string;
 }
 
 export type IQuizResponse = IQuizInfo[];

@@ -58,9 +58,10 @@ export default function ResultItem({
           </Txt>
         )}
         <Txt>
-          <Txt typography="Pretendard24bold">{movieQuiz.movieTitle}</Txt>의
-          제작(배급)사 주가는 개봉 전/후 8주간 {Math.abs(priceDifference)}{' '}
-          {movieQuiz.currency === 'KO' ? '원' : '달러'}{' '}
+          <Txt typography="Pretendard24bold">{movieQuiz.companyName}</Txt>의
+          주가는 <Txt typography="Pretendard24bold">{movieQuiz.movieTitle}</Txt>
+          의 개봉 4주 전부터 이후 8주간 {Math.abs(priceDifference)}
+          {movieQuiz.companyCountry === 'KO ' ? '원' : '달러'}{' '}
           {priceDifference > 0 ? '상승' : '하락'} 했습니다.
           <br />
           이는 주가의 약
