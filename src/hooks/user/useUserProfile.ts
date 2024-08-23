@@ -7,7 +7,7 @@ const useUserProfile = () => {
   point optimstic update에 사용하시면 됩니다.
   단, 투표 수정일 경우에 포인트 중복 적립 방지 처리는 직접 하셔야합니다.
 */
-  const upDateUserPoint = (point: number) => {
+  const updateUserPoint = (point: number) => {
     const queryKey = ['user', 'profile'];
     const userProfile: IUserProfile | undefined =
       queryClient.getQueryData(queryKey);
@@ -18,7 +18,7 @@ const useUserProfile = () => {
     }
   };
 
-  return { upDateUserPoint };
+  return { updateUserPoint };
 };
 
 export default useUserProfile;
