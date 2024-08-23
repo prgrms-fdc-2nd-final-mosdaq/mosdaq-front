@@ -50,7 +50,10 @@ export default function QuizItem({
           </Txt>
           {movieQuiz.movieTitle}
         </Txt>
-        <Txt>의 개봉 후 주가는?</Txt>
+        <Txt>
+          <Txt typography="Pretendard24bold">{movieQuiz.companyName}</Txt>의
+          개봉 후 주가는?
+        </Txt>
 
         <div>
           <Button size="long" variant="forth" onClick={handleUpClick}>
