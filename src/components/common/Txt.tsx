@@ -60,11 +60,11 @@ const StyledText = styled.span<{
 const TYPOGRAPH_VARIANT = {
   h1: css`
     font-size: 48px;
-    font-weight: 900;
+    font-weight: 700;
   `,
   h2: css`
     font-size: 40px;
-    font-weight: 800;
+    font-weight: 700;
   `,
   h3: css`
     font-size: 28px;
