@@ -5,7 +5,7 @@ import VoteButtons from './voteButtons';
 import VotingStatus from './votingStatus';
 import { Txt } from '@/components/common/Txt';
 import { useCarousel } from '@/hooks/main-movie/useCarousel';
-
+import { useEffect } from 'react';
 interface CarouselProps {
   movieList: IMovie[];
 }
