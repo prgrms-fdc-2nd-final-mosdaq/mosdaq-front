@@ -1,9 +1,10 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './pages/root';
 import MovieListPage from './pages/MovieList';
+import useAuthStore from './store/authStore';
 
 const HomePage = lazy(() => import('./pages/Home'));
 const LoginPage = lazy(() => import('./pages/Login'));
