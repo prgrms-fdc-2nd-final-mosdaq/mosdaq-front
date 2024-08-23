@@ -10,13 +10,12 @@ import useGetUserProfile from '@/hooks/api/auth/useGetUserInfo';
 
 export default function Header() {
   const { isLoggedIn } = useAuthStore();
-  const { upDateUserPoint, userProfile } = useGetUserProfile();
+  const { userProfile } = useGetUserProfile();
 
   return (
     <StyledHeaderContainer>
       <StyledHeaderContent>
         <StyledLeftSection>
-          <button onClick={() => upDateUserPoint(10)}>테스트</button>
           <Link to="/">
             <StyledMainLogo src={mainLogo} alt="Main Logo" />
           </Link>
@@ -42,7 +41,7 @@ export default function Header() {
                     ? userProfile.picture
                     : mypageLogo
                 }
-                alt="MyPage Logo"
+                alt="profile img"
               />
             </Link>
           ) : (
