@@ -26,7 +26,6 @@ const StyledButton = styled.button<{
   transition:
     background 0.2s ease,
     color 0.1s ease;
-  font-weight: 600;
   line-height: 26px;
 
   ${({ variant }) => TYPE_VARIANTS[variant]}
