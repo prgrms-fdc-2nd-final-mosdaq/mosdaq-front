@@ -4,7 +4,6 @@ import { lazy, Suspense, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './pages/root';
 import MovieListPage from './pages/MovieList';
-import useGetUserProfile from './hooks/api/auth/useGetUserInfo';
 
 const HomePage = lazy(() => import('./pages/Home'));
 const LoginPage = lazy(() => import('./pages/Login'));
@@ -61,7 +60,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const { userProfile } = useGetUserProfile();
   return <RouterProvider router={router} />;
 }
 
