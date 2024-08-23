@@ -1,14 +1,23 @@
 import { Button } from '@/components/common/Button';
 import { Txt } from '@/components/common/Txt';
 import colors from '@/constants/colors';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import confetti from 'canvas-confetti';
 
 interface IQuizEndedProps {
   correctCount: number;
   setQuizStatus: React.Dispatch<
     React.SetStateAction<'waiting' | 'doing' | 'ended'>
   >;
+}
+
+function triggerConfetti() {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 },
+  });
 }
 
 export default function QuizEnded({
@@ -28,6 +37,12 @@ export default function QuizEnded({
       return `${correctCount}문제 맞추셨습니다. 다시 도전해보세요!`;
     }
   };
+
+  useEffect(() => {
+    if (correctCount >= 4) {
+      triggerConfetti();
+    }
+  }, [correctCount]);
 
   return (
     <StyledQuizEnded>
