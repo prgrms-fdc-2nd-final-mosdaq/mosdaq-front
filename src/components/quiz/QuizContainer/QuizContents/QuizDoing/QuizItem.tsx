@@ -51,8 +51,9 @@ export default function QuizItem({
           {movieQuiz.movieTitle}
         </Txt>
         <Txt>
+          개봉 후{' '}
           <Txt typography="Pretendard24bold">{movieQuiz.companyName}</Txt>의
-          개봉 후 주가는?
+          주가는?
         </Txt>
 
         <div>
