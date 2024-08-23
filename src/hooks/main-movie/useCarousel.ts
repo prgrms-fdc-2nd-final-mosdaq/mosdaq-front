@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { IMovie } from '@/models/main-movie.model';
 import { useQueryClient } from '@tanstack/react-query';
 
 export function useCarousel(movieList: IMovie[]) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [updatedMovie, setUpdatedMovie] = useState<IMovie>(movieList[0]);
   const queryClient = useQueryClient();
 
   const nextSlide = () => {
@@ -18,17 +19,21 @@ export function useCarousel(movieList: IMovie[]) {
     );
   };
 
-  const currentMovie = movieList[currentIndex];
+  useEffect(() => {
+    const currentMovie = movieList[currentIndex];
 
-  // 캐시에서 현재 영화의 업데이트된 상태를 가져옴
-  const cachedMovies = queryClient.getQueryData<{ movieList: IMovie[] }>([
-    'pollingMovies',
-  ]);
+    // 캐시에서 현재 영화의 업데이트된 상태를 가져옴
+    const cachedMovies = queryClient.getQueryData<{ movieList: IMovie[] }>([
+      'pollingMovies',
+    ]);
 
-  const updatedMovie =
-    cachedMovies?.movieList.find(
-      (movie) => movie.movieId === currentMovie.movieId,
-    ) || currentMovie;
+    const foundMovie =
+      cachedMovies?.movieList.find(
+        (movie) => movie.movieId === currentMovie.movieId,
+      ) || currentMovie;
+
+    setUpdatedMovie(foundMovie);
+  }, [currentIndex, movieList, queryClient]);
 
   return { updatedMovie, nextSlide, prevSlide };
 }

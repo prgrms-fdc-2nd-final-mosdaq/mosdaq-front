@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import upIcon from '../../../assets/images/main/mainUpBtn.png';
 import downIcon from '../../../assets/images/main/mainDownBtn.png';
 import styled from 'styled-components';
@@ -67,6 +67,21 @@ export default function VoteButtons({ movieId }: VoteButtonsProps) {
       };
     });
   };
+
+  useEffect(() => {
+    // 캐시에서 최신 데이터를 불러와 상태를 업데이트
+    const cachedMovies = queryClient.getQueryData<{ movieList: IMovie[] }>([
+      'pollingMovies',
+    ]);
+
+    const updatedMovie = cachedMovies?.movieList.find(
+      (movie) => movie.movieId === movieId,
+    );
+
+    if (updatedMovie) {
+      setVoted(updatedMovie.myPollResult !== null);
+    }
+  }, [movieId, queryClient]);
 
   return (
     <VoteContainer>
