@@ -6,13 +6,17 @@ import { Button } from '../../common/Button';
 import mainLogo from '../../../assets/images/main/mainLogo.png';
 import mypageLogo from '../../../assets/images/main/mypageLogo.png';
 import useAuthStore from '@/store/authStore';
+import useGetUserProfile from '@/hooks/api/auth/useGetUserInfo';
 
 export default function Header() {
   const { isLoggedIn } = useAuthStore();
+  const { upDateUserPoint, userProfile } = useGetUserProfile();
+
   return (
     <StyledHeaderContainer>
       <StyledHeaderContent>
         <StyledLeftSection>
+          <button onClick={() => upDateUserPoint(10)}>테스트</button>
           <Link to="/">
             <StyledMainLogo src={mainLogo} alt="Main Logo" />
           </Link>
@@ -32,7 +36,14 @@ export default function Header() {
         <StyledRightSection>
           {isLoggedIn ? (
             <Link to="/mypage">
-              <StyledMypageLogo src={mypageLogo} alt="MyPage Logo" />
+              <StyledMypageLogo
+                src={
+                  isLoggedIn && userProfile && userProfile.picture
+                    ? userProfile.picture
+                    : mypageLogo
+                }
+                alt="MyPage Logo"
+              />
             </Link>
           ) : (
             <Button size="small" variant="secondary">
@@ -67,7 +78,8 @@ const StyledHeaderContent = styled.header`
   align-items: center;
   width: 100%;
   max-width: 1920px;
-  height: 68px;
+  height: 100%;
+  max-height: 68px;
 
   @media (max-width: 768px) {
     height: auto;
@@ -83,6 +95,14 @@ const StyledRightSection = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  height: 100%;
+  max-height: 68px;
+
+  a {
+    height: inherit;
+    max-height: inherit;
+  }
 `;
 
 const StyledNav = styled.nav`
@@ -96,7 +116,8 @@ const StyledMainLogo = styled.img`
 `;
 
 const StyledMypageLogo = styled.img`
-  padding-left: 20px;
-  width: 40x;
-  padding-left: 20px;
+  width: 100%;
+  height: 100%;
+  max-height: inherit;
+  border-radius: 50%;
 `;
