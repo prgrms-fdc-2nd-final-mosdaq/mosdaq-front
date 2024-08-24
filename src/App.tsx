@@ -9,6 +9,7 @@ const HomePage = lazy(() => import('./pages/Home'));
 const LoginPage = lazy(() => import('./pages/Login'));
 const MyPage = lazy(() => import('./pages/MyPage'));
 const QuizPage = lazy(() => import('./pages/Quiz'));
+const MovieDetail = lazy(() => import('./pages/MovieDetail'));
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={null}>
             <MovieListPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/movie-list/:movieId',
+        element: (
+          <Suspense fallback={null}>
+            <MovieDetail />
           </Suspense>
         ),
       },

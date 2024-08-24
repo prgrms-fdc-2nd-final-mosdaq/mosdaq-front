@@ -3,13 +3,20 @@ import styled from 'styled-components';
 import { IMovie } from '@/models/main-movie.model';
 import VoteButtons from './voteButtons';
 import VotingStatus from './votingStatus';
+import { useNavigate } from 'react-router-dom';
 import { Txt } from '@/components/common/Txt';
 import { useCarousel } from '@/hooks/main-movie/useCarousel';
+
 interface CarouselProps {
   movieList: IMovie[];
 }
 export default function Carousel({ movieList }: CarouselProps) {
   const { currentMovies, nextSlide, prevSlide } = useCarousel(movieList);
+  const navigate = useNavigate();
+
+  const handlePosterClick = (movieId: number) => {
+    navigate(`/movie-list/${movieId}`);
+  };
 
   return (
     <CarouselContainer>
@@ -17,7 +24,11 @@ export default function Carousel({ movieList }: CarouselProps) {
       <ImageWrapper>
         {currentMovies.map((movie) => (
           <ImageContainer key={movie.movieId}>
-            <Image src={movie.posterUrl[0]} alt={movie.movieTitle} />
+            <Image
+              src={movie.posterUrl[0]}
+              alt={movie.movieTitle}
+              onClick={() => handlePosterClick(movie.movieId)}
+            />
             <Title typography="Pretendard20bold">{movie.movieTitle}</Title>
             <VotingStatus myPollResult={movie.myPollResult} />
             <VoteButtons movieId={movie.movieId} />
@@ -57,6 +68,7 @@ const Image = styled.img`
   width: 400px;
   height: 570px;
   object-fit: cover;
+  cursor: pointer;
 `;
 
 const Title = styled(Txt)`
