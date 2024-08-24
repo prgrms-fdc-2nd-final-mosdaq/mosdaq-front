@@ -1,18 +1,16 @@
 import arrow from '../../../assets/images/main/arrow.png';
 import styled from 'styled-components';
-import { IMovie } from '../../../models/main-movie.model';
-import { useCarousel } from '@/hooks/useCarousel';
-import { Txt } from '@/components/common/Txt';
+import { IMovie } from '@/models/main-movie.model';
 import VoteButtons from './voteButtons';
 import VotingStatus from './votingStatus';
 import { useNavigate } from 'react-router-dom';
+import { Txt } from '@/components/common/Txt';
+import { useCarousel } from '@/hooks/main-movie/useCarousel';
 
 interface CarouselProps {
   movieList: IMovie[];
 }
-
 export default function Carousel({ movieList }: CarouselProps) {
-  console.log(movieList);
   const { currentMovies, nextSlide, prevSlide } = useCarousel(movieList);
   const navigate = useNavigate();
 
@@ -22,7 +20,7 @@ export default function Carousel({ movieList }: CarouselProps) {
 
   return (
     <CarouselContainer>
-      <Arrow direction="left" onClick={prevSlide} />
+      {movieList.length > 3 && <Arrow direction="left" onClick={prevSlide} />}
       <ImageWrapper>
         {currentMovies.map((movie) => (
           <ImageContainer key={movie.movieId}>
@@ -33,15 +31,16 @@ export default function Carousel({ movieList }: CarouselProps) {
             />
             <Title typography="Pretendard20bold">{movie.movieTitle}</Title>
             <VotingStatus myPollResult={movie.myPollResult} />
-            <VoteButtons />
+            <VoteButtons movieId={movie.movieId} />
           </ImageContainer>
         ))}
       </ImageWrapper>
-      <Arrow direction="right" onClick={nextSlide} />
+      {movieList.length > 3 && <Arrow direction="right" onClick={nextSlide} />}
     </CarouselContainer>
   );
 }
 
+// 스타일 컴포넌트
 const CarouselContainer = styled.div`
   display: flex;
   align-items: center;
