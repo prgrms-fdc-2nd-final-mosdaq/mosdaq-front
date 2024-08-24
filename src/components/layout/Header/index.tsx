@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useMatch } from 'react-router-dom';
 import styled from 'styled-components';
 import colors from '../../../constants/colors';
 import { Txt } from '../../common/Txt';
@@ -11,6 +11,8 @@ import useGetUserProfile from '@/hooks/api/auth/useGetUserInfo';
 export default function Header() {
   const { isLoggedIn } = useAuthStore();
   const { userProfile } = useGetUserProfile();
+  const matchMovieList = useMatch('/movie-list');
+  const matchQuiz = useMatch('/quiz');
 
   return (
     <StyledHeaderContainer>
@@ -21,12 +23,12 @@ export default function Header() {
           </Link>
           <StyledNav>
             <Button size="small">
-              <Txt>
+              <Txt typography={matchMovieList ? 'Pretendard24bold' : 'p'}>
                 <Link to="/movie-list">영화 투표</Link>
               </Txt>
             </Button>
             <Button size="small">
-              <Txt>
+              <Txt typography={matchQuiz ? 'Pretendard24bold' : 'p'}>
                 <Link to="/quiz">영화 퀴즈</Link>
               </Txt>
             </Button>
