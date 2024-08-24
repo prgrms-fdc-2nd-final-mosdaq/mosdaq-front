@@ -1,4 +1,4 @@
-import { IPollingMovies } from '@/models/main-movie.model';
+import { IMovie, IPollingMovies } from '@/models/main-movie.model';
 import axiosInstance from './axiosInstance';
 import { BannerResponse } from '@/hooks/api/main-movie/useGetBannerMovie';
 
@@ -21,5 +21,16 @@ export const fetchGetMainPolledMovie = async () => {
     '/main-movie/poll?poll=false',
   );
 
+  return res.data;
+};
+
+export const fetchPostPollMovie = async (
+  movieId: number,
+  pollResult: 'up' | 'down',
+) => {
+  console.log('Sending request to server:', { movieId, pollResult });
+  const res = await axiosInstance.put(`/poll/${movieId}`, { pollResult });
+
+  console.log('Server response:', res.data);
   return res.data;
 };
