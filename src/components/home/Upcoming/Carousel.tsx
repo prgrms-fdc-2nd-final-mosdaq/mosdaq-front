@@ -5,29 +5,26 @@ import VoteButtons from './voteButtons';
 import VotingStatus from './votingStatus';
 import { Txt } from '@/components/common/Txt';
 import { useCarousel } from '@/hooks/main-movie/useCarousel';
-import { useEffect } from 'react';
 interface CarouselProps {
   movieList: IMovie[];
 }
-
 export default function Carousel({ movieList }: CarouselProps) {
-  const { updatedMovie, nextSlide, prevSlide } = useCarousel(movieList);
+  const { currentMovies, nextSlide, prevSlide } = useCarousel(movieList);
 
   return (
     <CarouselContainer>
-      <Arrow direction="left" onClick={prevSlide} />
+      {movieList.length > 3 && <Arrow direction="left" onClick={prevSlide} />}
       <ImageWrapper>
-        <ImageContainer key={updatedMovie.movieId}>
-          <Image
-            src={updatedMovie.posterUrl[0]}
-            alt={updatedMovie.movieTitle}
-          />
-          <Title typography="Pretendard20bold">{updatedMovie.movieTitle}</Title>
-          <VotingStatus myPollResult={updatedMovie.myPollResult} />
-          <VoteButtons movieId={updatedMovie.movieId} />
-        </ImageContainer>
+        {currentMovies.map((movie) => (
+          <ImageContainer key={movie.movieId}>
+            <Image src={movie.posterUrl[0]} alt={movie.movieTitle} />
+            <Title typography="Pretendard20bold">{movie.movieTitle}</Title>
+            <VotingStatus myPollResult={movie.myPollResult} />
+            <VoteButtons movieId={movie.movieId} />
+          </ImageContainer>
+        ))}
       </ImageWrapper>
-      <Arrow direction="right" onClick={nextSlide} />
+      {movieList.length > 3 && <Arrow direction="right" onClick={nextSlide} />}
     </CarouselContainer>
   );
 }
