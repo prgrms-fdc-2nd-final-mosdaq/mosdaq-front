@@ -8,6 +8,7 @@ import { calculatePercentages } from '@/utils/math';
 import StockPriceInfo from '../Banner/StockPriceInfo';
 import StockProfitInfo from '../Banner/StockProfitInfo';
 import Tooltip from '@/components/common/Tooltip';
+import { Link } from 'react-router-dom';
 
 interface Props {
   movie: IPolledMovie;
@@ -20,11 +21,13 @@ export default function MoviePosterBack({ movie }: Props) {
   );
   return (
     <StyledLi>
-      <img
-        className="movie-poster"
-        src={movie.posterUrl[0]}
-        alt="movie poster"
-      />
+      <Link to={`/movie-list/${movie.movieId}`} className="movie-poster">
+        <img
+          className="img-hover-effect"
+          src={movie.posterUrl[0]}
+          alt="movie poster"
+        />
+      </Link>
       <div className="poster-back">
         <div className="movie-top">
           <Tooltip text={movie.movieTitle} position="top">
@@ -83,6 +86,11 @@ const StyledLi = styled.li`
   .movie-poster {
     width: 350px;
     height: 500px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .poster-back {
