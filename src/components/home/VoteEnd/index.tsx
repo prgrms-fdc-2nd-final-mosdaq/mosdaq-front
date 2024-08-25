@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { Txt } from '@/components/common/Txt';
 import { useGetPolledMovie } from '@/hooks/api/main-movie/useGetPolledMovie';
