@@ -16,6 +16,9 @@ const colors = {
   greyscale10: '#8C8C8C',
   greyscale11: '#6D6D6D',
 
+  voteGrey: '#868686',
+  border2: '#747474',
+
   watcha: '#FF0558',
   watcha2: '#FF73A1',
   watcha3: '#FFBFD4',
