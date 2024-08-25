@@ -16,8 +16,11 @@ export default function VoteEnd() {
         <ImgUlZone $movieListCount={polledMovies?.movieListCount}>
           {polledMovies?.movieList
             .concat(polledMovies?.movieList)
-            .map((movie) => (
-              <MoviePosterBack key={movie.movieId} movie={movie} />
+            .map((movie, index) => (
+              <MoviePosterBack
+                key={movie.movieId + index + movie.afterPrice}
+                movie={movie}
+              />
             ))}
         </ImgUlZone>
       </div>
