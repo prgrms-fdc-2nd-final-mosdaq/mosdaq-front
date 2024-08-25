@@ -7,6 +7,7 @@ import colors from '@/constants/colors';
 import { calculatePercentages } from '@/utils/math';
 import StockPriceInfo from '../Banner/StockPriceInfo';
 import StockProfitInfo from '../Banner/StockProfitInfo';
+import Tooltip from '@/components/common/Tooltip';
 
 interface Props {
   movie: IPolledMovie;
@@ -25,20 +26,14 @@ export default function MoviePosterBack({ movie }: Props) {
         alt="movie poster"
       />
       <div className="poster-back">
-        <div
-          className="movie-top"
-          title="    가나다라마바사아자차카타파하1q2w3e4r5t6y7u8io9o9나는
-            김지환입니다.바보냐?"
-        >
-          {/* <Txt typography="Pretendard32bold">{movie.movieTitle}</Txt> */}
-          <Txt typography="Pretendard32bold">
-            가나다라마바사아자차카타파하1q2w3e4r5t6y7u8io9o9나는
-            김지환입니다.바보냐?
-          </Txt>
-          <Txt typography="Pretendard20regular" color="voteGrey">
+        <div className="movie-top">
+          <Tooltip text={movie.movieTitle} position="top">
+            <Txt typography="Pretendard32bold">{movie.movieTitle}</Txt>
+          </Tooltip>
+          <Txt typography="Pretendard20regular" color="border1">
             {movie.companyName}
           </Txt>
-          <Txt typography="Pretendard20regular" color="voteGrey">
+          <Txt typography="Pretendard20regular" color="border1">
             총 {movie.up + movie.down}명 투표
           </Txt>
         </div>

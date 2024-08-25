@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Txt } from '@/components/common/Txt';
 import { useGetPolledMovie } from '@/hooks/api/main-movie/useGetPolledMovie';
-import colors from '@/constants/colors';
-import voteUp from '@/assets/images/main/mainUpBtn.png';
 import MoviePosterBack from './MoviePosterBack';
 
 export default function VoteEnd() {
@@ -19,7 +17,7 @@ export default function VoteEnd() {
         <ImgUlZone $movieListCount={polledMovies?.movieListCount}>
           {polledMovies?.movieList
             .concat(polledMovies?.movieList)
-            .map((movie, index) => (
+            .map((movie) => (
               <MoviePosterBack key={movie.movieId} movie={movie} />
             ))}
         </ImgUlZone>
@@ -40,23 +38,6 @@ const StyledWrapper = styled.div`
     width: 100dvw;
     position: absolute;
     left: 0;
-
-    .img-zone {
-      width: calc(724px * 10);
-      display: flex;
-      gap: 24px;
-
-      animation: autoPlay 20s linear infinite;
-
-      @keyframes autoPlay {
-        0% {
-          transition: translateX(0);
-        }
-        100% {
-          transform: translateX(calc(-748px * 5));
-        }
-      }
-    }
   }
 `;
 
