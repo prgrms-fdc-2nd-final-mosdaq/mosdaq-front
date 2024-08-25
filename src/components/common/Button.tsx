@@ -2,8 +2,17 @@ import { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 import colors from '../../constants/colors';
 
+type ButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'third'
+  | 'forth'
+  | 'fifth'
+  | 'filterActive'
+  | 'filterInactive';
+
 export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'third' | 'forth' | 'fifth';
+  variant?: ButtonVariant;
   size?: 'small' | 'medium' | 'large' | 'long';
 }
 
@@ -16,7 +25,7 @@ export function Button({
 }
 
 const StyledButton = styled.button<{
-  variant: 'primary' | 'secondary' | 'third' | 'forth' | 'fifth';
+  variant: ButtonVariant;
   size: 'small' | 'medium' | 'large' | 'long';
 }>`
   outline: none;
@@ -25,6 +34,7 @@ const StyledButton = styled.button<{
   cursor: pointer;
   transition:
     background 0.2s ease,
+    outline 0.2s ease,
     color 0.1s ease;
   line-height: 26px;
 
@@ -62,6 +72,24 @@ const TYPE_VARIANTS = {
     &:hover {
       background-color: ${colors.greyscale2};
     }
+  `,
+  filterActive: `
+    outline: 2px solid ${colors.watcha2};
+    border-radius: 16px;
+    background-color: transparent;
+
+  &:hover {
+    outline: 2px solid ${colors.watcha};
+  }
+  `,
+  filterInactive: `
+    outline: 2px solid ${colors.greyscale9};
+    border-radius: 16px;
+    background-color: transparent;
+
+  &:hover {
+    outline: 2px solid ${colors.greyscale11};
+  }
   `,
 };
 
