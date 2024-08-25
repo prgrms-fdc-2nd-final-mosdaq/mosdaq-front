@@ -1,8 +1,14 @@
+import { IPolledMovie } from '@/models/movie.model';
 import { useQuery } from '@tanstack/react-query';
 import { fetchGetMainPolledMovie } from '../../../apis/main-movie.api';
 
+export interface IPolledMovieResponse {
+  movieList: IPolledMovie[];
+  movieListCount: number;
+}
+
 export const useGetPolledMovie = () => {
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading, refetch } = useQuery<IPolledMovieResponse>({
     queryKey: ['polledMovie'],
     queryFn: fetchGetMainPolledMovie,
     staleTime: 0,
@@ -10,7 +16,7 @@ export const useGetPolledMovie = () => {
   });
 
   return {
-    polledMovie: data,
+    polledMovies: data,
     isLoading,
     refetch,
   };

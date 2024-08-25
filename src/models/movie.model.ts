@@ -16,4 +16,16 @@ export interface BannerMovie extends Movie {
   stockPriceList: StockPriceList[];
 }
 
+export interface IPolledMovie extends Movie {
+  up: number;
+  down: number;
+  myPollResult: 'up' | 'down';
+  countryCode: string;
+  companyName: string;
+  beforePrice: number;
+  afterPrice: number;
+  beforePriceDate: string;
+  afterPriceDate: string;
+}
+
 export interface MovieDetail extends Movie {}
