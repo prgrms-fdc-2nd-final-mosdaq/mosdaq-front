@@ -73,7 +73,7 @@ export default function MovieDetail() {
 
         <RightContainer>
           <VotingNowTxt typography="Pretendard36bold" color="watcha">
-            voting now
+            Now voting
           </VotingNowTxt>
 
           <Txt typography="Pretendard20bold">
