@@ -1,9 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { fetchGetPollBox } from '@/apis/poll.api';
 import { IPollBox } from '@/models/poll.model';
 
 export const useGetPollBox = (movieId: string) => {
-  const { data, isLoading, refetch } = useQuery<IPollBox>({
+  const { data } = useSuspenseQuery<IPollBox>({
     queryKey: ['movieDetail', 'pollBox', movieId],
     queryFn: () => fetchGetPollBox(movieId),
     staleTime: 0,
@@ -12,7 +12,5 @@ export const useGetPollBox = (movieId: string) => {
 
   return {
     pollBox: data,
-    isLoading,
-    refetch,
   };
 };

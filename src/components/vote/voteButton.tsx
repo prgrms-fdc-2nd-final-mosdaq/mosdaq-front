@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import upIcon from '../../assets/images/main/mainUpBtn.png';
 import downIcon from '../../assets/images/main/mainDownBtn.png';
@@ -13,23 +12,23 @@ interface VoteButtonProps {
 export default function voteButton({ onUpVote, onDownVote }: VoteButtonProps) {
   return (
     <ButtonContainer>
-      <VoteItem onClick={onUpVote}>
+      <VoteLeftZone onClick={onUpVote}>
         <VoteIcon src={upIcon} alt="오른다" />
         <Txt typography="Pretendard32bold" color="watcha">
           오른다
         </Txt>
-      </VoteItem>
-      <Divider />
-      <VoteText typography="Pretendard32bold" color="watcha">
-        vs
-      </VoteText>
-      <Divider />
-      <VoteItem onClick={onDownVote}>
+      </VoteLeftZone>
+      <div className="vs">
+        <VoteText typography="Pretendard32bold" color="watcha">
+          vs
+        </VoteText>
+      </div>
+      <VoteRightZone onClick={onDownVote}>
         <Txt typography="Pretendard32bold" color="watcha">
           내린다
         </Txt>
         <VoteIcon src={downIcon} alt="내린다" />
-      </VoteItem>
+      </VoteRightZone>
     </ButtonContainer>
   );
 }
@@ -37,18 +36,44 @@ export default function voteButton({ onUpVote, onDownVote }: VoteButtonProps) {
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
   width: 750px;
   height: 140px;
   border: 1px solid ${colors.greyscale8};
-  padding: 10px;
   border-radius: 20px;
+
+  .vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 100%;
+    border-left: 1px solid ${colors.greyscale8};
+    border-right: 1px solid ${colors.greyscale8};
+  }
 `;
 
 const VoteItem = styled.div`
+  height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex: 1;
   cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.1s ease;
+
+  &:hover {
+    background-color: ${colors.greyscale1};
+  }
+`;
+
+const VoteLeftZone = styled(VoteItem)`
+  border-radius: 20px 0 0 20px;
+`;
+
+const VoteRightZone = styled(VoteItem)`
+  border-radius: 0 20px 20px 0;
 `;
 
 const VoteIcon = styled.img`
@@ -59,12 +84,5 @@ const VoteIcon = styled.img`
 `;
 
 const VoteText = styled(Txt)`
-  margin: 0 15px;
-`;
-
-const Divider = styled.div`
-  height: 140px; /* 라인의 높이를 아이템과 일치 */
-  width: 1px;
-  background-color: ${colors.greyscale8}; /* 회색 라인 */
   margin: 0 15px;
 `;
