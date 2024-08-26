@@ -31,7 +31,7 @@ export default function MovieDetailBeforeOpen({
   };
 
   return (
-    <RightContainer>
+    <>
       <VotingNowTxt typography="Pretendard36bold" color="watcha">
         Now voting
       </VotingNowTxt>
@@ -55,14 +55,18 @@ export default function MovieDetailBeforeOpen({
         <VoteButton onUpVote={handleUpVote} onDownVote={handleDownVote} />
       </VoteContainer>
 
-      <div className="voting-status">
+      <VotingStatus>
         <div className="voting-status-left">
           <Txt typography="Pretendard24bold" color="watcha">
             {dateDifference(movieDetail.movieOpenDate)} 후 종료
           </Txt>
-          <Txt typography="Pretendard24bold" color="white" className="divide">
+          <VoteNum
+            typography="Pretendard24bold"
+            color="white"
+            className="divide"
+          >
             {(pollBox.up + pollBox.down).toLocaleString()} 명 참여 중
-          </Txt>
+          </VoteNum>
         </div>
         <div className="voting-status-right">
           <Link to="/movie-list">
@@ -75,26 +79,25 @@ export default function MovieDetailBeforeOpen({
             </Txt>
           </Link>
         </div>
-      </div>
-    </RightContainer>
+      </VotingStatus>
+    </>
   );
 }
 
-// 오른쪽 섹션 (간단 설명 및 투표)
-const RightContainer = styled.div`
+const VotingStatus = styled.div`
+  width: 750px;
+  height: 64px;
+  border-radius: 20px;
+  background-color: ${colors.watcha3};
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  flex: 1;
-  margin-left: 40px;
-  width: 100%;
+  justify-content: space-between;
+  padding: 0 10px;
 
   .movie-description {
     width: 588px;
     max-height: 128px;
     height: 100%;
-
     overflow: scroll;
     display: -webkit-box;
     -webkit-line-clamp: 4;
@@ -112,63 +115,39 @@ const RightContainer = styled.div`
     display: none;
   }
 
-  .voting-status {
-    width: 750px;
-    height: 64px;
-    border-radius: 20px;
-    background-color: ${colors.watcha3};
-
+  .voting-status-left {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 10px 0 10px;
+  }
 
-    .voting-status-left {
+  .voting-status-left::before {
+    content: '';
+    display: block;
+    width: 35px;
+    height: 35px;
+    background-image: url(${clockImg});
+    background-size: cover;
+    background-position: center;
+  }
+
+  .voting-status-right {
+    display: flex;
+    align-items: center;
+
+    .move {
       display: flex;
       align-items: center;
-
-      .divide {
-        display: flex;
-      }
-
-      .divide::before {
-        content: '/';
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 35px;
-        height: 35px;
-      }
     }
-    .voting-status-left::before {
+    .move::after {
       content: '';
-      display: block;
-      width: 35px;
-      height: 35px;
-      background-image: url(${clockImg});
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 25px;
+      height: 25px;
+      background-image: url(${rightArrow});
       background-size: cover;
       background-position: center;
-    }
-
-    .voting-status-right {
-      display: flex;
-      align-items: center;
-
-      .move {
-        display: flex;
-        align-items: center;
-      }
-      .move::after {
-        content: '';
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 25px;
-        height: 25px;
-        background-image: url(${rightArrow});
-        background-size: cover;
-        background-position: center;
-      }
     }
   }
 `;
@@ -179,14 +158,7 @@ const VotingNowTxt = styled(Txt)`
   padding: 4px 10px;
 `;
 
-const MovieDescription = styled(Txt)`
-  line-height: 1.6;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-`;
-
-const Divider = styled.div`
+export const Divider = styled.div`
   width: 100%;
   height: 1px;
   background-color: ${colors.greyscale8};
@@ -197,7 +169,20 @@ const ScoreInfo = styled(Txt)`
   margin-bottom: 20px;
 `;
 
-const VoteContainer = styled.div`
+export const VoteContainer = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const VoteNum = styled(Txt)`
+  display: flex;
+
+  &::before {
+    content: '/';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+  }
 `;

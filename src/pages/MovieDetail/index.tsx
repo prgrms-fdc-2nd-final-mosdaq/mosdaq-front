@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import Tooltip from '@/components/common/Tooltip';
 import { useGetPollBox } from '@/hooks/api/movie-detail/useGetPollBox';
 import { useGetStockInfo } from '@/hooks/api/movie-detail/useGetStockInfo';
-
 import MovieDetailBeforeOpen from './MovieDetailBeforeOpen';
+import MovieDetailAfterOpen from './MovieDetailAfterOpen';
 
 export default function MovieDetail() {
   const navigate = useNavigate();
@@ -58,11 +58,18 @@ export default function MovieDetail() {
           </Txt>
         </PosterContainer>
 
-        <MovieDetailBeforeOpen
-          movieDetail={movieDetail}
-          pollBox={pollBox}
-          stockMovieInfo={stockMovieInfo}
-        />
+        <RightContainer>
+          {/* <MovieDetailBeforeOpen
+            movieDetail={movieDetail}
+            pollBox={pollBox}
+            stockMovieInfo={stockMovieInfo}
+          /> */}
+          <MovieDetailAfterOpen
+            movieDetail={movieDetail}
+            pollBox={pollBox}
+            stockMovieInfo={stockMovieInfo}
+          />
+        </RightContainer>
       </div>
     </PageContainer>
   );
@@ -108,4 +115,14 @@ const EllipsisTxt = styled(Txt)`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+`;
+
+const RightContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  margin-left: 40px;
+  width: 100%;
 `;
