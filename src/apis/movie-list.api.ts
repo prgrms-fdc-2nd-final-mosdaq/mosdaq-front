@@ -1,32 +1,19 @@
+import { IMovieListResponse } from '@/models/movie-list.model';
 import axiosInstance from './axiosInstance';
 
-export const fetchGetPollingMovieList = async ({
+export const fetchGetMovieList = async ({
   offset,
   limit,
   sort,
+  poll,
 }: {
   offset: number;
   limit: number;
-  sort: string;
+  sort: 'ASC' | 'DESC';
+  poll: 'true' | 'false';
 }) => {
-  const res = await axiosInstance.get(
-    `/movie/poll/list?poll=true&offset=${offset}&limit=${limit}&sort=${sort}`,
-  );
-
-  return res.data;
-};
-
-export const fetchGetPolledMovieList = async ({
-  offset,
-  limit,
-  sort,
-}: {
-  offset: number;
-  limit: number;
-  sort: string;
-}) => {
-  const res = await axiosInstance.get(
-    `/movie/poll/list?poll=false&offset=${offset}&limit=${limit}&sort=${sort}`,
+  const res = await axiosInstance.get<IMovieListResponse>(
+    `/movie/list?poll=${poll}&offset=${offset}&limit=${limit}&sort=${sort}`,
   );
 
   return res.data;
