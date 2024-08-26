@@ -50,6 +50,7 @@ footer, header, hgroup, main, menu, nav, section {
 }
 body {
   line-height: 1;
+  overflow-X:hidden;
 }
 menu, ol, ul {
   list-style: none;
@@ -92,6 +93,15 @@ a {
   text-decoration:none;
   color:inherit;
 }
+
+.img-hover-effect {
+  transition: transform 0.2s linear;
+}
+
+.img-hover-effect:hover {
+  transform: scale(1.05);
+}
+
 `;
 
 export default GlobalStyle;

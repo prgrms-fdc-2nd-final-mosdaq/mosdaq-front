@@ -22,3 +22,18 @@ export interface IMovieDetail extends Movie {
   movieDescription: string;
   moviePoster: string[];
 }
+
+export interface IPolledMovie extends Movie {
+  up: number;
+  down: number;
+  myPollResult: 'up' | 'down';
+  countryCode: string;
+  companyName: string;
+  beforePrice: number;
+  afterPrice: number;
+  beforePriceDate: string;
+  afterPriceDate: string;
+}
+
+export interface MovieDetail extends Movie {}
+

@@ -1,4 +1,5 @@
 import { IMovie, IPollingMovies } from '@/models/main-movie.model';
+import { IPolledMovieResponse } from '@/hooks/api/main-movie/useGetPolledMovie';
 import axiosInstance from './axiosInstance';
 import { BannerResponse } from '@/hooks/api/main-movie/useGetBannerMovie';
 
@@ -17,7 +18,7 @@ export const fetchGetMainPollingMovie = async () => {
 };
 
 export const fetchGetMainPolledMovie = async () => {
-  const res = await axiosInstance.get<IPollingMovies>(
+  const res = await axiosInstance.get<IPolledMovieResponse>(
     '/main-movie/poll?poll=false',
   );
 

@@ -48,7 +48,8 @@ export default function Banner() {
   }, [data, isCardFliped]);
 
   //TODO : 로딩
-  if (isPending) return <div>로딩중입니다.</div>;
+  if (isPending)
+    return <StyledBannerWrapper>로딩중입니다.</StyledBannerWrapper>;
 
   return (
     <StyledBannerWrapper>
@@ -78,7 +79,8 @@ export default function Banner() {
 }
 
 const StyledBannerWrapper = styled.div`
-  height: 800px;
+  height: 100%;
+  min-height: 800px;
   position: relative;
   padding-top: 94px;
 
