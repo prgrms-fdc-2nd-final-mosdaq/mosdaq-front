@@ -16,6 +16,14 @@ export interface BannerMovie extends Movie {
   stockPriceList: StockPriceList[];
 }
 
+export interface IMovieDetail extends Movie {
+  movieDirector: string;
+  movieOpenDate: string;
+  movieDescription: string;
+  moviePoster: string[];
+  stockPriceList: StockPriceList[];
+}
+
 export interface IPolledMovie extends Movie {
   up: number;
   down: number;
@@ -26,11 +34,4 @@ export interface IPolledMovie extends Movie {
   afterPrice: number;
   beforePriceDate: string;
   afterPriceDate: string;
-}
-
-export interface IMovieDetail extends Movie {
-  movieDirector: string;
-  movieOpenDate: string;
-  movieDescription: string;
-  moviePoster: string[];
 }

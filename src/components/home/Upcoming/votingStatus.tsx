@@ -34,11 +34,11 @@ const VotingStatusContainer = styled.div`
 const VotingNowContainer = styled.div`
   border: 2px solid ${colors.watcha};
   padding: 7px 8px;
-  border-radius: 25px;
+  border-radius: 16px;
 `;
 
 const VotedContainer = styled.div`
   border: 2px solid ${colors.greyscale9};
   padding: 7px 8px;
-  border-radius: 25px;
+  border-radius: 16px;
 `;
