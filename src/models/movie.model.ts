@@ -16,4 +16,9 @@ export interface BannerMovie extends Movie {
   stockPriceList: StockPriceList[];
 }
 
-export interface MovieDetail extends Movie {}
+export interface IMovieDetail extends Movie {
+  movieDirector: string;
+  movieOpenDate: string;
+  movieDescription: string;
+  moviePoster: string[];
+}
