@@ -4,6 +4,7 @@ import { lazy, Suspense, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './pages/root';
 import MovieListPage from './pages/MovieList';
+import { ErrorBoundary } from 'react-error-boundary';
 
 const HomePage = lazy(() => import('./pages/Home'));
 const LoginPage = lazy(() => import('./pages/Login'));
@@ -35,9 +36,11 @@ const router = createBrowserRouter([
       {
         path: '/movie-list/:movieId',
         element: (
-          <Suspense fallback={null}>
-            <MovieDetail />
-          </Suspense>
+          <ErrorBoundary fallback={<div>에러입니다.</div>}>
+            <Suspense fallback={null}>
+              <MovieDetail />
+            </Suspense>
+          </ErrorBoundary>
         ),
       },
       {
