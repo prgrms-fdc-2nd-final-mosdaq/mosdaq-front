@@ -7,11 +7,11 @@ import { queryClient } from './apis/queryClient.ts';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <GlobalStyle />
-      <App />
-      <ReactQueryDevtools initialIsOpen={true} />
-    </QueryClientProvider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <GlobalStyle />
+    <App />
+    <ReactQueryDevtools initialIsOpen={true} />
+  </QueryClientProvider>,
+  // </React.StrictMode>,
 );

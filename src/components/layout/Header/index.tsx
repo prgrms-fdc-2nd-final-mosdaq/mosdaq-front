@@ -24,7 +24,7 @@ export default function Header() {
           <StyledNav>
             <Button size="small">
               <Txt typography={matchMovieList ? 'Pretendard24bold' : 'p'}>
-                <Link to="/movie-list">영화 투표</Link>
+                <Link to="/movie-list">영화 목록</Link>
               </Txt>
             </Button>
             <Button size="small">
@@ -117,8 +117,8 @@ const StyledMainLogo = styled.img`
 `;
 
 const StyledMypageLogo = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 75%;
+  height: 75%;
   max-height: inherit;
   border-radius: 50%;
 `;

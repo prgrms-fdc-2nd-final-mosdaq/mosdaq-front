@@ -12,7 +12,7 @@ export const useIntersectionObserver = (
   callback: Callback,
   options?: ObserverOptions,
 ) => {
-  const targetRef = useRef(null);
+  const targetRef = useRef<HTMLDivElement | null>(null); // ref 타입 설정
 
   useEffect(() => {
     const observer = new IntersectionObserver(callback, options);
@@ -22,7 +22,7 @@ export const useIntersectionObserver = (
     return () => {
       if (targetRef.current) observer.unobserve(targetRef.current);
     };
-  }, [targetRef]);
+  }, [callback, options]);
 
   return targetRef;
 };

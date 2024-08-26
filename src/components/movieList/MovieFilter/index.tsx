@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 export default function MovieFilter() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [sortState, setSortState] = useState<'ASC' | 'DESC'>('DESC');
+  // const [sortState, setSortState] = useState<'ASC' | 'DESC'>('DESC');
   const [pollState, setPollState] = useState<'true' | 'false'>('true');
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function MovieFilter() {
 
   return (
     <StyledMovieFilter>
-      <StyledButtonContainer>
+      {/* <StyledButtonContainer>
         <Button
           variant={sortState === 'ASC' ? 'filterActive' : 'filterInactive'}
           size="small"
@@ -52,7 +52,7 @@ export default function MovieFilter() {
             최신순
           </Txt>
         </Button>
-      </StyledButtonContainer>
+      </StyledButtonContainer> */}
       <StyledButtonContainer>
         <Button
           variant={pollState === 'false' ? 'filterActive' : 'filterInactive'}
