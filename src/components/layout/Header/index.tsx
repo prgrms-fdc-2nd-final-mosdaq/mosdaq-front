@@ -8,7 +8,17 @@ import mypageLogo from '../../../assets/images/main/mypageLogo.png';
 import useAuthStore from '@/store/authStore';
 import useGetUserProfile from '@/hooks/api/auth/useGetUserInfo';
 
-export default function Header() {
+interface IHeaderProps {
+  preloadQuizPage: () => void;
+  preloadMyPage: () => void;
+  preloadLoginPage: () => void;
+}
+
+export default function Header({
+  preloadQuizPage,
+  preloadMyPage,
+  preloadLoginPage,
+}: IHeaderProps) {
   const { isLoggedIn } = useAuthStore();
   const { userProfile } = useGetUserProfile();
   const matchMovieList = useMatch('/movie-list');
@@ -29,14 +39,16 @@ export default function Header() {
             </Button>
             <Button size="small">
               <Txt typography={matchQuiz ? 'Pretendard24bold' : 'p'}>
-                <Link to="/quiz">영화 퀴즈</Link>
+                <Link to="/quiz" onMouseEnter={preloadQuizPage}>
+                  영화 퀴즈
+                </Link>
               </Txt>
             </Button>
           </StyledNav>
         </StyledLeftSection>
         <StyledRightSection>
           {isLoggedIn ? (
-            <Link to="/mypage">
+            <Link to="/mypage" onMouseEnter={preloadMyPage}>
               <StyledMypageLogo
                 src={
                   isLoggedIn && userProfile && userProfile.picture
@@ -49,7 +61,9 @@ export default function Header() {
           ) : (
             <Button size="small" variant="secondary">
               <Txt color="white">
-                <Link to="/login">로그인</Link>
+                <Link to="/login" onMouseEnter={preloadLoginPage}>
+                  로그인
+                </Link>
               </Txt>
             </Button>
           )}

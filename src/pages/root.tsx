@@ -3,10 +3,16 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../components/layout/Header';
 
-export default function RootLayout() {
+interface IRootLayoutProps {
+  preloadQuizPage: () => void;
+  preloadMyPage: () => void;
+  preloadLoginPage: () => void;
+}
+
+export default function RootLayout(props: IRootLayoutProps) {
   return (
     <>
-      <Header />
+      <Header {...props} />
       {/* <StyledContentContainer> */}
       <Outlet />
       {/* </StyledContentContainer> */}
