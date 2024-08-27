@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Txt } from '@/components/common/Txt';
 import { IMovieDetail } from '@/models/movie.model';
 import { IPollBox } from '@/models/poll.model';
-import { IStockMovieInfo } from '@/models/stock.model';
 import VoteButton from '@/components/vote/voteButton';
 import colors from '@/constants/colors';
 import clockImg from '@/assets/images/movieDetail/clock.svg';
@@ -10,18 +9,20 @@ import { Divider, VoteContainer, VoteNum } from './MovieDetailBeforeOpen';
 import BannerChart from '../common/StockChart';
 import StockPriceInfo from '../home/Banner/StockPriceInfo';
 import StockProfitInfo from '../home/Banner/StockProfitInfo';
+import { useGetStockInfo } from '@/hooks/api/movie-detail/useGetStockInfo';
 
 interface Props {
   movieDetail: IMovieDetail;
   pollBox: IPollBox;
-  stockMovieInfo: IStockMovieInfo;
+  movieId: string;
 }
 
 export default function MovieDetailAfterOpen({
   movieDetail,
   pollBox,
-  stockMovieInfo,
+  movieId,
 }: Props) {
+  const { stockMovieInfo } = useGetStockInfo(movieId);
   const handleUpVote = () => {
     console.log('오른다 선택됨');
   };

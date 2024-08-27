@@ -14,14 +14,9 @@ import rightArrow from '@/assets/images/main/arrow.png';
 interface Props {
   movieDetail: IMovieDetail;
   pollBox: IPollBox;
-  // stockMovieInfo: IStockMovieInfo;
 }
 
-export default function MovieDetailBeforeOpen({
-  movieDetail,
-  pollBox,
-  // stockMovieInfo,
-}: Props) {
+export default function MovieDetailBeforeOpen({ movieDetail, pollBox }: Props) {
   const handleUpVote = () => {
     console.log('오른다 선택됨');
   };
