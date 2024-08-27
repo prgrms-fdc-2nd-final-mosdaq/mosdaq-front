@@ -17,7 +17,7 @@ export default function Upcoming() {
 
   return (
     <div>
-      <Txt typography="Pretendard48bold">개봉 예정 영화 예측</Txt>
+      <Txt typography="Pretendard48bold">영화 관련 주가 예측</Txt>
       {isLoading ? (
         placeholder
       ) : (
