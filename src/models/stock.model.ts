@@ -1,3 +1,5 @@
+import { StockPriceList } from './movie.model';
+
 export interface IStockMovieInfo {
   beforePriceDate: string;
   beforePrice: number;
@@ -6,4 +8,5 @@ export interface IStockMovieInfo {
   stockIndustryAverageVariation: number;
   companyName: string;
   countryCode: string;
+  stockPriceList: StockPriceList[];
 }

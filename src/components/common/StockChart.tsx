@@ -8,9 +8,16 @@ import dayjs from 'dayjs';
 interface Props {
   stockPriceList: StockPriceList[];
   movieOpenDate: string;
+  width?: number;
+  height?: number;
 }
 
-const BannerChart = ({ stockPriceList, movieOpenDate }: Props) => {
+const StockChart = ({
+  stockPriceList,
+  movieOpenDate,
+  width = 430,
+  height = 400,
+}: Props) => {
   const dates = stockPriceList.map((stock) => stock.date);
   const prices = stockPriceList.map((stock) => stock.price);
   const openDateStockPrice = stockPriceList.find(
@@ -81,7 +88,7 @@ const BannerChart = ({ stockPriceList, movieOpenDate }: Props) => {
     tooltip: {
       enabled: true,
       x: {
-        formatter: function (value: number, { dataPointIndex }: any) {
+        formatter: function ({ dataPointIndex }: any) {
           // 마우스 위치에 해당하는 날짜 표시
           return dates[dataPointIndex] === movieOpenDate
             ? `개봉일 ${dates[dataPointIndex]}`
@@ -106,10 +113,10 @@ const BannerChart = ({ stockPriceList, movieOpenDate }: Props) => {
       options={options}
       series={series}
       type="line"
-      width="430px"
-      height="400px"
+      width={width}
+      height={height}
     />
   );
 };
 
-export default BannerChart;
+export default StockChart;
