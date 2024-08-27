@@ -3,26 +3,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-interface IMovieItemProps {
+interface IMyMovieItemProps {
   movieData: IMovie;
 }
 
-export default function MovieListItem({ movieData }: IMovieItemProps) {
+export default function MyMovieItem({ movieData }: IMyMovieItemProps) {
   return (
-    <StyledMovieItem $isPolled={movieData.myPollResult !== null}>
+    <StyledMyMovieItem>
       <Link to={`/movie-list/${movieData.movieId}`}>
         <StyledMoviePoster
           src={movieData.posterUrl[0]}
           alt={movieData.movieTitle}
         />
       </Link>
-    </StyledMovieItem>
+    </StyledMyMovieItem>
   );
 }
 
-// TODO: 투표 결과에 따라 스타일 변경
-const StyledMovieItem = styled.div<{ $isPolled: boolean }>`
-  width: 300px;
+const StyledMyMovieItem = styled.div`
+  width: 350px;
   overflow: hidden;
   position: relative;
   cursor: pointer;
