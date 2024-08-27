@@ -1,7 +1,8 @@
 import { Txt } from '@/components/common/Txt';
 import React from 'react';
 import styled from 'styled-components';
-import MyMovieGrid from './MyMovieGrid';
+import MyMovieListGrid from './MyMovieListGrid';
+import MyMovieFilter from './MyMovieFilter';
 
 export default function MyMovieList() {
   return (
@@ -9,10 +10,8 @@ export default function MyMovieList() {
       <StyledMyMovieListTitle>
         <Txt typography="Pretendard40bold">{`최근 투표한 영화들`}</Txt>
       </StyledMyMovieListTitle>
-      <StyledMovieFilter>
-        <Txt typography="Pretendard24bold">{2024}</Txt>
-      </StyledMovieFilter>
-      <MyMovieGrid />
+      <MyMovieFilter />
+      <MyMovieListGrid />
     </StyledMyMovieList>
   );
 }
@@ -20,9 +19,5 @@ export default function MyMovieList() {
 const StyledMyMovieList = styled.section``;
 
 const StyledMyMovieListTitle = styled.div`
-  margin-bottom: 40px;
-`;
-
-const StyledMovieFilter = styled.div`
   margin-bottom: 40px;
 `;

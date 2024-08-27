@@ -10,7 +10,7 @@ export default function Upcoming() {
   const placeholder = (
     <PlaceholderContainer>
       <Placeholder>
-        <Txt typography="Pretendard48bold">Loading...</Txt>
+        <Txt typography="Pretendard48bold"></Txt>
       </Placeholder>
     </PlaceholderContainer>
   );
