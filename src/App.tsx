@@ -6,7 +6,12 @@ import RootLayout from './pages/root';
 import MovieListPage from './pages/MovieList';
 import { ErrorBoundary } from 'react-error-boundary';
 
-const HomePage = lazy(() => import('./pages/Home'));
+const HomePage = Object.assign(
+  lazy(() => import('./pages/Home')),
+  {
+    preload: () => import('./pages/Home'),
+  },
+);
 const LoginPage = Object.assign(
   lazy(() => import('./pages/Login')),
   {
@@ -25,12 +30,7 @@ const QuizPage = Object.assign(
     preload: () => import('./pages/Quiz'),
   },
 );
-const MovieDetail = Object.assign(
-  lazy(() => import('./pages/MovieDetail')),
-  {
-    preload: () => import('./pages/MovieDetail'),
-  },
-);
+const MovieDetail = lazy(() => import('./pages/MovieDetail'));
 
 const router = createBrowserRouter([
   {
@@ -40,6 +40,7 @@ const router = createBrowserRouter([
         preloadQuizPage={QuizPage.preload}
         preloadMyPage={MyPage.preload}
         preloadLoginPage={LoginPage.preload}
+        preloadHomePage={HomePage.preload}
       />
     ),
     children: [

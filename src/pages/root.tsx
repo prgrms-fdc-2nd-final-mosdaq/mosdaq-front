@@ -7,6 +7,7 @@ interface IRootLayoutProps {
   preloadQuizPage: () => void;
   preloadMyPage: () => void;
   preloadLoginPage: () => void;
+  preloadHomePage: () => void;
 }
 
 export default function RootLayout(props: IRootLayoutProps) {

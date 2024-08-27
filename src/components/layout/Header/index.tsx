@@ -12,12 +12,14 @@ interface IHeaderProps {
   preloadQuizPage: () => void;
   preloadMyPage: () => void;
   preloadLoginPage: () => void;
+  preloadHomePage: () => void;
 }
 
 export default function Header({
   preloadQuizPage,
   preloadMyPage,
   preloadLoginPage,
+  preloadHomePage,
 }: IHeaderProps) {
   const { isLoggedIn } = useAuthStore();
   const { userProfile } = useGetUserProfile();
@@ -28,7 +30,7 @@ export default function Header({
     <StyledHeaderContainer>
       <StyledHeaderContent>
         <StyledLeftSection>
-          <Link to="/">
+          <Link to="/" onMouseEnter={preloadHomePage}>
             <StyledMainLogo src={mainLogo} alt="Main Logo" />
           </Link>
           <StyledNav>
