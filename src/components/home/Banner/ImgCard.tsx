@@ -3,7 +3,7 @@ import { BannerMovie } from '@/models/movie.model';
 import { HTMLAttributes, forwardRef } from 'react';
 import styled from 'styled-components';
 import { Txt } from '@/components/common/Txt';
-import BannerChart from '@/components/home/Banner/BannerChart';
+import StockChart from '@/components/common/StockChart';
 import StockPriceInfo from './StockPriceInfo';
 import StockProfitInfo from './StockProfitInfo';
 import dayjs from 'dayjs';
@@ -60,7 +60,7 @@ const ImgCard = forwardRef<HTMLDivElement, ImgCardProps>(
                 </Txt>
               </div>
               <div className="chart-zone">
-                <BannerChart
+                <StockChart
                   stockPriceList={movie.stockPriceList}
                   movieOpenDate={dayjs(movie.movieOpenDate).format(
                     'YYYY-MM-DD',
@@ -234,7 +234,6 @@ const calcTranslate = (
   index: number,
   centerIndex: number,
   totalItems: number,
-  translateStep: number = 100,
 ) => {
   const indexDiff = (index - centerIndex + totalItems) % totalItems;
 

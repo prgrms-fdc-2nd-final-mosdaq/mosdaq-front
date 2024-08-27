@@ -14,13 +14,13 @@ import rightArrow from '@/assets/images/main/arrow.png';
 interface Props {
   movieDetail: IMovieDetail;
   pollBox: IPollBox;
-  stockMovieInfo: IStockMovieInfo;
+  // stockMovieInfo: IStockMovieInfo;
 }
 
 export default function MovieDetailBeforeOpen({
   movieDetail,
   pollBox,
-  stockMovieInfo,
+  // stockMovieInfo,
 }: Props) {
   const handleUpVote = () => {
     console.log('오른다 선택됨');
@@ -38,7 +38,7 @@ export default function MovieDetailBeforeOpen({
 
       <Txt typography="Pretendard20bold">
         <FcAdvertising /> '{movieDetail.movieTitle}' 개봉 후&nbsp;
-        {stockMovieInfo.companyName}의 주가가 오를까요? 내릴까요?
+        {/* {stockMovieInfo.companyName}의 주가가 오를까요? 내릴까요? */}
       </Txt>
 
       <div className="movie-description">

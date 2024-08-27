@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import Tooltip from '@/components/common/Tooltip';
 import { useGetPollBox } from '@/hooks/api/movie-detail/useGetPollBox';
 import { useGetStockInfo } from '@/hooks/api/movie-detail/useGetStockInfo';
-import MovieDetailBeforeOpen from './MovieDetailBeforeOpen';
-import MovieDetailAfterOpen from './MovieDetailAfterOpen';
+import MovieDetailAfterOpen from '@/components/movieDetail/MovieDetailAfterOpen';
+import MovieDetailBeforeOpen from '@/components/movieDetail/MovieDetailBeforeOpen';
+import { getTodayYYYYMMDD } from '@/utils/format';
 
 export default function MovieDetail() {
   const navigate = useNavigate();
@@ -26,6 +27,9 @@ export default function MovieDetail() {
   const { pollBox } = useGetPollBox(movieId);
   const { stockMovieInfo } = useGetStockInfo(movieId);
   //   const { movieDetail } = useGetMovieDetail(movieId);
+  console.log(getTodayYYYYMMDD()); // 오늘 날짜 출력
+  console.log(movieDetail.movieOpenDate); // 영화 개봉일 출력
+  console.log(getTodayYYYYMMDD() < movieDetail.movieOpenDate); // 비교 결과 출력
   const handleUpVote = () => {
     console.log('오른다 선택됨');
   };
@@ -59,16 +63,19 @@ export default function MovieDetail() {
         </PosterContainer>
 
         <RightContainer>
-          {/* <MovieDetailBeforeOpen
-            movieDetail={movieDetail}
-            pollBox={pollBox}
-            stockMovieInfo={stockMovieInfo}
-          /> */}
-          <MovieDetailAfterOpen
-            movieDetail={movieDetail}
-            pollBox={pollBox}
-            stockMovieInfo={stockMovieInfo}
-          />
+          {getTodayYYYYMMDD() < movieDetail.movieOpenDate ? (
+            <MovieDetailBeforeOpen
+              movieDetail={movieDetail}
+              pollBox={pollBox}
+              // stockMovieInfo={stockMovieInfo}
+            />
+          ) : (
+            <MovieDetailAfterOpen
+              movieDetail={movieDetail}
+              pollBox={pollBox}
+              stockMovieInfo={stockMovieInfo}
+            />
+          )}
         </RightContainer>
       </div>
     </PageContainer>

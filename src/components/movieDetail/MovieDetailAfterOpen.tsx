@@ -7,6 +7,9 @@ import VoteButton from '@/components/vote/voteButton';
 import colors from '@/constants/colors';
 import clockImg from '@/assets/images/movieDetail/clock.svg';
 import { Divider, VoteContainer, VoteNum } from './MovieDetailBeforeOpen';
+import BannerChart from '../common/StockChart';
+import StockPriceInfo from '../home/Banner/StockPriceInfo';
+import StockProfitInfo from '../home/Banner/StockProfitInfo';
 
 interface Props {
   movieDetail: IMovieDetail;
@@ -48,6 +51,28 @@ export default function MovieDetailAfterOpen({
         <VoteButton onUpVote={handleUpVote} onDownVote={handleDownVote} />
       </VoteContainer>
       <Divider />
+      <div>
+        <BannerChart
+          stockPriceList={stockMovieInfo.stockPriceList}
+          movieOpenDate={movieDetail.movieOpenDate}
+          width={746}
+          height={250}
+        />
+        <StockPriceInfo
+          countryCode={stockMovieInfo.countryCode}
+          price={stockMovieInfo.beforePrice}
+          flag="before"
+        />
+        <StockPriceInfo
+          countryCode={stockMovieInfo.countryCode}
+          price={stockMovieInfo.afterPrice}
+          flag="after"
+        />
+        <StockProfitInfo
+          beforePrice={stockMovieInfo.beforePrice}
+          afterPrice={stockMovieInfo.afterPrice}
+        />
+      </div>
     </>
   );
 }

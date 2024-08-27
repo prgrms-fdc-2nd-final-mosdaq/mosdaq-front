@@ -65,3 +65,7 @@ export function dateDifference(startDate: string) {
 
   return '0분';
 }
+
+export function getTodayYYYYMMDD() {
+  return dayjs(new Date()).format('YYYY-MM-DD');
+}
