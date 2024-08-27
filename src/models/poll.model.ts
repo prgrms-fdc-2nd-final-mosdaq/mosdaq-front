@@ -1,4 +1,6 @@
-export interface IPollResponse {
-  // point: number;
-  // rank: number;
+export interface IPollBox {
+  total: number;
+  up: number;
+  down: number;
+  pollResult: 'up' | 'down' | null;
 }

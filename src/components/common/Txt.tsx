@@ -5,7 +5,7 @@ import colors from '@/constants/colors';
 // 색상 키 타입 정의
 type ColorKey = keyof typeof colors;
 
-interface Props extends HTMLAttributes<HTMLSpanElement> {
+export interface Props extends HTMLAttributes<HTMLSpanElement> {
   typography?: Typography;
   color?: ColorKey;
 }
