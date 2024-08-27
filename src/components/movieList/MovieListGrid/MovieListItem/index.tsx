@@ -9,7 +9,7 @@ interface IMovieItemProps {
 
 export default function MovieListItem({ movieData }: IMovieItemProps) {
   return (
-    <StyledMovieItem>
+    <StyledMovieItem $isPolled={movieData.myPollResult !== null}>
       <Link to={`/movie-list/${movieData.movieId}`}>
         <StyledMoviePoster
           src={movieData.posterUrl[0]}
@@ -20,7 +20,8 @@ export default function MovieListItem({ movieData }: IMovieItemProps) {
   );
 }
 
-const StyledMovieItem = styled.div`
+// TODO: 투표 결과에 따라 스타일 변경
+const StyledMovieItem = styled.div<{ $isPolled: boolean }>`
   width: 300px;
   overflow: hidden;
   position: relative;
