@@ -8,7 +8,7 @@ export default function MyMovieList() {
   return (
     <StyledMyMovieList>
       <StyledMyMovieListTitle>
-        <Txt typography="Pretendard40bold">{`최근 투표한 영화들`}</Txt>
+        <Txt typography="Pretendard40bold">{`내가 투표한 영화`}</Txt>
       </StyledMyMovieListTitle>
       <MyMovieFilter />
       <MyMovieListGrid />
