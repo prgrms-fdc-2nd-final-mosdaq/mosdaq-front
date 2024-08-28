@@ -7,8 +7,13 @@ export const fetchGetPollBox = async (movieId: string) => {
   return res.data;
 };
 
-export const fetchPollMovie = async (movieId: string) => {
-  const res = await axiosInstance.put<IPollBox>(`/poll/${movieId}`);
+export const fetchPollMovie = async (
+  movieId: number,
+  pollResult: 'up' | 'down',
+) => {
+  const res = await axiosInstance.put<IPollBox>(`/poll/${movieId}`, {
+    pollResult,
+  });
 
   return res.data;
 };
