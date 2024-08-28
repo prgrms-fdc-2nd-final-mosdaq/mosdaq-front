@@ -5,9 +5,7 @@ import MoviePosterBack from './MoviePosterBack';
 
 export default function VoteEnd() {
   const { polledMovies } = useGetPolledMovie();
-  console.log(polledMovies);
 
-  if (!polledMovies) return null;
   return (
     <StyledWrapper>
       <Txt typography="Pretendard48bold">투표 마감 영화</Txt>

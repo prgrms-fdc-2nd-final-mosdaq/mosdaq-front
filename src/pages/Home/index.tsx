@@ -3,14 +3,26 @@ import Banner from '../../components/home/Banner';
 import Upcoming from '../../components/home/Upcoming';
 import VoteEnd from '../../components/home/VoteEnd';
 import colors from '@/constants/colors';
+import {
+  BannerFallbackWrapper,
+  UpcomingFallbackWrapper,
+  VoteEndFallbackWrapper,
+} from '@/components/CLSWrapper';
+import CustomSuspenseErrorResetBoundary from '@/components/common/CustomSuspenseErrorResetBoundary';
 
 export default function HomePage() {
   return (
     <StyledHomePage>
       <div className="wrap">
-        <Banner />
-        <Upcoming />
-        <VoteEnd />
+        <CustomSuspenseErrorResetBoundary Wrapper={BannerFallbackWrapper}>
+          <Banner />
+        </CustomSuspenseErrorResetBoundary>
+        <CustomSuspenseErrorResetBoundary Wrapper={UpcomingFallbackWrapper}>
+          <Upcoming />
+        </CustomSuspenseErrorResetBoundary>
+        <CustomSuspenseErrorResetBoundary Wrapper={VoteEndFallbackWrapper}>
+          <VoteEnd />
+        </CustomSuspenseErrorResetBoundary>
       </div>
     </StyledHomePage>
   );

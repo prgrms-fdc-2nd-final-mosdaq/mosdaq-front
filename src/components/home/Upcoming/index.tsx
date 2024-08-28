@@ -5,24 +5,24 @@ import styled from 'styled-components';
 import colors from '@/constants/colors';
 
 export default function Upcoming() {
-  const { pollingMovies, isLoading } = useGetPollingMovie();
+  const { pollingMovies } = useGetPollingMovie();
 
-  const placeholder = (
-    <PlaceholderContainer>
-      <Placeholder>
-        <Txt typography="Pretendard48bold"></Txt>
-      </Placeholder>
-    </PlaceholderContainer>
-  );
+  // const placeholder = (
+  //   <PlaceholderContainer>
+  //     <Placeholder>
+  //       <Txt typography="Pretendard48bold"></Txt>
+  //     </Placeholder>
+  //   </PlaceholderContainer>
+  // );
 
   return (
     <div>
       <Txt typography="Pretendard48bold">영화 관련 주가 예측</Txt>
-      {isLoading ? (
+      {/* {isLoading ? (
         placeholder
-      ) : (
-        <Carousel movieList={pollingMovies?.movieList ?? []} />
-      )}
+      ) : ( */}
+      <Carousel movieList={pollingMovies?.movieList ?? []} />
+      {/* )} */}
     </div>
   );
 }

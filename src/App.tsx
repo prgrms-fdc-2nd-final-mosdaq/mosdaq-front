@@ -46,11 +46,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: (
-          <Suspense fallback={null}>
-            <HomePage />
-          </Suspense>
-        ),
+        element: <HomePage />,
       },
       {
         path: '/movie-list',

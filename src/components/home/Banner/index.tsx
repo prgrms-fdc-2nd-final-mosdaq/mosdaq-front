@@ -7,7 +7,7 @@ import { useEffect, useRef } from 'react';
 import { useBannerMovie } from '@/hooks/main-movie/useBannerMovie';
 
 export default function Banner() {
-  const { data, isPending } = useGetBannerMovie();
+  const { data } = useGetBannerMovie();
   const {
     centerIndex,
     isCardFliped,
@@ -48,7 +48,7 @@ export default function Banner() {
   }, [data, isCardFliped]);
 
   //TODO : 로딩
-  if (isPending) return <StyledBannerWrapper></StyledBannerWrapper>;
+  // if (isPending) return <StyledBannerWrapper></StyledBannerWrapper>;
 
   return (
     <StyledBannerWrapper>
