@@ -62,12 +62,17 @@ const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  width: 400px;
+  height: 570px;
   margin: 0 52px;
+  overflow: hidden;
 `;
 
 const Image = styled.img`
-  width: 400px;
-  height: 570px;
+  width: 100%;
+  height: auto;
+
   object-fit: cover;
   cursor: pointer;
 `;

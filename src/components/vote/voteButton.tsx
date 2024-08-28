@@ -1,59 +1,119 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import upIcon from '../../assets/images/main/mainUpBtn.png';
 import downIcon from '../../assets/images/main/mainDownBtn.png';
 import { Txt } from '@/components/common/Txt';
 import colors from '@/constants/colors';
+import greyUpIcon from '@/assets/images/movieDetail/greyUpIcon.png';
+import greyDownIcon from '@/assets/images/movieDetail/greyDownIcon.png';
 
 interface VoteButtonProps {
   onUpVote: () => void;
   onDownVote: () => void;
+  upRatio: number | undefined;
+  downRatio: number | undefined;
+  initialVote: 'up' | 'down' | null;
 }
 
 interface VoteItemProps {
   isSelected: boolean;
   isDisabled: boolean;
+  isVoteSelected: boolean;
 }
 
-export default function VoteButton({ onUpVote, onDownVote }: VoteButtonProps) {
-  const [selectedVote, setSelectedVote] = useState<'up' | 'down' | null>(null);
-
-  const handleUpVote = () => {
-    setSelectedVote('up');
-    onUpVote();
-  };
-
-  const handleDownVote = () => {
-    setSelectedVote('down');
-    onDownVote();
-  };
+export default function VoteButton({
+  onUpVote,
+  onDownVote,
+  upRatio,
+  downRatio,
+  initialVote,
+}: VoteButtonProps) {
+  const isUpSelected = initialVote === 'up';
+  const isDownSelected = initialVote === 'down';
+  const isVoteSelected = initialVote !== null;
 
   return (
     <ButtonContainer>
       <VoteLeftZone
-        onClick={handleUpVote}
-        isSelected={selectedVote === 'up'}
-        isDisabled={selectedVote === 'down'}
+        onClick={onUpVote}
+        isSelected={isUpSelected}
+        isDisabled={isDownSelected}
+        isVoteSelected={isVoteSelected}
       >
-        <VoteIcon src={upIcon} alt="오른다" />
-        <Txt typography="Pretendard32bold" color="watcha">
-          오른다
-        </Txt>
+        <VoteIcon
+          src={isVoteSelected ? (isUpSelected ? upIcon : greyUpIcon) : upIcon}
+          alt="오른다"
+        />
+        <TextContainer alignLeft={true}>
+          <Txt
+            typography="Pretendard32bold"
+            color={
+              isVoteSelected
+                ? isUpSelected
+                  ? 'watcha'
+                  : 'greyscale6'
+                : 'watcha'
+            }
+            style={{ fontSize: isVoteSelected ? '28px' : '32px' }}
+          >
+            오른다
+          </Txt>
+          {isVoteSelected && upRatio !== undefined && (
+            <Txt
+              typography="Pretendard32bold"
+              color={isUpSelected ? 'watcha' : 'greyscale6'}
+            >
+              {upRatio}%
+            </Txt>
+          )}
+        </TextContainer>
       </VoteLeftZone>
-      <VSContainer isDisabled={selectedVote !== null}>
-        <VoteText typography="Pretendard32bold" color="watcha">
+      <VSContainer isDisabled={isVoteSelected}>
+        <VoteText
+          typography="Pretendard32bold"
+          color={isVoteSelected ? 'greyscale6' : 'watcha'}
+        >
           vs
         </VoteText>
       </VSContainer>
       <VoteRightZone
-        onClick={handleDownVote}
-        isSelected={selectedVote === 'down'}
-        isDisabled={selectedVote === 'up'}
+        onClick={onDownVote}
+        isSelected={isDownSelected}
+        isDisabled={isUpSelected}
+        isVoteSelected={isVoteSelected}
       >
-        <Txt typography="Pretendard32bold" color="watcha">
-          내린다
-        </Txt>
-        <VoteIcon src={downIcon} alt="내린다" />
+        <TextContainer alignLeft={false}>
+          <Txt
+            typography="Pretendard32bold"
+            color={
+              isVoteSelected
+                ? isDownSelected
+                  ? 'watcha'
+                  : 'greyscale6'
+                : 'watcha'
+            }
+            style={{ fontSize: isVoteSelected ? '28px' : '32px' }}
+          >
+            내린다
+          </Txt>
+          {isVoteSelected && downRatio !== undefined && (
+            <Txt
+              typography="Pretendard32bold"
+              color={isDownSelected ? 'watcha' : 'greyscale6'}
+            >
+              {downRatio}%
+            </Txt>
+          )}
+        </TextContainer>
+        <VoteIcon
+          src={
+            isVoteSelected
+              ? isDownSelected
+                ? downIcon
+                : greyDownIcon
+              : downIcon
+          }
+          alt="내린다"
+        />
       </VoteRightZone>
     </ButtonContainer>
   );
@@ -91,8 +151,8 @@ const VoteRightZone = styled(VoteItem)`
 `;
 
 const VoteIcon = styled.img`
-  width: 52px;
-  height: 57px;
+  width: 69px;
+  height: 76px;
   margin-right: 8px;
   padding 10px;
 `;
@@ -111,4 +171,12 @@ const VSContainer = styled.div<{ isDisabled: boolean }>`
   border-right: 1px solid ${colors.greyscale8};
   background-color: ${({ isDisabled }) =>
     isDisabled ? `${colors.greyscale2}` : 'transparent'};
+`;
+
+const TextContainer = styled.div<{ alignLeft: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: ${({ alignLeft }) => (alignLeft ? 'flex-start' : 'flex-end')};
+  margin-left: ${({ alignLeft }) => (alignLeft ? '10px' : '0')};
+  margin-right: ${({ alignLeft }) => (alignLeft ? '0' : '10px')};
 `;

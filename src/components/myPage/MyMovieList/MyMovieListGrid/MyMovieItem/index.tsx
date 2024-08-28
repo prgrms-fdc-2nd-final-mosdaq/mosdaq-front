@@ -12,6 +12,7 @@ export default function MyMovieItem({ movieData }: IMyMovieItemProps) {
     <StyledMyMovieItem>
       <Link to={`/movie-list/${movieData.movieId}`}>
         <StyledMoviePoster
+          className="img-hover-effect"
           src={movieData.posterUrl[0]}
           alt={movieData.movieTitle}
           loading="lazy"
@@ -31,9 +32,4 @@ const StyledMyMovieItem = styled.div`
 const StyledMoviePoster = styled.img`
   width: 100%;
   height: auto;
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: scale(1.025);
-  }
 `;
