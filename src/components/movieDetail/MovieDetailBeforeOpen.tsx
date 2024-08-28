@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import colors from '@/constants/colors';
 import clockImg from '@/assets/images/movieDetail/clock.svg';
 import rightArrow from '@/assets/images/main/arrow.png';
+import { usePollMovie } from '@/hooks/api/poll/usePollMovie';
 import VoteButton from '@/components/vote/voteButton';
 
 interface Props {
@@ -22,6 +23,8 @@ export default function MovieDetailBeforeOpen({ movieDetail, pollBox }: Props) {
   );
   const [upRatio, setUpRatio] = useState<number>(0);
   const [downRatio, setDownRatio] = useState<number>(0);
+
+  const { pollMovie } = usePollMovie(movieDetail.movieId);
 
   useEffect(() => {
     // 투표 비율 계산 (소수 첫째 자리에서 반올림)
@@ -43,7 +46,8 @@ export default function MovieDetailBeforeOpen({ movieDetail, pollBox }: Props) {
     setUpRatio(newUpRatio);
     setDownRatio(Math.round((pollBox.down / updatedTotal) * 1000) / 10);
 
-    // 여기에 서버로 투표 데이터를 전송하는 API 호출 추가 가능
+    // 서버로 투표 데이터를 전송
+    pollMovie('up');
   };
 
   const handleDownVote = () => {
@@ -55,7 +59,8 @@ export default function MovieDetailBeforeOpen({ movieDetail, pollBox }: Props) {
     setUpRatio(Math.round((pollBox.up / updatedTotal) * 1000) / 10);
     setDownRatio(newDownRatio);
 
-    // 여기에 서버로 투표 데이터를 전송하는 API 호출 추가 가능
+    // 서버로 투표 데이터를 전송
+    pollMovie('down');
   };
 
   return (
