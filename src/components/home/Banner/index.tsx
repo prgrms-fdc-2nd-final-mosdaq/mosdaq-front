@@ -48,8 +48,7 @@ export default function Banner() {
   }, [data, isCardFliped]);
 
   //TODO : 로딩
-  if (isPending)
-    return <StyledBannerWrapper>로딩중입니다.</StyledBannerWrapper>;
+  if (isPending) return <StyledBannerWrapper></StyledBannerWrapper>;
 
   return (
     <StyledBannerWrapper>

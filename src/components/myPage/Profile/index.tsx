@@ -6,10 +6,12 @@ import profileDefault from '@/assets/images/profile/profile-defaut.webp';
 import LogoutButton from './LogoutButton';
 import useAuthStore from '@/store/authStore';
 import { useNavigate } from 'react-router-dom';
+import useGetUserProfile from '@/hooks/api/auth/useGetUserInfo';
 
 export default function Profile() {
   const { isLoggedIn } = useAuthStore();
   const navigate = useNavigate();
+  const { userProfile } = useGetUserProfile();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -19,14 +21,16 @@ export default function Profile() {
   }, [isLoggedIn]);
 
   return (
-    <StyledProfile>
-      <StyledProfileImg src={profileDefault} alt="" />
-      <Txt typography="Pretendard24bold">{`멜로가조아`}</Txt>
-      <Txt typography="Pretendard24bold" color="watcha">
-        총 {`1849`}포인트
-      </Txt>
-      <LogoutButton />
-    </StyledProfile>
+    userProfile && (
+      <StyledProfile>
+        <StyledProfileImg src={userProfile.picture || profileDefault} alt="" />
+        <Txt typography="Pretendard24bold">{userProfile.name}</Txt>
+        <Txt typography="Pretendard24bold" color="watcha">
+          총 {userProfile.point}포인트
+        </Txt>
+        <LogoutButton />
+      </StyledProfile>
+    )
   );
 }
 
