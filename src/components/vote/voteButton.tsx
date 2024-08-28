@@ -12,9 +12,10 @@ interface VoteButtonProps {
 
 interface VoteItemProps {
   isSelected: boolean;
+  isDisabled: boolean;
 }
 
-export default function voteButton({ onUpVote, onDownVote }: VoteButtonProps) {
+export default function VoteButton({ onUpVote, onDownVote }: VoteButtonProps) {
   const [selectedVote, setSelectedVote] = useState<'up' | 'down' | null>(null);
 
   const handleUpVote = () => {
@@ -29,20 +30,25 @@ export default function voteButton({ onUpVote, onDownVote }: VoteButtonProps) {
 
   return (
     <ButtonContainer>
-      <VoteLeftZone onClick={handleUpVote} isSelected={selectedVote === 'up'}>
+      <VoteLeftZone
+        onClick={handleUpVote}
+        isSelected={selectedVote === 'up'}
+        isDisabled={selectedVote === 'down'}
+      >
         <VoteIcon src={upIcon} alt="오른다" />
         <Txt typography="Pretendard32bold" color="watcha">
           오른다
         </Txt>
       </VoteLeftZone>
-      <div className="vs">
+      <VSContainer isDisabled={selectedVote !== null}>
         <VoteText typography="Pretendard32bold" color="watcha">
           vs
         </VoteText>
-      </div>
+      </VSContainer>
       <VoteRightZone
         onClick={handleDownVote}
         isSelected={selectedVote === 'down'}
+        isDisabled={selectedVote === 'up'}
       >
         <Txt typography="Pretendard32bold" color="watcha">
           내린다
@@ -60,16 +66,6 @@ const ButtonContainer = styled.div`
   height: 140px;
   border: 1px solid ${colors.greyscale8};
   border-radius: 20px;
-
-  .vs {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 250px;
-    height: 100%;
-    border-left: 1px solid ${colors.greyscale8};
-    border-right: 1px solid ${colors.greyscale8};
-  }
 `;
 
 const VoteItem = styled.div<VoteItemProps>`
@@ -79,14 +75,11 @@ const VoteItem = styled.div<VoteItemProps>`
   justify-content: center;
   flex: 1;
   cursor: pointer;
-  transition:
-    background 0.2s ease,
-    color 0.1s ease;
+  transition: color 0.1s ease;
   border: ${({ isSelected }) =>
     isSelected ? `2px solid ${colors.watcha}` : '2px solid transparent'};
-  &:hover {
-    background-color: ${colors.greyscale1};
-  }
+  background-color: ${({ isDisabled }) =>
+    isDisabled ? `${colors.greyscale2}` : 'transparent'};
 `;
 
 const VoteLeftZone = styled(VoteItem)`
@@ -106,4 +99,16 @@ const VoteIcon = styled.img`
 
 const VoteText = styled(Txt)`
   margin: 0 15px;
+`;
+
+const VSContainer = styled.div<{ isDisabled: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 100%;
+  border-left: 1px solid ${colors.greyscale8};
+  border-right: 1px solid ${colors.greyscale8};
+  background-color: ${({ isDisabled }) =>
+    isDisabled ? `${colors.greyscale2}` : 'transparent'};
 `;
