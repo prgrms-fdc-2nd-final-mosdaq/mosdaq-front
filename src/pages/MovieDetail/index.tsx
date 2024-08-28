@@ -40,6 +40,7 @@ export default function MovieDetail() {
         <RightContainer>
           {getTodayYYYYMMDD() < movieDetail.movieOpenDate ? (
             <MovieDetailBeforeOpen
+              movieId={movieId}
               movieDetail={movieDetail}
               pollBox={pollBox}
             />

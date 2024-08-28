@@ -5,10 +5,10 @@ import { Txt } from '@/components/common/Txt';
 import colors from '@/constants/colors';
 import greyUpIcon from '@/assets/images/movieDetail/greyUpIcon.png';
 import greyDownIcon from '@/assets/images/movieDetail/greyDownIcon.png';
+import { usePollMovie } from '@/hooks/api/poll/usePollMovie';
 
 interface VoteButtonProps {
-  onUpVote: () => void;
-  onDownVote: () => void;
+  movieId: string;
   upRatio: number | undefined;
   downRatio: number | undefined;
   initialVote: 'up' | 'down' | null;
@@ -21,8 +21,7 @@ interface VoteItemProps {
 }
 
 export default function VoteButton({
-  onUpVote,
-  onDownVote,
+  movieId,
   upRatio,
   downRatio,
   initialVote,
@@ -30,11 +29,13 @@ export default function VoteButton({
   const isUpSelected = initialVote === 'up';
   const isDownSelected = initialVote === 'down';
   const isVoteSelected = initialVote !== null;
+  console.log(movieId);
+  const { pollMovie } = usePollMovie(movieId);
 
   return (
     <ButtonContainer>
       <VoteLeftZone
-        onClick={onUpVote}
+        onClick={() => pollMovie('up')}
         isSelected={isUpSelected}
         isDisabled={isDownSelected}
         isVoteSelected={isVoteSelected}
@@ -76,7 +77,7 @@ export default function VoteButton({
         </VoteText>
       </VSContainer>
       <VoteRightZone
-        onClick={onDownVote}
+        onClick={() => pollMovie('down')}
         isSelected={isDownSelected}
         isDisabled={isUpSelected}
         isVoteSelected={isVoteSelected}

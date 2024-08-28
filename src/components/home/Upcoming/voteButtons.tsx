@@ -7,6 +7,7 @@ import { useUpdateVote } from '@/hooks/api/main-movie/useUpdateVote';
 import { IMovie } from '@/models/main-movie.model';
 import { useQueryClient, useQuery } from '@tanstack/react-query';
 import { fetchGetMainPollingMovie } from '@/apis/main-movie.api';
+import { usePollMovie } from '@/hooks/api/poll/usePollMovie';
 
 interface VoteButtonsProps {
   movieId: IMovie['movieId'];
@@ -15,6 +16,7 @@ interface VoteButtonsProps {
 export default function VoteButtons({ movieId }: VoteButtonsProps) {
   const queryClient = useQueryClient();
   const { updateVote } = useUpdateVote(movieId);
+  const { pollMovie } = usePollMovie(movieId.toString());
   const [voted, setVoted] = useState(false);
 
   // 투표 비율을 가져오는 쿼리
@@ -95,7 +97,7 @@ export default function VoteButtons({ movieId }: VoteButtonsProps) {
             <VoteButton
               src={upIcon}
               alt="upImg"
-              onClick={() => handleVoteUpdate('up')}
+              onClick={() => pollMovie('up')}
             />
             <VoteText typography="Pretendard20bold" color="watcha">
               상승
@@ -116,7 +118,7 @@ export default function VoteButtons({ movieId }: VoteButtonsProps) {
             <VoteButton
               src={downIcon}
               alt="DownImg"
-              onClick={() => handleVoteUpdate('down')}
+              onClick={() => pollMovie('down')}
             />
             <VoteText typography="Pretendard20bold" color="watcha">
               하락
