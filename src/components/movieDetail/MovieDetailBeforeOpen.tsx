@@ -1,8 +1,8 @@
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Txt } from '@/components/common/Txt';
 import { IMovieDetail } from '@/models/movie.model';
 import { IPollBox } from '@/models/poll.model';
-import { IStockMovieInfo } from '@/models/stock.model';
 import { FcAdvertising } from 'react-icons/fc';
 import { dateDifference } from '@/utils/format';
 import { Link } from 'react-router-dom';
@@ -17,12 +17,45 @@ interface Props {
 }
 
 export default function MovieDetailBeforeOpen({ movieDetail, pollBox }: Props) {
+  const [selectedVote, setSelectedVote] = useState<'up' | 'down' | null>(
+    pollBox.pollResult,
+  );
+  const [upRatio, setUpRatio] = useState<number>(0);
+  const [downRatio, setDownRatio] = useState<number>(0);
+
+  useEffect(() => {
+    // 투표 비율 계산 (소수 첫째 자리에서 반올림)
+    if (pollBox.total > 0) {
+      setUpRatio(Math.round((pollBox.up / pollBox.total) * 1000) / 10);
+      setDownRatio(Math.round((pollBox.down / pollBox.total) * 1000) / 10);
+    } else {
+      setUpRatio(0);
+      setDownRatio(0);
+    }
+  }, [pollBox]);
+
   const handleUpVote = () => {
-    console.log('오른다 선택됨');
+    const updatedUp = pollBox.up + 1;
+    const updatedTotal = pollBox.total + 1;
+    const newUpRatio = Math.round((updatedUp / updatedTotal) * 1000) / 10;
+
+    setSelectedVote('up');
+    setUpRatio(newUpRatio);
+    setDownRatio(Math.round((pollBox.down / updatedTotal) * 1000) / 10);
+
+    // 여기에 서버로 투표 데이터를 전송하는 API 호출 추가 가능
   };
 
   const handleDownVote = () => {
-    console.log('내린다 선택됨');
+    const updatedDown = pollBox.down + 1;
+    const updatedTotal = pollBox.total + 1;
+    const newDownRatio = Math.round((updatedDown / updatedTotal) * 1000) / 10;
+
+    setSelectedVote('down');
+    setUpRatio(Math.round((pollBox.up / updatedTotal) * 1000) / 10);
+    setDownRatio(newDownRatio);
+
+    // 여기에 서버로 투표 데이터를 전송하는 API 호출 추가 가능
   };
 
   return (
@@ -47,7 +80,13 @@ export default function MovieDetailBeforeOpen({ movieDetail, pollBox }: Props) {
       </ScoreInfo>
 
       <VoteContainer>
-        <VoteButton onUpVote={handleUpVote} onDownVote={handleDownVote} />
+        <VoteButton
+          onUpVote={handleUpVote}
+          onDownVote={handleDownVote}
+          upRatio={upRatio}
+          downRatio={downRatio}
+          initialVote={selectedVote}
+        />
       </VoteContainer>
 
       <VotingStatus>
