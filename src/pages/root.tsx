@@ -2,6 +2,7 @@ import React from 'react';
 // import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
 import Header from '../components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
 interface IRootLayoutProps {
   preloadQuizPage: () => void;
@@ -17,6 +18,7 @@ export default function RootLayout(props: IRootLayoutProps) {
       {/* <StyledContentContainer> */}
       <Outlet />
       {/* </StyledContentContainer> */}
+      <Footer />
     </>
   );
 }
