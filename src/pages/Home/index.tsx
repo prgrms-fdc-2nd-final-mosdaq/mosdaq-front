@@ -26,5 +26,8 @@ const StyledHomePage = styled.main`
     height: 100%;
     margin: 0 auto;
     background-color: ${colors.white};
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
   }
 `;

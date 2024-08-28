@@ -40,6 +40,7 @@ const StyledWrapper = styled.div`
     width: 100dvw;
     position: absolute;
     left: 0;
+    margin-top: 50px;
   }
 `;
 
@@ -49,6 +50,12 @@ const ImgUlZone = styled.ul<ImgZoneType>`
   gap: 24px;
 
   animation: autoPlay 20s linear infinite;
+  animation-play-state: running;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+
   @keyframes autoPlay {
     0% {
       transform: translateX(0);

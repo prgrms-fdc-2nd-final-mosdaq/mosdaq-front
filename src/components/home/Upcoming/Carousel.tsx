@@ -49,7 +49,7 @@ const CarouselContainer = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
-  margin-top: 100px;
+  margin-top: 50px;
 `;
 
 const ImageWrapper = styled.div`
