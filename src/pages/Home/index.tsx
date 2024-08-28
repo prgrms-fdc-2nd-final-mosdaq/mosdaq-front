@@ -1,7 +1,4 @@
 import styled from 'styled-components';
-import Banner from '../../components/home/Banner';
-import Upcoming from '../../components/home/Upcoming';
-import VoteEnd from '../../components/home/VoteEnd';
 import colors from '@/constants/colors';
 import {
   BannerFallbackWrapper,
@@ -9,6 +6,11 @@ import {
   VoteEndFallbackWrapper,
 } from '@/components/CLSWrapper';
 import CustomSuspenseErrorResetBoundary from '@/components/common/CustomSuspenseErrorResetBoundary';
+import { lazy } from 'react';
+
+const Banner = lazy(() => import('../../components/home/Banner'));
+const Upcoming = lazy(() => import('../../components/home/Upcoming'));
+const VoteEnd = lazy(() => import('../../components/home/VoteEnd'));
 
 export default function HomePage() {
   return (
