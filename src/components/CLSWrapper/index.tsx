@@ -19,3 +19,8 @@ export const UpcomingFallbackWrapper = styled(CenterFlexBox)`
 export const VoteEndFallbackWrapper = styled(CenterFlexBox)`
   height: 700px;
 `;
+
+export const MovieDetailWrapper = styled(CenterFlexBox)`
+  width: 1440px;
+  height: 730px;
+`;

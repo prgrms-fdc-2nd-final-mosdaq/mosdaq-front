@@ -74,7 +74,7 @@ export default function MovieDetailAfterOpen({
             ))}
         </VotingStatus>
 
-        {isNotYet4WeeksLater ? (
+        {/* {isNotYet4WeeksLater ? (
           // 버튼 수정하기로
           <VoteButton
             onUpVote={() => {
@@ -84,15 +84,15 @@ export default function MovieDetailAfterOpen({
               console.log('Downvoted!');
             }}
           />
-        ) : (
-          <VoteButtonAfterMovieOpen
-            up={up}
-            down={down}
-            myPollResult={pollResult}
-            pollAnswer={pollAnswer}
-            isNotYet4WeeksLater={isNotYet4WeeksLater}
-          />
-        )}
+        ) : ( */}
+        <VoteButtonAfterMovieOpen
+          up={up}
+          down={down}
+          myPollResult={pollResult}
+          pollAnswer={pollAnswer}
+          isNotYet4WeeksLater={isNotYet4WeeksLater}
+        />
+        {/* )} */}
       </VotingContainer>
       <Divider />
       <StockContainer>

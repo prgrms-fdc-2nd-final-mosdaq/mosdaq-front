@@ -4,7 +4,8 @@ import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './pages/root';
 import MovieListPage from './pages/MovieList';
-import { ErrorBoundary } from 'react-error-boundary';
+import CustomSuspenseErrorResetBoundary from './components/common/CustomSuspenseErrorResetBoundary';
+import { MovieDetailWrapper } from './components/CLSWrapper';
 
 const HomePage = Object.assign(
   lazy(() => import('./pages/Home')),
@@ -59,11 +60,9 @@ const router = createBrowserRouter([
       {
         path: '/movie-list/:movieId',
         element: (
-          <ErrorBoundary fallback={<div>에러입니다.</div>}>
-            <Suspense fallback={null}>
-              <MovieDetail />
-            </Suspense>
-          </ErrorBoundary>
+          <CustomSuspenseErrorResetBoundary Wrapper={MovieDetailWrapper}>
+            <MovieDetail />
+          </CustomSuspenseErrorResetBoundary>
         ),
       },
       {
