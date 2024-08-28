@@ -25,6 +25,7 @@ export default function Carousel({ movieList }: CarouselProps) {
         {currentMovies.map((movie) => (
           <ImageContainer key={movie.movieId}>
             <Image
+              loading="lazy"
               className="img-hover-effect"
               src={movie.posterUrl[0]}
               alt={movie.movieTitle}

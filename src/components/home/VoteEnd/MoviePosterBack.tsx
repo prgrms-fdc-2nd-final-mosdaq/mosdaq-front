@@ -26,6 +26,7 @@ export default function MoviePosterBack({ movie }: Props) {
     <StyledLi>
       <Link to={`/movie-list/${movie.movieId}`} className="movie-poster">
         <img
+          loading="lazy"
           className="img-hover-effect"
           src={movie.posterUrl[0]}
           alt="movie poster"
