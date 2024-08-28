@@ -3,16 +3,20 @@ import Banner from '../../components/home/Banner';
 import Upcoming from '../../components/home/Upcoming';
 import VoteEnd from '../../components/home/VoteEnd';
 import colors from '@/constants/colors';
+import Footer from '@/components/layout/Footer';
 
 export default function HomePage() {
   return (
-    <StyledHomePage>
-      <div className="wrap">
-        <Banner />
-        <Upcoming />
-        <VoteEnd />
-      </div>
-    </StyledHomePage>
+    <>
+      <StyledHomePage>
+        <div className="wrap">
+          <Banner />
+          <Upcoming />
+          <VoteEnd />
+        </div>
+      </StyledHomePage>
+      <Footer />
+    </>
   );
 }
 
@@ -26,5 +30,8 @@ const StyledHomePage = styled.main`
     height: 100%;
     margin: 0 auto;
     background-color: ${colors.white};
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
   }
 `;

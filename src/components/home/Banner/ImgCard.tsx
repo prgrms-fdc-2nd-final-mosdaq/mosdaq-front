@@ -70,12 +70,16 @@ const ImgCard = forwardRef<HTMLDivElement, ImgCardProps>(
               <div className="money-zone">
                 <StockPriceInfo
                   price={movie.stockPriceList[0].price}
+                  priceDate={movie.stockPriceList[0].date}
                   countryCode={movie.countryCode}
                   flag="before"
                 />
                 <StockPriceInfo
                   price={
                     movie.stockPriceList[movie.stockPriceList.length - 1].price
+                  }
+                  priceDate={
+                    movie.stockPriceList[movie.stockPriceList.length - 1].date
                   }
                   countryCode={movie.countryCode}
                   flag="after"

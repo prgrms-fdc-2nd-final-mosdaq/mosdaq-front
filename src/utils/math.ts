@@ -8,8 +8,8 @@ export function calculatePercentages(up: number, down: number) {
     };
   }
 
-  const upPercentage = Math.floor((up / total) * 100);
-  const downPercentage = Math.floor((down / total) * 100);
+  const upPercentage = Math.round((up / total) * 100);
+  const downPercentage = Math.round((down / total) * 100);
 
   return {
     upPercentage,

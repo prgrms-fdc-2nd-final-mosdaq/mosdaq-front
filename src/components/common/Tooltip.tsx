@@ -40,8 +40,9 @@ const StyledDiv = styled.div<StyledProps>`
     position: absolute;
     max-width: ${({ $maxWidth }) => $maxWidth}px;
     width: max-content;
+    color: ${colors.greyscale10};
     background-color: ${colors.white};
-    border: 1px solid ${colors.border2};
+    border: 1px solid ${colors.greyscale8};
     border-radius: 12px;
     padding: 5px;
     z-index: 10;

@@ -19,6 +19,9 @@ export default function MoviePosterBack({ movie }: Props) {
     movie.up,
     movie.down,
   );
+  const pollAnswer: 'up' | 'down' | 'same' =
+    movie.up === movie.down ? 'same' : movie.up > movie.down ? 'up' : 'down';
+
   return (
     <StyledLi>
       <Link to={`/movie-list/${movie.movieId}`} className="movie-poster">
@@ -41,13 +44,13 @@ export default function MoviePosterBack({ movie }: Props) {
           </Txt>
         </div>
         <div className="vote-result-zone">
-          <div>
+          <VoteResultImgZone $pollAnswer={pollAnswer}>
             <img src={voteUp} />
             <Txt typography="Pretendard32bold" color="watcha">
               vs
             </Txt>
             <img src={voteDown} />
-          </div>
+          </VoteResultImgZone>
           <div>
             <Txt typography="Pretendard32bold" color="watcha">
               {upPercentage}%
@@ -61,11 +64,13 @@ export default function MoviePosterBack({ movie }: Props) {
           <StockPriceInfo
             countryCode={movie.countryCode}
             price={movie.beforePrice}
+            priceDate={movie.beforePriceDate}
             flag="before"
           />
           <StockPriceInfo
             countryCode={movie.countryCode}
             price={movie.afterPrice}
+            priceDate={movie.afterPriceDate}
             flag="after"
           />
           <StockProfitInfo
@@ -127,25 +132,15 @@ const StyledLi = styled.li`
       align-items: center;
       border-bottom: 1px solid ${colors.border2};
 
-      div:nth-child(1) {
-        display: flex;
-        align-items: center;
-        img {
-          width: 40px;
-          height: 44px;
-        }
-        span {
-          margin: 0 30px;
-        }
-      }
-
       div:nth-child(2) {
-        width: 190px;
+        max-width: 200px;
+        width: 100%;
         display: flex;
         justify-content: space-between;
+        margin-top: 10px;
 
-        span:nth-child(2) {
-          margin-left: 70px;
+        span {
+          max-width: 90px;
         }
       }
     }
@@ -153,5 +148,25 @@ const StyledLi = styled.li`
     .price-result {
       padding-top: 10px;
     }
+  }
+`;
+
+type VoteResultImgZoneProps = {
+  $pollAnswer: 'up' | 'down' | 'same';
+};
+
+const VoteResultImgZone = styled.div<VoteResultImgZoneProps>`
+  display: flex;
+  align-items: center;
+  img:nth-child(1) {
+    width: ${({ $pollAnswer }) => ($pollAnswer === 'up' ? '50px' : '40px')};
+    height: ${({ $pollAnswer }) => ($pollAnswer === 'up' ? '54px' : '44px')};
+  }
+  img:nth-child(3) {
+    width: ${({ $pollAnswer }) => ($pollAnswer === 'down' ? '50px' : '40px')};
+    height: ${({ $pollAnswer }) => ($pollAnswer === 'down' ? '54px' : '44px')};
+  }
+  span {
+    margin: 0 30px;
   }
 `;
