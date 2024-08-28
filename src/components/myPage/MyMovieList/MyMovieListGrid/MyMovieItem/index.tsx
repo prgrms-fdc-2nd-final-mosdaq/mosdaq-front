@@ -14,6 +14,7 @@ export default function MyMovieItem({ movieData }: IMyMovieItemProps) {
         <StyledMoviePoster
           src={movieData.posterUrl[0]}
           alt={movieData.movieTitle}
+          loading="lazy"
         />
       </Link>
     </StyledMyMovieItem>
