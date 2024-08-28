@@ -10,7 +10,7 @@ import colors from '@/constants/colors';
 import clockImg from '@/assets/images/movieDetail/clock.svg';
 import rightArrow from '@/assets/images/main/arrow.png';
 import { usePollMovie } from '@/hooks/api/poll/usePollMovie';
-import VoteButton from '@/components/vote/voteButton';
+import VoteButton from '@/components/vote/VoteButton';
 
 interface Props {
   movieDetail: IMovieDetail;

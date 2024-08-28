@@ -1,5 +1,5 @@
 import { IPolledMovie } from '@/models/movie.model';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { fetchGetMainPolledMovie } from '../../../apis/main-movie.api';
 
 export interface IPolledMovieResponse {
@@ -8,7 +8,7 @@ export interface IPolledMovieResponse {
 }
 
 export const useGetPolledMovie = () => {
-  const { data, isLoading, refetch } = useQuery<IPolledMovieResponse>({
+  const { data } = useSuspenseQuery<IPolledMovieResponse>({
     queryKey: ['polledMovie'],
     queryFn: fetchGetMainPolledMovie,
     staleTime: 0,
@@ -17,7 +17,5 @@ export const useGetPolledMovie = () => {
 
   return {
     polledMovies: data,
-    isLoading,
-    refetch,
   };
 };
