@@ -9,7 +9,7 @@ interface VoteButtonProps {
   onDownVote: () => void;
 }
 
-export default function voteButton({ onUpVote, onDownVote }: VoteButtonProps) {
+export default function VoteButton({ onUpVote, onDownVote }: VoteButtonProps) {
   return (
     <ButtonContainer>
       <VoteLeftZone onClick={onUpVote}>

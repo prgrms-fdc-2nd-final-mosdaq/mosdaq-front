@@ -61,11 +61,13 @@ export default function MoviePosterBack({ movie }: Props) {
           <StockPriceInfo
             countryCode={movie.countryCode}
             price={movie.beforePrice}
+            priceDate={movie.beforePriceDate}
             flag="before"
           />
           <StockPriceInfo
             countryCode={movie.countryCode}
             price={movie.afterPrice}
+            priceDate={movie.afterPriceDate}
             flag="after"
           />
           <StockProfitInfo

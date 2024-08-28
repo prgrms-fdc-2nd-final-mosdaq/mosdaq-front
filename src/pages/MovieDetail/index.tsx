@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGetPollBox } from '@/hooks/api/movie-detail/useGetPollBox';
 import MovieDetailAfterOpen from '@/components/movieDetail/MovieDetailAfterOpen';
 import MovieDetailBeforeOpen from '@/components/movieDetail/MovieDetailBeforeOpen';
-import { getTodayYYYYMMDD } from '@/utils/format';
+import { getTodayYYYYMMDD } from '@/utils/date';
 import MovieDetailPoster from '@/components/movieDetail/MovieDetailPoster';
 
 export default function MovieDetail() {
@@ -61,10 +61,10 @@ const PageContainer = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   height: calc(100vh - 77px);
-
+  display: flex;
+  align-items: center;
   .wrapper {
     display: flex;
-    height: 100%;
     width: 100%;
     align-items: center;
   }

@@ -4,16 +4,14 @@ export const formatPriceByCountryCode = (
   price: number,
   countryCode: string,
 ): string => {
-  const numericPrice = typeof price === 'string' ? parseFloat(price) : price;
-
-  if (countryCode === 'KO') {
+  if (countryCode.trim().toUpperCase() === 'KO') {
     // 원화는 소수점 버림
-    return `₩${Math.floor(numericPrice).toLocaleString()}`;
-  } else if (countryCode === 'US') {
+    return `₩${price.toLocaleString()}`;
+  } else if (countryCode.trim().toUpperCase() === 'US') {
     // 달러는 소수점 두 자리
-    return `$${numericPrice.toFixed(2).toLocaleString()}`;
+    return `$${price.toFixed(2).toLocaleString()}`;
   } else {
-    return numericPrice.toLocaleString();
+    return price.toLocaleString();
   }
 };
 
@@ -66,6 +64,9 @@ export function dateDifference(startDate: string) {
   return '0분';
 }
 
-export function getTodayYYYYMMDD() {
-  return dayjs(new Date()).format('YYYY-MM-DD');
+export function formatNoYear(dateString: string) {
+  const dateParts = dateString.split('-');
+  const month = parseInt(dateParts[1], 10);
+  const day = parseInt(dateParts[2], 10);
+  return `${month}/${day}`;
 }
