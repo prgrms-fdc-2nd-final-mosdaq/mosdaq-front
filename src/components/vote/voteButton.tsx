@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import upIcon from '../../assets/images/main/mainUpBtn.png';
 import downIcon from '../../assets/images/main/mainDownBtn.png';
@@ -9,10 +10,26 @@ interface VoteButtonProps {
   onDownVote: () => void;
 }
 
+interface VoteItemProps {
+  isSelected: boolean;
+}
+
 export default function voteButton({ onUpVote, onDownVote }: VoteButtonProps) {
+  const [selectedVote, setSelectedVote] = useState<'up' | 'down' | null>(null);
+
+  const handleUpVote = () => {
+    setSelectedVote('up');
+    onUpVote();
+  };
+
+  const handleDownVote = () => {
+    setSelectedVote('down');
+    onDownVote();
+  };
+
   return (
     <ButtonContainer>
-      <VoteLeftZone onClick={onUpVote}>
+      <VoteLeftZone onClick={handleUpVote} isSelected={selectedVote === 'up'}>
         <VoteIcon src={upIcon} alt="오른다" />
         <Txt typography="Pretendard32bold" color="watcha">
           오른다
@@ -23,7 +40,10 @@ export default function voteButton({ onUpVote, onDownVote }: VoteButtonProps) {
           vs
         </VoteText>
       </div>
-      <VoteRightZone onClick={onDownVote}>
+      <VoteRightZone
+        onClick={handleDownVote}
+        isSelected={selectedVote === 'down'}
+      >
         <Txt typography="Pretendard32bold" color="watcha">
           내린다
         </Txt>
@@ -52,7 +72,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const VoteItem = styled.div`
+const VoteItem = styled.div<VoteItemProps>`
   height: 100%;
   display: flex;
   align-items: center;
@@ -62,7 +82,8 @@ const VoteItem = styled.div`
   transition:
     background 0.2s ease,
     color 0.1s ease;
-
+  border: ${({ isSelected }) =>
+    isSelected ? `2px solid ${colors.watcha}` : '2px solid transparent'};
   &:hover {
     background-color: ${colors.greyscale1};
   }
