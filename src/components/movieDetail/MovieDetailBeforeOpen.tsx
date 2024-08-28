@@ -4,12 +4,12 @@ import { IMovieDetail } from '@/models/movie.model';
 import { IPollBox } from '@/models/poll.model';
 import { IStockMovieInfo } from '@/models/stock.model';
 import { FcAdvertising } from 'react-icons/fc';
-import VoteButton from '@/components/vote/voteButton';
 import { dateDifference } from '@/utils/format';
 import { Link } from 'react-router-dom';
 import colors from '@/constants/colors';
 import clockImg from '@/assets/images/movieDetail/clock.svg';
 import rightArrow from '@/assets/images/main/arrow.png';
+import VoteButton from '../vote/VoteButton';
 
 interface Props {
   movieDetail: IMovieDetail;
@@ -167,6 +167,7 @@ const ScoreInfo = styled(Txt)`
 export const VoteContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const VoteNum = styled(Txt)`
