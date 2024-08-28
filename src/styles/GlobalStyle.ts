@@ -95,11 +95,11 @@ a {
 }
 
 .img-hover-effect {
-  transition: transform 0.2s linear;
+  transition: transform 0.2s ease;
 }
 
 .img-hover-effect:hover {
-  transform: scale(1.05);
+  transform: scale(1.025);
 }
 
 `;
