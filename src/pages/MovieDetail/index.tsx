@@ -24,14 +24,6 @@ export default function MovieDetail() {
   const { movieDetail } = useGetMovieDetail(movieId);
   const { pollBox } = useGetPollBox(movieId);
 
-  const handleUpVote = () => {
-    console.log('오른다 선택됨');
-  };
-
-  const handleDownVote = () => {
-    console.log('내린다 선택됨');
-  };
-
   return (
     <PageContainer>
       <div className="wrapper">
@@ -40,6 +32,7 @@ export default function MovieDetail() {
         <RightContainer>
           {getTodayYYYYMMDD() < movieDetail.movieOpenDate ? (
             <MovieDetailBeforeOpen
+              movieId={movieId}
               movieDetail={movieDetail}
               pollBox={pollBox}
             />
@@ -78,4 +71,5 @@ const RightContainer = styled.div`
   flex: 1;
   margin-left: 40px;
   width: 100%;
+  max-width: 750px;
 `;

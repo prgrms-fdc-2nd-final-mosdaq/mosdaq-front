@@ -1,10 +1,9 @@
 export interface IMovie {
   movieId: number;
   movieTitle: string;
-  posterUrl: string;
+  posterUrl: string[];
   up: number;
   down: number;
-  pollCount: number;
   myPollResult: 'up' | 'down' | null;
 }
 

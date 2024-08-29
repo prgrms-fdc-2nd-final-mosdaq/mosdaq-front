@@ -33,7 +33,7 @@ export default function Carousel({ movieList }: CarouselProps) {
             />
             <Title typography="Pretendard20bold">{movie.movieTitle}</Title>
             <VotingStatus myPollResult={movie.myPollResult} />
-            <VoteButtons movieId={movie.movieId} />
+            <VoteButtons movie={movie} />
           </ImageContainer>
         ))}
       </ImageWrapper>
@@ -45,10 +45,8 @@ export default function Carousel({ movieList }: CarouselProps) {
 // 스타일 컴포넌트
 const CarouselContainer = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 100%;
-  overflow: hidden;
   position: relative;
   margin-top: 50px;
 `;
@@ -67,7 +65,6 @@ const ImageContainer = styled.div`
   width: 400px;
   height: 570px;
   margin: 0 52px;
-  overflow: hidden;
 `;
 
 const Image = styled.img`

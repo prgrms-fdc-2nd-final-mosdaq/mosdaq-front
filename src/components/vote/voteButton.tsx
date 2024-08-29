@@ -5,69 +5,73 @@ import { Txt } from '@/components/common/Txt';
 import colors from '@/constants/colors';
 import greyUpIcon from '@/assets/images/movieDetail/greyUpIcon.png';
 import greyDownIcon from '@/assets/images/movieDetail/greyDownIcon.png';
+import { usePollMovie } from '@/hooks/api/poll/usePollMovie';
+import { IPollBox } from '@/models/poll.model';
+import { calculatePercentages } from '@/utils/math';
+import { VoteIconLeft, VoteIconRight } from './VoteButtonAfterMovieOpen';
 
 interface VoteButtonProps {
-  onUpVote: () => void;
-  onDownVote: () => void;
-  upRatio: number | undefined;
-  downRatio: number | undefined;
-  initialVote: 'up' | 'down' | null;
+  movieId: string;
+  pollBox: IPollBox;
 }
 
 interface VoteItemProps {
-  isSelected: boolean;
-  isDisabled: boolean;
-  isVoteSelected: boolean;
+  $isSelected: boolean;
+  $isDisabled: boolean;
+  $isVoteSelected: boolean;
 }
 
-export default function VoteButton({
-  onUpVote,
-  onDownVote,
-  upRatio,
-  downRatio,
-  initialVote,
-}: VoteButtonProps) {
-  const isUpSelected = initialVote === 'up';
-  const isDownSelected = initialVote === 'down';
-  const isVoteSelected = initialVote !== null;
+export default function VoteButton({ movieId, pollBox }: VoteButtonProps) {
+  const isUpSelected: boolean = pollBox.pollResult === 'up';
+  const isDownSelected: boolean = pollBox.pollResult === 'down';
+  const isVoteSelected: boolean = !!pollBox.pollResult;
+
+  const { pollMovie } = usePollMovie(movieId);
+  const { upPercentage, downPercentage } = calculatePercentages(
+    pollBox.up,
+    pollBox.down,
+  );
 
   return (
     <ButtonContainer>
       <VoteLeftZone
-        onClick={onUpVote}
-        isSelected={isUpSelected}
-        isDisabled={isDownSelected}
-        isVoteSelected={isVoteSelected}
+        onClick={() => pollMovie('up')}
+        $isSelected={isUpSelected}
+        $isDisabled={isDownSelected}
+        $isVoteSelected={isVoteSelected}
       >
-        <VoteIcon
-          src={isVoteSelected ? (isUpSelected ? upIcon : greyUpIcon) : upIcon}
-          alt="오른다"
-        />
-        <TextContainer alignLeft={true}>
-          <Txt
-            typography="Pretendard32bold"
-            color={
-              isVoteSelected
-                ? isUpSelected
-                  ? 'watcha'
-                  : 'greyscale6'
-                : 'watcha'
-            }
-            style={{ fontSize: isVoteSelected ? '28px' : '32px' }}
-          >
-            오른다
-          </Txt>
-          {isVoteSelected && upRatio !== undefined && (
+        <div className="container">
+          <VoteIconLeft
+            src={isVoteSelected ? (isUpSelected ? upIcon : greyUpIcon) : upIcon}
+            alt="오른다"
+          />
+          <TextContainer>
             <Txt
               typography="Pretendard32bold"
-              color={isUpSelected ? 'watcha' : 'greyscale6'}
+              color={
+                isVoteSelected
+                  ? isUpSelected
+                    ? 'watcha'
+                    : 'greyscale6'
+                  : 'watcha'
+              }
+              style={{ fontSize: isVoteSelected ? '24px' : '32px' }}
             >
-              {upRatio}%
+              오른다
             </Txt>
-          )}
-        </TextContainer>
+            {pollBox.pollResult && (
+              <Txt
+                typography="Pretendard32bold"
+                color={isUpSelected ? 'watcha' : 'greyscale6'}
+                style={{ fontSize: isVoteSelected ? '24px' : '32px' }}
+              >
+                {upPercentage}%
+              </Txt>
+            )}
+          </TextContainer>
+        </div>
       </VoteLeftZone>
-      <VSContainer isDisabled={isVoteSelected}>
+      <VSContainer $isDisabled={isVoteSelected}>
         <VoteText
           typography="Pretendard32bold"
           color={isVoteSelected ? 'greyscale6' : 'watcha'}
@@ -76,44 +80,47 @@ export default function VoteButton({
         </VoteText>
       </VSContainer>
       <VoteRightZone
-        onClick={onDownVote}
-        isSelected={isDownSelected}
-        isDisabled={isUpSelected}
-        isVoteSelected={isVoteSelected}
+        onClick={() => pollMovie('down')}
+        $isSelected={isDownSelected}
+        $isDisabled={isUpSelected}
+        $isVoteSelected={isVoteSelected}
       >
-        <TextContainer alignLeft={false}>
-          <Txt
-            typography="Pretendard32bold"
-            color={
-              isVoteSelected
-                ? isDownSelected
-                  ? 'watcha'
-                  : 'greyscale6'
-                : 'watcha'
-            }
-            style={{ fontSize: isVoteSelected ? '28px' : '32px' }}
-          >
-            내린다
-          </Txt>
-          {isVoteSelected && downRatio !== undefined && (
+        <div className="container">
+          <TextContainer>
             <Txt
               typography="Pretendard32bold"
-              color={isDownSelected ? 'watcha' : 'greyscale6'}
+              color={
+                isVoteSelected
+                  ? isDownSelected
+                    ? 'watcha'
+                    : 'greyscale6'
+                  : 'watcha'
+              }
+              style={{ fontSize: isVoteSelected ? '24px' : '32px' }}
             >
-              {downRatio}%
+              내린다
             </Txt>
-          )}
-        </TextContainer>
-        <VoteIcon
-          src={
-            isVoteSelected
-              ? isDownSelected
-                ? downIcon
-                : greyDownIcon
-              : downIcon
-          }
-          alt="내린다"
-        />
+            {pollBox.pollResult && (
+              <Txt
+                typography="Pretendard32bold"
+                color={isDownSelected ? 'watcha' : 'greyscale6'}
+                style={{ fontSize: isVoteSelected ? '24px' : '32px' }}
+              >
+                {downPercentage}%
+              </Txt>
+            )}
+          </TextContainer>
+          <VoteIconRight
+            src={
+              isVoteSelected
+                ? isDownSelected
+                  ? downIcon
+                  : greyDownIcon
+                : downIcon
+            }
+            alt="내린다"
+          />
+        </div>
       </VoteRightZone>
     </ButtonContainer>
   );
@@ -122,7 +129,7 @@ export default function VoteButton({
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 750px;
+  width: 100%;
   height: 140px;
   border: 1px solid ${colors.greyscale8};
   border-radius: 20px;
@@ -136,10 +143,20 @@ const VoteItem = styled.div<VoteItemProps>`
   flex: 1;
   cursor: pointer;
   transition: color 0.1s ease;
-  border: ${({ isSelected }) =>
-    isSelected ? `2px solid ${colors.watcha}` : '2px solid transparent'};
-  background-color: ${({ isDisabled }) =>
-    isDisabled ? `${colors.greyscale2}` : 'transparent'};
+  border: ${({ $isSelected }) =>
+    $isSelected ? `2px solid ${colors.watcha}` : '2px solid transparent'};
+  background-color: ${({ $isDisabled }) =>
+    $isDisabled ? `${colors.greyscale2}` : 'transparent'};
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      line-height: 1;
+    }
+  }
 `;
 
 const VoteLeftZone = styled(VoteItem)`
@@ -148,20 +165,14 @@ const VoteLeftZone = styled(VoteItem)`
 
 const VoteRightZone = styled(VoteItem)`
   border-radius: 0 20px 20px 0;
-`;
-
-const VoteIcon = styled.img`
-  width: 69px;
-  height: 76px;
-  margin-right: 8px;
-  padding 10px;
+  max-height: 140px;
 `;
 
 const VoteText = styled(Txt)`
   margin: 0 15px;
 `;
 
-const VSContainer = styled.div<{ isDisabled: boolean }>`
+const VSContainer = styled.div<{ $isDisabled: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,14 +180,11 @@ const VSContainer = styled.div<{ isDisabled: boolean }>`
   height: 100%;
   border-left: 1px solid ${colors.greyscale8};
   border-right: 1px solid ${colors.greyscale8};
-  background-color: ${({ isDisabled }) =>
-    isDisabled ? `${colors.greyscale2}` : 'transparent'};
+  background-color: ${({ $isDisabled }) =>
+    $isDisabled ? `${colors.greyscale2}` : 'transparent'};
 `;
 
-const TextContainer = styled.div<{ alignLeft: boolean }>`
+const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: ${({ alignLeft }) => (alignLeft ? 'flex-start' : 'flex-end')};
-  margin-left: ${({ alignLeft }) => (alignLeft ? '10px' : '0')};
-  margin-right: ${({ alignLeft }) => (alignLeft ? '0' : '10px')};
 `;

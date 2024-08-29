@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Txt } from '@/components/common/Txt';
 import { IMovieDetail } from '@/models/movie.model';
@@ -9,60 +8,19 @@ import { Link } from 'react-router-dom';
 import colors from '@/constants/colors';
 import clockImg from '@/assets/images/movieDetail/clock.svg';
 import rightArrow from '@/assets/images/main/arrow.png';
-import { usePollMovie } from '@/hooks/api/poll/usePollMovie';
 import VoteButton from '@/components/vote/VoteButton';
 
 interface Props {
+  movieId: string;
   movieDetail: IMovieDetail;
   pollBox: IPollBox;
 }
 
-export default function MovieDetailBeforeOpen({ movieDetail, pollBox }: Props) {
-  const [selectedVote, setSelectedVote] = useState<'up' | 'down' | null>(
-    pollBox.pollResult,
-  );
-  const [upRatio, setUpRatio] = useState<number>(0);
-  const [downRatio, setDownRatio] = useState<number>(0);
-
-  const { pollMovie } = usePollMovie(movieDetail.movieId);
-
-  useEffect(() => {
-    // 투표 비율 계산 (소수 첫째 자리에서 반올림)
-    if (pollBox.total > 0) {
-      setUpRatio(Math.round((pollBox.up / pollBox.total) * 1000) / 10);
-      setDownRatio(Math.round((pollBox.down / pollBox.total) * 1000) / 10);
-    } else {
-      setUpRatio(0);
-      setDownRatio(0);
-    }
-  }, [pollBox]);
-
-  const handleUpVote = () => {
-    const updatedUp = pollBox.up + 1;
-    const updatedTotal = pollBox.total + 1;
-    const newUpRatio = Math.round((updatedUp / updatedTotal) * 1000) / 10;
-
-    setSelectedVote('up');
-    setUpRatio(newUpRatio);
-    setDownRatio(Math.round((pollBox.down / updatedTotal) * 1000) / 10);
-
-    // 서버로 투표 데이터를 전송
-    pollMovie('up');
-  };
-
-  const handleDownVote = () => {
-    const updatedDown = pollBox.down + 1;
-    const updatedTotal = pollBox.total + 1;
-    const newDownRatio = Math.round((updatedDown / updatedTotal) * 1000) / 10;
-
-    setSelectedVote('down');
-    setUpRatio(Math.round((pollBox.up / updatedTotal) * 1000) / 10);
-    setDownRatio(newDownRatio);
-
-    // 서버로 투표 데이터를 전송
-    pollMovie('down');
-  };
-
+export default function MovieDetailBeforeOpen({
+  movieId,
+  movieDetail,
+  pollBox,
+}: Props) {
   return (
     <>
       <VotingNowTxt typography="Pretendard36bold" color="watcha">
@@ -85,13 +43,7 @@ export default function MovieDetailBeforeOpen({ movieDetail, pollBox }: Props) {
       </ScoreInfo>
 
       <VoteContainer>
-        <VoteButton
-          onUpVote={handleUpVote}
-          onDownVote={handleDownVote}
-          upRatio={upRatio}
-          downRatio={downRatio}
-          initialVote={selectedVote}
-        />
+        <VoteButton movieId={movieId} pollBox={pollBox} />
       </VoteContainer>
 
       <VotingStatus>
@@ -211,6 +163,7 @@ const ScoreInfo = styled(Txt)`
 export const VoteContainer = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 750px;
   width: 100%;
 `;
 
