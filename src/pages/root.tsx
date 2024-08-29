@@ -8,6 +8,7 @@ interface IRootLayoutProps {
   preloadMyPage: () => void;
   preloadLoginPage: () => void;
   preloadHomePage: () => void;
+  preloadMovieListPage: () => void;
 }
 
 export default function RootLayout(props: IRootLayoutProps) {
