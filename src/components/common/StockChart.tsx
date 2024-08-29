@@ -88,7 +88,7 @@ const StockChart = ({
     tooltip: {
       enabled: true,
       x: {
-        formatter: function (value: any, { dataPointIndex }: any) {
+        formatter: function (_value: any, { dataPointIndex }: any) {
           // 마우스 위치에 해당하는 날짜 표시
           return dates[dataPointIndex] === movieOpenDate
             ? `개봉일 ${dates[dataPointIndex]}`
