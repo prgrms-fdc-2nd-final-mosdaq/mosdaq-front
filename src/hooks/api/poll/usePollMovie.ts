@@ -256,7 +256,7 @@ export const usePollMovie = (movieId: string) => {
     onSuccess: (data: { point: number; rank: number }, _variables) => {
       openSnackbar({
         message: `투표가 성공적으로 완료되었습니다! 현재 ${data.point} 포인트입니다.`,
-        autoHideDuration: 6000, // Optional, defaults to 6000
+        autoHideDuration: 6000,
       });
     },
     onError: (_error, _variables, context: any) => {
