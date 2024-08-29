@@ -12,8 +12,8 @@ export const useGetBannerMovie = () => {
   const { data } = useSuspenseQuery<BannerResponse>({
     queryKey: ['bannerMovie'],
     queryFn: fetchGetMainBannerMovie,
-    staleTime: 0,
-    refetchOnWindowFocus: true,
+    staleTime: 1000 * 6 * 120,
+    gcTime: 1000 * 6 * 120,
   });
 
   return {

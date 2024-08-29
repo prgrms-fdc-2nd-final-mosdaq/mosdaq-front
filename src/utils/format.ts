@@ -33,37 +33,6 @@ export const calculateStockReturnRate = (
     : `${returnRate.toFixed(2)}%`;
 };
 
-export function dateDifference(startDate: string) {
-  const start = dayjs(startDate);
-  const end = dayjs(); // 현재 날짜와 시간
-
-  const diffInDays = start.diff(end, 'day');
-  const diffInHours = start.diff(end, 'hour') % 24;
-  const diffInMinutes = start.diff(end, 'minute') % 60;
-
-  // 차이가 없는 경우
-  if (diffInDays === 0 && diffInHours === 0 && diffInMinutes === 0) {
-    return '0분';
-  }
-
-  // 일 차이가 있을 경우
-  if (diffInDays > 0) {
-    return `${diffInDays}일 ${diffInHours}시간 ${diffInMinutes}분`;
-  }
-
-  // 일 차이가 없고 시간 차이가 있을 경우
-  if (diffInHours > 0) {
-    return `${diffInHours}시간 ${diffInMinutes}분`;
-  }
-
-  // 시간 차이가 없고 분 차이가 있을 경우
-  if (diffInMinutes > 0) {
-    return `${diffInMinutes}분`;
-  }
-
-  return '0분';
-}
-
 export function formatNoYear(dateString: string) {
   const dateParts = dateString.split('-');
   const month = parseInt(dateParts[1], 10);

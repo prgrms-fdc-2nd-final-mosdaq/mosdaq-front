@@ -9,6 +9,8 @@ const useGetUserProfile = () => {
     queryKey: ['user', 'profile'],
     queryFn: fetchGetUserInfo,
     enabled: isLoggedIn,
+    staleTime: 1000 * 6 * 5,
+    gcTime: 1000 * 6 * 5,
   });
 
   return { userProfile: data };
