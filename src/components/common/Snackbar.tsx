@@ -22,7 +22,7 @@ export const MySnackbar = () => {
   };
 
   const closeSnackbar = (
-    event?: React.SyntheticEvent | Event,
+    _event?: React.SyntheticEvent | Event,
     reason?: SnackbarCloseReason,
   ) => {
     if (reason === 'clickaway') {
