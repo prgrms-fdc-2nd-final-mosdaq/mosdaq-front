@@ -6,6 +6,7 @@ import RootLayout from './pages/root';
 import MovieListPage from './pages/MovieList';
 import CustomSuspenseErrorResetBoundary from './components/common/CustomSuspenseErrorResetBoundary';
 import { MovieDetailWrapper } from './components/CLSWrapper';
+import NotFoundPage from './pages/NotFound';
 
 const HomePage = Object.assign(
   lazy(() => import('./pages/Home')),
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
             <QuizPage />
           </Suspense>
         ),
+      },
+      {
+        path: '*',
+        element: <NotFoundPage />,
       },
     ],
   },

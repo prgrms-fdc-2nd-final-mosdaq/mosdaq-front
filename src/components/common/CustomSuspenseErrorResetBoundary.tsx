@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import LoadingSpinner from './Loading';
 import { Button } from './Button';
+import NotFoundPage from '@/pages/NotFound';
 
 interface Props {
   children: React.ReactNode;
@@ -18,18 +19,23 @@ export default function CustomSuspenseErrorResetBoundary({
       {({ reset }) => (
         <ErrorBoundary
           onReset={reset}
-          fallbackRender={({ resetErrorBoundary }) => (
+          fallbackRender={({ error, resetErrorBoundary }) => (
             <Wrapper>
-              에러가 발생했어요!
-              <br />
-              <Button
-                variant="forth"
-                size="medium"
-                style={{ color: 'white', fontWeight: 700 }}
-                onClick={() => resetErrorBoundary()}
-              >
-                새로고침하기
-              </Button>
+              {error instanceof Error && error.message.includes('404') ? (
+                <NotFoundPage />
+              ) : (
+                <>
+                  <div>에러가 발생했어요!</div>
+                  <Button
+                    variant="forth"
+                    size="medium"
+                    style={{ color: 'white', fontWeight: 700 }}
+                    onClick={resetErrorBoundary}
+                  >
+                    새로고침하기
+                  </Button>
+                </>
+              )}
             </Wrapper>
           )}
         >
