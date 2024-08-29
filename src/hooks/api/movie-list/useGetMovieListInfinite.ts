@@ -43,8 +43,8 @@ const getMovieList = ({
 }) => {
   const params = new URLSearchParams(locationSearch);
 
-  const sort = params.get('sort') as 'ASC' | 'DESC';
-  const poll = params.get('poll') as 'true' | 'false';
+  const sort = (params.get('sort') as 'ASC' | 'DESC') || 'DESC';
+  const poll = (params.get('poll') as 'true' | 'false') || 'true';
   const offset = pageParam * limit || 0;
 
   return fetchGetMovieList({ offset, limit, sort, poll });

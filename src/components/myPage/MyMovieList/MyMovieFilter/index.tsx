@@ -11,8 +11,16 @@ export default function MyMovieFilter() {
   const [pollState, setPollState] = useState<'true' | 'false'>('true');
 
   useEffect(() => {
-    setSearchParams({ sort: 'DESC', poll: 'true' });
-  }, []);
+    const pollParam = searchParams.get('poll') as 'true' | 'false';
+    if (pollParam) {
+      setPollState(pollParam);
+    }
+
+    const sortParam = searchParams.get('sort') as 'ASC' | 'DESC';
+    if (sortParam) {
+      setSortState(sortParam);
+    }
+  }, [searchParams]);
 
   const updateSearchParam = (key: string, value: string) => {
     const newParams = new URLSearchParams(searchParams);

@@ -10,8 +10,11 @@ export default function MovieFilter() {
   const [pollState, setPollState] = useState<'true' | 'false'>('true');
 
   useEffect(() => {
-    setSearchParams({ sort: 'DESC', poll: 'true' });
-  }, []);
+    const pollParam = searchParams.get('poll') as 'true' | 'false';
+    if (pollParam) {
+      setPollState(pollParam);
+    }
+  }, [searchParams]);
 
   const updateSearchParam = (key: string, value: string) => {
     const newParams = new URLSearchParams(searchParams);
