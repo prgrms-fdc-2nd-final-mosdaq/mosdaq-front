@@ -13,7 +13,7 @@ import { useGetStockInfo } from '@/hooks/api/movie-detail/useGetStockInfo';
 import { shiftDateByWeeks, getTodayYYYYMMDD } from '@/utils/date';
 import { BsExclamationCircle } from 'react-icons/bs';
 import Tooltip from '../common/Tooltip';
-import VoteButton from '../vote/abc';
+import VoteButton from '../vote/VoteButton';
 
 interface Props {
   movieDetail: IMovieDetail;
