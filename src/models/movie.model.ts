@@ -20,7 +20,7 @@ export interface IMovieDetail extends Movie {
   movieDirector: string;
   movieOpenDate: string;
   movieDescription: string;
-  moviePoster: string[];
+  companyName: string;
   stockPriceList: StockPriceList[];
 }
 

@@ -11,7 +11,7 @@ export default function MovieDetailPoster({ movieDetail }: Props) {
   return (
     <PosterContainer>
       <PosterImage
-        src={movieDetail.moviePoster?.[0]}
+        src={movieDetail.posterUrl[0]}
         alt={movieDetail.movieTitle}
       />
       <Tooltip text={movieDetail.movieTitle} position="top">
@@ -26,7 +26,7 @@ export default function MovieDetailPoster({ movieDetail }: Props) {
         감독 {movieDetail.movieDirector}
       </Txt>
       <Txt typography="Pretendard20regular" color="greyscale10">
-        {/* 제작(배급사) {stockMovieInfo.companyName} */}
+        제작(배급사) {movieDetail.companyName}
       </Txt>
     </PosterContainer>
   );

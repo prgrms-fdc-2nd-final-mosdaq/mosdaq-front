@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import styled from 'styled-components';
-import { Route, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useGetMovieDetail } from '@/hooks/api/movie-detail/useGetMovieDetail';
 import { useNavigate } from 'react-router-dom';
 import { useGetPollBox } from '@/hooks/api/movie-detail/useGetPollBox';

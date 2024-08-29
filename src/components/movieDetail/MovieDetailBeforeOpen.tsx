@@ -29,7 +29,7 @@ export default function MovieDetailBeforeOpen({
 
       <Txt typography="Pretendard20bold">
         <FcAdvertising /> '{movieDetail.movieTitle}' 개봉 후&nbsp;
-        {/* {stockMovieInfo.companyName}의 주가가 오를까요? 내릴까요? */}
+        {movieDetail.companyName}의 주가가 오를까요? 내릴까요?
       </Txt>
 
       <div className="movie-description">
