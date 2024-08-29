@@ -7,6 +7,7 @@ import {
 } from '@/components/CLSWrapper';
 import CustomSuspenseErrorResetBoundary from '@/components/common/CustomSuspenseErrorResetBoundary';
 import { lazy } from 'react';
+import Footer from '@/components/layout/Footer';
 
 const Banner = lazy(() => import('../../components/home/Banner'));
 const Upcoming = lazy(() => import('../../components/home/Upcoming'));
@@ -14,19 +15,22 @@ const VoteEnd = lazy(() => import('../../components/home/VoteEnd'));
 
 export default function HomePage() {
   return (
-    <StyledHomePage>
-      <div className="wrap">
-        <CustomSuspenseErrorResetBoundary Wrapper={BannerFallbackWrapper}>
-          <Banner />
-        </CustomSuspenseErrorResetBoundary>
-        <CustomSuspenseErrorResetBoundary Wrapper={UpcomingFallbackWrapper}>
-          <Upcoming />
-        </CustomSuspenseErrorResetBoundary>
-        <CustomSuspenseErrorResetBoundary Wrapper={VoteEndFallbackWrapper}>
-          <VoteEnd />
-        </CustomSuspenseErrorResetBoundary>
-      </div>
-    </StyledHomePage>
+    <>
+      <StyledHomePage>
+        <div className="wrap">
+          <CustomSuspenseErrorResetBoundary Wrapper={BannerFallbackWrapper}>
+            <Banner />
+          </CustomSuspenseErrorResetBoundary>
+          <CustomSuspenseErrorResetBoundary Wrapper={UpcomingFallbackWrapper}>
+            <Upcoming />
+          </CustomSuspenseErrorResetBoundary>
+          <CustomSuspenseErrorResetBoundary Wrapper={VoteEndFallbackWrapper}>
+            <VoteEnd />
+          </CustomSuspenseErrorResetBoundary>
+        </div>
+      </StyledHomePage>
+      <Footer />
+    </>
   );
 }
 
