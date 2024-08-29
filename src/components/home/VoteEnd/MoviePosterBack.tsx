@@ -46,11 +46,11 @@ export default function MoviePosterBack({ movie }: Props) {
         </div>
         <div className="vote-result-zone">
           <VoteResultImgZone $pollAnswer={pollAnswer}>
-            <img src={voteUp} />
+            <img src={voteUp} alt="오른다" />
             <Txt typography="Pretendard32bold" color="watcha">
               vs
             </Txt>
-            <img src={voteDown} />
+            <img src={voteDown} alt="내린다" />
           </VoteResultImgZone>
           <div>
             <Txt typography="Pretendard32bold" color="watcha">
