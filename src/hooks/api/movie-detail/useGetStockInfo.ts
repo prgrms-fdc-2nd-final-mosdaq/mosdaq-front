@@ -6,8 +6,8 @@ export const useGetStockInfo = (movieId: string) => {
   const { data } = useSuspenseQuery<IStockMovieInfo>({
     queryKey: ['movieDetail', 'stocks', movieId],
     queryFn: () => fetchGetStockInfo(movieId),
-    staleTime: 0,
-    refetchOnWindowFocus: true,
+    staleTime: 1000 * 6 * 5,
+    gcTime: 1000 * 6 * 5,
   });
 
   return {

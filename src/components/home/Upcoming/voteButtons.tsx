@@ -13,7 +13,9 @@ interface VoteButtonsProps {
 }
 
 export default function VoteButtons({ movie, myPollResult }: VoteButtonsProps) {
-  const { pollMovie } = usePollMovie(movie.movieId.toString());
+  const { pollMovie, SnackbarComponent } = usePollMovie(
+    movie.movieId.toString(),
+  );
 
   const { upPercentage, downPercentage } = calculatePercentages(
     movie.up,
@@ -63,6 +65,7 @@ export default function VoteButtons({ movie, myPollResult }: VoteButtonsProps) {
           </>
         )}
       </VoteButtonWrapper>
+      {SnackbarComponent}
     </VoteContainer>
   );
 }

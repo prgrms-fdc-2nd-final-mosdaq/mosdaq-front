@@ -6,8 +6,8 @@ export const useGetPollBox = (movieId: string) => {
   const { data } = useSuspenseQuery<IPollBox>({
     queryKey: ['movieDetail', 'pollBox', movieId],
     queryFn: () => fetchGetPollBox(movieId),
-    staleTime: 0,
-    refetchOnWindowFocus: true,
+    staleTime: 1000 * 6,
+    gcTime: 1000 * 6,
   });
 
   return {

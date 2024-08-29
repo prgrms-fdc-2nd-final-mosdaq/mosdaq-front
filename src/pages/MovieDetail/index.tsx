@@ -14,12 +14,6 @@ export default function MovieDetail() {
   const { movieId } = useParams<{ movieId: string }>();
 
   if (!movieId) return null;
-  // useEffect(() => {
-  //   if (typeof movieId === 'undefined' || movieId.trim() === '') {
-  //     alert('잘못된 movieId입니다. 영화 목록으로 이동합니다');
-  //     navigate(`/movie-list/`);
-  //   }
-  // }, [movieId]);
 
   const { movieDetail } = useGetMovieDetail(movieId);
   const { pollBox } = useGetPollBox(movieId);

@@ -11,15 +11,19 @@ import { IMovieListResponse } from '@/models/movie-list.model';
 import { IMovieDetail } from '@/models/movie.model';
 import useAuthStore from '@/store/authStore';
 import { useAlert } from '@/hooks/useAlert';
+import { MySnackbar } from '@/components/common/Snackbar';
 
 export const usePollMovie = (movieId: string) => {
   const queryClient = useQueryClient();
   const { isLoggedIn } = useAuthStore();
   const { updateUserPoint } = useUserProfile();
   const { showConfirm } = useAlert();
+  const { openSnackbar, SnackbarComponent } = MySnackbar();
 
   const { mutate } = useMutation({
-    mutationFn: async (pollResult: 'up' | 'down'): Promise<IPollBox> => {
+    mutationFn: async (
+      pollResult: 'up' | 'down',
+    ): Promise<{ point: number; rank: number }> => {
       return fetchPollMovie(+movieId, pollResult);
     },
     onMutate(pollResult: 'up' | 'down') {
@@ -249,7 +253,12 @@ export const usePollMovie = (movieId: string) => {
         prevMyPageMovieListResponse,
       };
     },
-    onSuccess: () => {},
+    onSuccess: (data: { point: number; rank: number }, _variables) => {
+      openSnackbar({
+        message: `투표가 성공적으로 완료되었습니다! 현재 ${data.point} 포인트입니다.`,
+        autoHideDuration: 6000,
+      });
+    },
     onError: (_error, _variables, context: any) => {
       const {
         prevPollBox,
@@ -257,7 +266,7 @@ export const usePollMovie = (movieId: string) => {
         prevMovieListResponse,
         prevMyPageMovieListResponse,
       } = context;
-      console.log('context : ', context);
+
       if (prevPollBox) {
         queryClient.setQueryData(
           ['movieDetail', 'pollBox', movieId],
@@ -298,5 +307,6 @@ export const usePollMovie = (movieId: string) => {
 
   return {
     pollMovie,
+    SnackbarComponent,
   };
 };

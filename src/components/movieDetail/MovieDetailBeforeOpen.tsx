@@ -3,12 +3,13 @@ import { Txt } from '@/components/common/Txt';
 import { IMovieDetail } from '@/models/movie.model';
 import { IPollBox } from '@/models/poll.model';
 import { FcAdvertising } from 'react-icons/fc';
-import { dateDifference } from '@/utils/format';
+
 import { Link } from 'react-router-dom';
 import colors from '@/constants/colors';
 import clockImg from '@/assets/images/movieDetail/clock.svg';
 import rightArrow from '@/assets/images/main/arrow.png';
 import VoteButton from '@/components/vote/VoteButton';
+import useCountdown from '@/hooks/useCountdown';
 
 interface Props {
   movieId: string;
@@ -21,6 +22,7 @@ export default function MovieDetailBeforeOpen({
   movieDetail,
   pollBox,
 }: Props) {
+  const { days, hours, minutes } = useCountdown(movieDetail.movieOpenDate);
   return (
     <>
       <VotingNowTxt typography="Pretendard36bold" color="watcha">
@@ -49,7 +51,7 @@ export default function MovieDetailBeforeOpen({
       <VotingStatus>
         <div className="voting-status-left">
           <Txt typography="Pretendard24bold" color="watcha">
-            {dateDifference(movieDetail.movieOpenDate)} 후 종료
+            {days}일 {hours}시간 {minutes}분 후 종료
           </Txt>
           <VoteNum
             typography="Pretendard24bold"

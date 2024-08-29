@@ -24,13 +24,15 @@ export default function Carousel({ movieList }: CarouselProps) {
       <ImageWrapper>
         {currentMovies.map((movie) => (
           <ImageContainer key={movie.movieId}>
-            <Image
-              loading="lazy"
-              className="img-hover-effect"
-              src={movie.posterUrl[0]}
-              alt={movie.movieTitle}
-              onClick={() => handlePosterClick(movie.movieId)}
-            />
+            <div className="img-wrap">
+              <Image
+                loading="lazy"
+                className="img-hover-effect"
+                src={movie.posterUrl[0]}
+                alt={movie.movieTitle}
+                onClick={() => handlePosterClick(movie.movieId)}
+              />
+            </div>
             <Title typography="Pretendard20bold">{movie.movieTitle}</Title>
             <VotingStatus myPollResult={movie.myPollResult} />
             <VoteButtons movie={movie} myPollResult={movie.myPollResult} />
@@ -63,8 +65,14 @@ const ImageContainer = styled.div`
   align-items: center;
 
   width: 400px;
-  height: 570px;
+  /* height: 570px; */
   margin: 0 52px;
+
+  .img-wrap {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const Image = styled.img`

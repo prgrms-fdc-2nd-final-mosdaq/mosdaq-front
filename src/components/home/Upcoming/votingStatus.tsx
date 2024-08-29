@@ -19,7 +19,7 @@ export default function votingStatus({ myPollResult }: VotingStatusProps) {
       ) : (
         <VotedContainer>
           <Txt typography="Pretendard20bold" color="greyscale9">
-            Voting Closed
+            Voted
           </Txt>
         </VotedContainer>
       )}
