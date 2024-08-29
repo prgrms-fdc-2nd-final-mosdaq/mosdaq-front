@@ -33,7 +33,7 @@ export default function VoteButton({
   const isDownSelected: boolean = pollBox.pollResult === 'down';
   const isVoteSelected: boolean = !!pollBox.pollResult;
 
-  const { pollMovie } = usePollMovie(movieId);
+  const { pollMovie, SnackbarComponent } = usePollMovie(movieId);
   const { upPercentage, downPercentage } = calculatePercentages(
     pollBox.up,
     pollBox.down,
@@ -135,6 +135,7 @@ export default function VoteButton({
           />
         </div>
       </VoteRightZone>
+      {SnackbarComponent}
     </ButtonContainer>
   );
 }
@@ -160,7 +161,7 @@ const VoteItem = styled.div<VoteItemProps>`
     outline 0.2s ease,
     color 0.1s ease;
   border: ${({ $isSelected }) =>
-    $isSelected ? `2px solid ${colors.watcha}` : '2px solid transparent'};
+    $isSelected ? `3px solid ${colors.watcha}` : '2px solid transparent'};
   background-color: ${({ $isDisabled }) =>
     $isDisabled ? `${colors.greyscale2}` : 'transparent'};
 

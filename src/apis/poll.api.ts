@@ -11,7 +11,7 @@ export const fetchPollMovie = async (
   movieId: number,
   pollResult: 'up' | 'down',
 ) => {
-  const res = await axiosInstance.put<IPollBox>(`/poll/${movieId}`, {
+  const res = await axiosInstance.put(`/poll/${movieId}`, {
     pollResult,
   });
 
