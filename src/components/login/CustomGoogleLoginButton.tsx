@@ -23,6 +23,10 @@ const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition:
+    background 0.2s ease,
+    outline 0.2s ease,
+    color 0.1s ease;
 
   &:hover {
     background-color: ${colors.greyscale1};

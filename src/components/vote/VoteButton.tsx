@@ -155,11 +155,18 @@ const VoteItem = styled.div<VoteItemProps>`
   justify-content: center;
   flex: 1;
   cursor: ${({ $isPollActive }) => ($isPollActive ? `pointer` : 'default')};
-  transition: color 0.1s ease;
+  transition:
+    background 0.2s ease,
+    outline 0.2s ease,
+    color 0.1s ease;
   border: ${({ $isSelected }) =>
     $isSelected ? `2px solid ${colors.watcha}` : '2px solid transparent'};
   background-color: ${({ $isDisabled }) =>
     $isDisabled ? `${colors.greyscale2}` : 'transparent'};
+
+  &:hover {
+    background-color: ${colors.greyscale1};
+  }
 
   .container {
     display: flex;

@@ -33,7 +33,7 @@ export default function Carousel({ movieList }: CarouselProps) {
             />
             <Title typography="Pretendard20bold">{movie.movieTitle}</Title>
             <VotingStatus myPollResult={movie.myPollResult} />
-            <VoteButtons movie={movie} />
+            <VoteButtons movie={movie} myPollResult={movie.myPollResult} />
           </ImageContainer>
         ))}
       </ImageWrapper>
