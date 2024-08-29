@@ -39,7 +39,7 @@ export default function MovieDetailBeforeOpen({
       <Divider />
 
       <ScoreInfo typography="Pretendard24bold">
-        🎯 정답을 맞추면 10포인트 획득!
+        🎯 예측이 맞을 때 10포인트 획득!
       </ScoreInfo>
 
       <VoteContainer>
