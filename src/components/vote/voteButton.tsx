@@ -16,9 +16,9 @@ interface VoteButtonProps {
 }
 
 interface VoteItemProps {
-  isSelected: boolean;
-  isDisabled: boolean;
-  isVoteSelected: boolean;
+  $isSelected: boolean;
+  $isDisabled: boolean;
+  $isVoteSelected: boolean;
 }
 
 export default function VoteButton({ movieId, pollBox }: VoteButtonProps) {
@@ -36,9 +36,9 @@ export default function VoteButton({ movieId, pollBox }: VoteButtonProps) {
     <ButtonContainer>
       <VoteLeftZone
         onClick={() => pollMovie('up')}
-        isSelected={isUpSelected}
-        isDisabled={isDownSelected}
-        isVoteSelected={isVoteSelected}
+        $isSelected={isUpSelected}
+        $isDisabled={isDownSelected}
+        $isVoteSelected={isVoteSelected}
       >
         <div className="container">
           <VoteIconLeft
@@ -71,7 +71,7 @@ export default function VoteButton({ movieId, pollBox }: VoteButtonProps) {
           </TextContainer>
         </div>
       </VoteLeftZone>
-      <VSContainer isDisabled={isVoteSelected}>
+      <VSContainer $isDisabled={isVoteSelected}>
         <VoteText
           typography="Pretendard32bold"
           color={isVoteSelected ? 'greyscale6' : 'watcha'}
@@ -81,9 +81,9 @@ export default function VoteButton({ movieId, pollBox }: VoteButtonProps) {
       </VSContainer>
       <VoteRightZone
         onClick={() => pollMovie('down')}
-        isSelected={isDownSelected}
-        isDisabled={isUpSelected}
-        isVoteSelected={isVoteSelected}
+        $isSelected={isDownSelected}
+        $isDisabled={isUpSelected}
+        $isVoteSelected={isVoteSelected}
       >
         <div className="container">
           <TextContainer>
@@ -143,10 +143,10 @@ const VoteItem = styled.div<VoteItemProps>`
   flex: 1;
   cursor: pointer;
   transition: color 0.1s ease;
-  border: ${({ isSelected }) =>
-    isSelected ? `2px solid ${colors.watcha}` : '2px solid transparent'};
-  background-color: ${({ isDisabled }) =>
-    isDisabled ? `${colors.greyscale2}` : 'transparent'};
+  border: ${({ $isSelected }) =>
+    $isSelected ? `2px solid ${colors.watcha}` : '2px solid transparent'};
+  background-color: ${({ $isDisabled }) =>
+    $isDisabled ? `${colors.greyscale2}` : 'transparent'};
 
   .container {
     display: flex;
@@ -172,7 +172,7 @@ const VoteText = styled(Txt)`
   margin: 0 15px;
 `;
 
-const VSContainer = styled.div<{ isDisabled: boolean }>`
+const VSContainer = styled.div<{ $isDisabled: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -180,8 +180,8 @@ const VSContainer = styled.div<{ isDisabled: boolean }>`
   height: 100%;
   border-left: 1px solid ${colors.greyscale8};
   border-right: 1px solid ${colors.greyscale8};
-  background-color: ${({ isDisabled }) =>
-    isDisabled ? `${colors.greyscale2}` : 'transparent'};
+  background-color: ${({ $isDisabled }) =>
+    $isDisabled ? `${colors.greyscale2}` : 'transparent'};
 `;
 
 const TextContainer = styled.div`
