@@ -3,7 +3,6 @@
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './pages/root';
-import MovieListPage from './pages/MovieList';
 import CustomSuspenseErrorResetBoundary from './components/common/CustomSuspenseErrorResetBoundary';
 import { MovieDetailWrapper } from './components/CLSWrapper';
 import NotFoundPage from './pages/NotFound';
@@ -14,6 +13,14 @@ const HomePage = Object.assign(
     preload: () => import('./pages/Home'),
   },
 );
+
+const MovieListPage = Object.assign(
+  lazy(() => import('./pages/MovieList')),
+  {
+    preload: () => import('./pages/MovieList'),
+  },
+);
+
 const LoginPage = Object.assign(
   lazy(() => import('./pages/Login')),
   {
@@ -39,6 +46,7 @@ const router = createBrowserRouter([
     path: '/',
     element: (
       <RootLayout
+        preloadMovieListPage={MovieListPage.preload}
         preloadQuizPage={QuizPage.preload}
         preloadMyPage={MyPage.preload}
         preloadLoginPage={LoginPage.preload}

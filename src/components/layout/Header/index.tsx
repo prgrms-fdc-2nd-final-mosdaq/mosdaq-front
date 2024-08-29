@@ -15,6 +15,7 @@ interface IHeaderProps {
   preloadMyPage: () => void;
   preloadLoginPage: () => void;
   preloadHomePage: () => void;
+  preloadMovieListPage: () => void;
 }
 
 export default function Header({
@@ -22,6 +23,7 @@ export default function Header({
   preloadMyPage,
   preloadLoginPage,
   preloadHomePage,
+  preloadMovieListPage,
 }: IHeaderProps) {
   const { isLoggedIn } = useAuthStore();
   const { userProfile } = useGetUserProfile();
@@ -48,7 +50,10 @@ export default function Header({
           <StyledNav>
             <Button size="small">
               <Txt typography={matchMovieList ? 'Pretendard24bold' : 'p'}>
-                <Link onClick={() => handleNaviagte('/movie-list')}>
+                <Link
+                  onMouseEnter={preloadMovieListPage}
+                  onClick={() => handleNaviagte('/movie-list')}
+                >
                   영화 목록
                 </Link>
               </Txt>
