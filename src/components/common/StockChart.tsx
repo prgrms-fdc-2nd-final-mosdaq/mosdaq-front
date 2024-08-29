@@ -15,8 +15,8 @@ interface Props {
 const StockChart = ({
   stockPriceList,
   movieOpenDate,
-  width = 430,
-  height = 400,
+  width = 410,
+  height = 380,
 }: Props) => {
   const dates = stockPriceList.map((stock) => stock.date);
   const prices = stockPriceList.map((stock) => stock.price);

@@ -45,8 +45,10 @@ const ImgCard = forwardRef<HTMLDivElement, ImgCardProps>(
           $isCardFliped={isCardFliped}
         >
           <div className="front">
-            <img src={movie.posterUrl[0]} alt={movie.movieTitle} 
-            loading='lazy'
+            <img
+              src={movie.posterUrl[0]}
+              alt={movie.movieTitle}
+              loading="lazy"
             />
           </div>
           {index === centerIndex && (
@@ -187,6 +189,7 @@ const StyledCard = styled.div<StyledCardProps>`
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    padding: 10px 0;
 
     .back-top {
       display: flex;
