@@ -37,6 +37,8 @@ export default function MovieDetailAfterOpen({
   const isNotYet4WeeksLater =
     shiftDateByWeeks(movieDetail.movieOpenDate, false) > getTodayYYYYMMDD();
 
+  console.log(isNotYet4WeeksLater);
+
   return (
     <>
       <VotingContainer>
@@ -74,25 +76,22 @@ export default function MovieDetailAfterOpen({
             ))}
         </VotingStatus>
 
-        {/* {isNotYet4WeeksLater ? (
+        {pollResult && isNotYet4WeeksLater ? (
           // 버튼 수정하기로
           <VoteButton
-            onUpVote={() => {
-              console.log('Upvoted!');
-            }}
-            onDownVote={() => {
-              console.log('Downvoted!');
-            }}
+            movieId={movieId}
+            pollBox={pollBox}
+            isPollActive={false}
           />
-        ) : ( */}
-        <VoteButtonAfterMovieOpen
-          up={up}
-          down={down}
-          myPollResult={pollResult}
-          pollAnswer={pollAnswer}
-          isNotYet4WeeksLater={isNotYet4WeeksLater}
-        />
-        {/* )} */}
+        ) : (
+          <VoteButtonAfterMovieOpen
+            up={up}
+            down={down}
+            myPollResult={pollResult}
+            pollAnswer={pollAnswer}
+            isNotYet4WeeksLater={isNotYet4WeeksLater}
+          />
+        )}
       </VotingContainer>
       <Divider />
       <StockContainer>

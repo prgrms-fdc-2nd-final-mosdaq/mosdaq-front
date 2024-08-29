@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './pages/root';
 import CustomSuspenseErrorResetBoundary from './components/common/CustomSuspenseErrorResetBoundary';
 import { MovieDetailWrapper } from './components/CLSWrapper';
+import NotFoundPage from './pages/NotFound';
 
 const HomePage = Object.assign(
   lazy(() => import('./pages/Home')),
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
             <QuizPage />
           </Suspense>
         ),
+      },
+      {
+        path: '*',
+        element: <NotFoundPage />,
       },
     ],
   },

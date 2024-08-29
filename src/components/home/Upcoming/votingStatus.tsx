@@ -13,13 +13,13 @@ export default function votingStatus({ myPollResult }: VotingStatusProps) {
       {myPollResult === null ? (
         <VotingNowContainer>
           <Txt typography="Pretendard20bold" color="watcha">
-            Voting Now
+            Now Voting
           </Txt>
         </VotingNowContainer>
       ) : (
         <VotedContainer>
           <Txt typography="Pretendard20bold" color="greyscale9">
-            Voted
+            Voting Closed
           </Txt>
         </VotedContainer>
       )}

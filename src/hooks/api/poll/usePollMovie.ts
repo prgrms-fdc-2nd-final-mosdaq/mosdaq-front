@@ -222,7 +222,7 @@ export const usePollMovie = (movieId: string) => {
               newMovie = {
                 movieId: +movieId,
                 movieTitle: movieDetail.movieTitle,
-                posterUrl: movieDetail.moviePoster,
+                posterUrl: movieDetail.posterUrl,
                 up: newPollBox.up,
                 down: newPollBox.down,
                 myPollResult: newPollBox.pollResult,
