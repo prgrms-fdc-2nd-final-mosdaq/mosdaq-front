@@ -4,10 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
 import { useEffect } from 'react';
 import CustomGoogleLoginButton from '../../components/login/CustomGoogleLoginButton';
-import loginTriangle from '@/assets/images/login/login-triangle.svg';
-import loginMovieStock from '@/assets/images/login/login-movieStock.svg';
-import loginDescription from '@/assets/images/login/login-description.svg';
-import loginWarning from '@/assets/images/login/login-warning.svg';
 import loginBg from '@/assets/images/login/login-bg.svg';
 import colors from '@/constants/colors';
 
@@ -22,28 +18,7 @@ export default function LoginPage() {
   return (
     <StyledLoginPage>
       <div className="login-wrap">
-        <div className="login-left">
-          <img
-            className="login-triangle"
-            src={loginTriangle}
-            alt="site description"
-          />
-          <img
-            className="login-movieStock"
-            src={loginMovieStock}
-            alt="site description"
-          />
-          <img
-            className="login-description"
-            src={loginDescription}
-            alt="site description"
-          />
-          <img
-            className="login-warning"
-            src={loginWarning}
-            alt="site description"
-          />
-        </div>
+        <div className="login-left"></div>
 
         <div className="login-right">
           <h1>mosdaq</h1>
