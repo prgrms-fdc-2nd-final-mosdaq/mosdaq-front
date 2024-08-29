@@ -217,7 +217,6 @@ export const usePollMovie = (movieId: string) => {
         const movieList = shallow.pages.flat()[0].movieList;
         if (movieList) {
           if (mainPollingMovies?.movieList) {
-            // d여기 test 안 함
             newMovie = { ...mainTargetMovie };
           } else {
             const movieDetail: IMovieDetail | undefined =
@@ -253,11 +252,11 @@ export const usePollMovie = (movieId: string) => {
         prevMyPageMovieListResponse,
       };
     },
-    onSuccess: (data: { point: number; rank: number }, _variables) => {
-      openSnackbar({
-        message: `투표가 성공적으로 완료되었습니다! 현재 ${data.point} 포인트입니다.`,
-        autoHideDuration: 6000,
-      });
+    onSuccess: (_data: { point: number; rank: number }, _variables) => {
+      // openSnackbar({
+      //   message: `투표가 성공적으로 완료되었습니다! 현재 ${data.point} 포인트입니다.`,
+      //   autoHideDuration: 6000,
+      // });
     },
     onError: (_error, _variables, context: any) => {
       const {
