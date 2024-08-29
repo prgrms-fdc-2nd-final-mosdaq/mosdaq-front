@@ -13,15 +13,22 @@ import { VoteIconLeft, VoteIconRight } from './VoteButtonAfterMovieOpen';
 interface VoteButtonProps {
   movieId: string;
   pollBox: IPollBox;
+  isPollActive?: boolean;
+  // 개봉 이후 4주가 지나지 않은 영화 상세페이지에서 투표 기능을 막기 위함
 }
 
 interface VoteItemProps {
   $isSelected: boolean;
   $isDisabled: boolean;
   $isVoteSelected: boolean;
+  $isPollActive: boolean;
 }
 
-export default function VoteButton({ movieId, pollBox }: VoteButtonProps) {
+export default function VoteButton({
+  movieId,
+  pollBox,
+  isPollActive = true,
+}: VoteButtonProps) {
   const isUpSelected: boolean = pollBox.pollResult === 'up';
   const isDownSelected: boolean = pollBox.pollResult === 'down';
   const isVoteSelected: boolean = !!pollBox.pollResult;
@@ -35,10 +42,13 @@ export default function VoteButton({ movieId, pollBox }: VoteButtonProps) {
   return (
     <ButtonContainer>
       <VoteLeftZone
-        onClick={() => pollMovie('up')}
+        onClick={() => {
+          if (isPollActive) pollMovie('up');
+        }}
         $isSelected={isUpSelected}
         $isDisabled={isDownSelected}
         $isVoteSelected={isVoteSelected}
+        $isPollActive={isPollActive}
       >
         <div className="container">
           <VoteIconLeft
@@ -80,10 +90,13 @@ export default function VoteButton({ movieId, pollBox }: VoteButtonProps) {
         </VoteText>
       </VSContainer>
       <VoteRightZone
-        onClick={() => pollMovie('down')}
+        onClick={() => {
+          if (isPollActive) pollMovie('down');
+        }}
         $isSelected={isDownSelected}
         $isDisabled={isUpSelected}
         $isVoteSelected={isVoteSelected}
+        $isPollActive={isPollActive}
       >
         <div className="container">
           <TextContainer>
@@ -141,7 +154,7 @@ const VoteItem = styled.div<VoteItemProps>`
   align-items: center;
   justify-content: center;
   flex: 1;
-  cursor: pointer;
+  cursor: ${({ $isPollActive }) => ($isPollActive ? `pointer` : 'default')};
   transition: color 0.1s ease;
   border: ${({ $isSelected }) =>
     $isSelected ? `2px solid ${colors.watcha}` : '2px solid transparent'};
