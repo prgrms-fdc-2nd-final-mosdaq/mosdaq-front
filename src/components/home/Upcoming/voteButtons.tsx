@@ -1,12 +1,8 @@
-import { useEffect, useState } from 'react';
 import upIcon from '../../../assets/images/main/mainUpBtn.png';
 import downIcon from '../../../assets/images/main/mainDownBtn.png';
 import styled from 'styled-components';
 import { Txt } from '@/components/common/Txt';
-import { useUpdateVote } from '@/hooks/api/main-movie/useUpdateVote';
 import { IMovie } from '@/models/main-movie.model';
-import { useQueryClient, useQuery } from '@tanstack/react-query';
-import { fetchGetMainPollingMovie } from '@/apis/main-movie.api';
 import { usePollMovie } from '@/hooks/api/poll/usePollMovie';
 import { calculatePercentages } from '@/utils/math';
 

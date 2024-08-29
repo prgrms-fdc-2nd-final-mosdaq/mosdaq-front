@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Txt } from '@/components/common/Txt';
 import { IMovieDetail } from '@/models/movie.model';
@@ -9,7 +8,6 @@ import { Link } from 'react-router-dom';
 import colors from '@/constants/colors';
 import clockImg from '@/assets/images/movieDetail/clock.svg';
 import rightArrow from '@/assets/images/main/arrow.png';
-import { usePollMovie } from '@/hooks/api/poll/usePollMovie';
 import VoteButton from '@/components/vote/VoteButton';
 
 interface Props {
