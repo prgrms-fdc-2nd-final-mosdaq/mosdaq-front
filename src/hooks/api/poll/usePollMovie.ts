@@ -9,10 +9,14 @@ import useUserProfile from '@/hooks/user/useUserProfile';
 import { IMovie, IPollingMovies } from '@/models/main-movie.model';
 import { IMovieListResponse } from '@/models/movie-list.model';
 import { IMovieDetail } from '@/models/movie.model';
+import useAuthStore from '@/store/authStore';
+import { useAlert } from '@/hooks/useAlert';
 
 export const usePollMovie = (movieId: string) => {
   const queryClient = useQueryClient();
+  const { isLoggedIn } = useAuthStore();
   const { updateUserPoint } = useUserProfile();
+  const { showConfirm } = useAlert();
 
   const { mutate } = useMutation({
     mutationFn: async (pollResult: 'up' | 'down'): Promise<IPollBox> => {
@@ -279,6 +283,16 @@ export const usePollMovie = (movieId: string) => {
   });
 
   const pollMovie = (pollResult: 'up' | 'down') => {
+    if (!isLoggedIn) {
+      showConfirm(
+        `로그인 한 유저만 투표가 가능합니다.\n로그인 화면으로 이동하시겠습니까?`,
+        () => {
+          window.location.href = '/login';
+        },
+      );
+      return;
+    }
+
     mutate(pollResult);
   };
 
