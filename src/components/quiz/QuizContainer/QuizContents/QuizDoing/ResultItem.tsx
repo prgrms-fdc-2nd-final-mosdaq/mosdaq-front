@@ -32,7 +32,7 @@ export default function ResultItem({
     setIsResult(false);
   };
 
-  console.log(movieQuiz.fourWeeksAfterPrice, movieQuiz.fourWeeksBeforePrice);
+  // console.log(movieQuiz.fourWeeksAfterPrice, movieQuiz.fourWeeksBeforePrice);
   // 퍼센트 변화를 계산합니다.
   const priceDifference = +(
     movieQuiz.fourWeeksAfterPrice - movieQuiz.fourWeeksBeforePrice

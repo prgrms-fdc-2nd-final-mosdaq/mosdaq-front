@@ -21,7 +21,7 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.error(error);
+    // console.error(error);
     return Promise.reject(error);
   },
 );
@@ -46,7 +46,7 @@ axiosInstance.interceptors.response.use(
             'Bearer ' + response.data.accessToken;
           return axios.request(error.config);
         } catch (error) {
-          console.error('Refresh token failed', error);
+          // console.error('Refresh token failed', error);
           //logout
           removeItem('accessToken');
           removeItem('refreshToken');

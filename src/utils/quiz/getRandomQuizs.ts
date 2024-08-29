@@ -17,4 +17,4 @@ export function getRandomQuizs<T>(array: T[], count: number = 10): T[] {
 // 예시 사용법
 // const myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 // const selectedElements = getRandomQuizs(myArray);
-// console.log(selectedElements);
+// // console.log(selectedElements);

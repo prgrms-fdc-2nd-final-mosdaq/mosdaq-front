@@ -11,7 +11,7 @@ export const useGetRandomQuizs = () => {
     if (movieQuizData) {
       setMovieQuizs(getRandomQuizs(movieQuizData));
     }
-    console.log(movieQuizs);
+    // console.log(movieQuizs);
   }, [movieQuizData]);
 
   return {

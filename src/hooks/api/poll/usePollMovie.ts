@@ -130,8 +130,8 @@ export const usePollMovie = (movieId: string) => {
         );
 
         if (targetMoviePagesIndex !== -1) {
-          console.log('shallow', shallow);
-          console.log('shallow', shallow.pages[targetMoviePagesIndex]);
+          // console.log('shallow', shallow);
+          // console.log('shallow', shallow.pages[targetMoviePagesIndex]);
 
           const movieList =
             shallow.pages.flat()[targetMoviePagesIndex].movieList;
@@ -189,7 +189,7 @@ export const usePollMovie = (movieId: string) => {
                   ].myPollResult = 'down';
                 }
               }
-              console.log('shallow,', shallow);
+              // console.log('shallow,', shallow);
               queryClient.setQueryData(
                 ['movieList', '?sort=DESC&poll=true'],
                 shallow,

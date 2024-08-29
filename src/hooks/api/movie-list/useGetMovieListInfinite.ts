@@ -16,7 +16,7 @@ export const useGetMovieListInfinite = () => {
       const isLastPage =
         movieListRes.pagination.totalPages ===
         movieListRes.pagination.currentPage;
-      // console.log(movieListRes.pagination.currentPage);
+      // // console.log(movieListRes.pagination.currentPage);
 
       return isLastPage ? null : movieListRes.pagination.currentPage;
     },

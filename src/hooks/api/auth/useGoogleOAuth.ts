@@ -21,9 +21,9 @@ export const useGoogleOAuth = () => {
       setIsLoggedIn(true);
       navigate('/');
     },
-    onError: (error) => {
+    onError: () => {
       //:TODO
-      console.log('로그인 실패:', error);
+      // console.log('로그인 실패:', error);
     },
   });
 
@@ -34,13 +34,13 @@ export const useGoogleOAuth = () => {
       mutation.mutate(credential);
     } else {
       //:TODO
-      console.error('Credential is missing');
+      // console.error('Credential is missing');
     }
   };
 
   const handleGoogleLoginError = () => {
     //:TODO
-    console.log('Login Failed');
+    // console.log('Login Failed');
   };
 
   const googleLogin = useGoogleLogin({

@@ -9,7 +9,7 @@ export default function MovieListGrid() {
   const { movieListData, isFetching, fetchNextPage, hasNextPage } =
     useGetMovieListInfinite();
 
-  // console.log(movieListData);
+  // // console.log(movieListData);
   const moreRef = useIntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
       loadMore();

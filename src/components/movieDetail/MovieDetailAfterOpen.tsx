@@ -37,7 +37,7 @@ export default function MovieDetailAfterOpen({
   const isNotYet4WeeksLater =
     shiftDateByWeeks(movieDetail.movieOpenDate, false) > getTodayYYYYMMDD();
 
-  console.log(isNotYet4WeeksLater);
+  // console.log(isNotYet4WeeksLater);
 
   return (
     <>

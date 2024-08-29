@@ -9,7 +9,7 @@ export const useGetMovieQuiz = () => {
     refetchOnWindowFocus: true,
   });
 
-  // console.log(data);
+  // // console.log(data);
 
   return {
     movieQuizData: data,
