@@ -1,4 +1,4 @@
-import { Link, useMatch } from 'react-router-dom';
+import { useMatch } from 'react-router-dom';
 import styled from 'styled-components';
 import colors from '../../../constants/colors';
 import { Txt } from '../../common/Txt';
@@ -7,6 +7,8 @@ import mainLogo from '../../../assets/images/main/mainLogo.png';
 import mypageLogo from '../../../assets/images/main/mypageLogo.png';
 import useAuthStore from '@/store/authStore';
 import useGetUserProfile from '@/hooks/api/auth/useGetUserInfo';
+import { useNavigate } from 'react-router-dom';
+import { startTransition } from 'react';
 
 interface IHeaderProps {
   preloadQuizPage: () => void;
@@ -25,23 +27,38 @@ export default function Header({
   const { userProfile } = useGetUserProfile();
   const matchMovieList = useMatch('/movie-list');
   const matchQuiz = useMatch('/quiz');
+  const navigate = useNavigate();
+
+  const handleNaviagte = (route: string) => {
+    startTransition(() => {
+      navigate(route);
+    });
+  };
 
   return (
     <StyledHeaderContainer>
       <StyledHeaderContent>
         <StyledLeftSection>
-          <Link to="/" onMouseEnter={preloadHomePage}>
+          <Link
+            onMouseEnter={preloadHomePage}
+            onClick={() => handleNaviagte('/')}
+          >
             <StyledMainLogo src={mainLogo} alt="Main Logo" />
           </Link>
           <StyledNav>
             <Button size="small">
               <Txt typography={matchMovieList ? 'Pretendard24bold' : 'p'}>
-                <Link to="/movie-list">영화 목록</Link>
+                <Link onClick={() => handleNaviagte('/movie-list')}>
+                  영화 목록
+                </Link>
               </Txt>
             </Button>
             <Button size="small">
               <Txt typography={matchQuiz ? 'Pretendard24bold' : 'p'}>
-                <Link to="/quiz" onMouseEnter={preloadQuizPage}>
+                <Link
+                  onClick={() => handleNaviagte('/quiz')}
+                  onMouseEnter={preloadQuizPage}
+                >
                   영화 퀴즈
                 </Link>
               </Txt>
@@ -50,7 +67,10 @@ export default function Header({
         </StyledLeftSection>
         <StyledRightSection>
           {isLoggedIn ? (
-            <Link to="/mypage" onMouseEnter={preloadMyPage}>
+            <Link
+              onClick={() => handleNaviagte('/mypage')}
+              onMouseEnter={preloadMyPage}
+            >
               <StyledMypageLogo
                 src={
                   isLoggedIn && userProfile && userProfile.picture
@@ -63,7 +83,10 @@ export default function Header({
           ) : (
             <Button size="small" variant="secondary">
               <Txt color="white">
-                <Link to="/login" onMouseEnter={preloadLoginPage}>
+                <Link
+                  onClick={() => handleNaviagte('/login')}
+                  onMouseEnter={preloadLoginPage}
+                >
                   로그인
                 </Link>
               </Txt>
@@ -116,10 +139,14 @@ const StyledRightSection = styled.div`
   height: 100%;
   max-height: 68px;
 
-  a {
+  div {
     height: inherit;
     max-height: inherit;
   }
+`;
+
+const Link = styled.div`
+  cursor: pointer;
 `;
 
 const StyledNav = styled.nav`

@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import colors from '@/constants/colors';
 import clockImg from '@/assets/images/movieDetail/clock.svg';
 import rightArrow from '@/assets/images/main/arrow.png';
-import VoteButton from '@/components/vote/VoteButton';
+import VoteButton from '@/components/vote/abc';
 
 interface Props {
   movieId: string;
