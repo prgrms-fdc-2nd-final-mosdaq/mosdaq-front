@@ -13,23 +13,12 @@ import { IMovieDetail } from '@/models/movie.model';
 export const usePollMovie = (movieId: string) => {
   const queryClient = useQueryClient();
   const { updateUserPoint } = useUserProfile();
+
   const { mutate } = useMutation({
-    // mutationFn: async (pollResult: 'up' | 'down') =>
-    //   fetchPollMovie(movieId, pollResult),
-    // mutationFn: async (): Promise<IPollBox> => {
-    //   return {} as IPollBox; // 빈 객체를 IPollBox 타입으로 캐스팅
-    // },
-    mutationFn: async (): Promise<IPollBox> => {
-      // 특정 조건에 따라 실패
-      const shouldFail = true; // 실패 조건
-
-      if (shouldFail) {
-        return Promise.reject(new Error('API 요청 실패')); // 실패 반환
-      }
-
-      return {} as IPollBox; // 성공 시 빈 객체 반환
+    mutationFn: async (pollResult: 'up' | 'down'): Promise<IPollBox> => {
+      return fetchPollMovie(+movieId, pollResult);
     },
-    onMutate(pollResult: string) {
+    onMutate(pollResult: 'up' | 'down') {
       // pollBox update
       const pollBoxData: IPollBox | undefined = queryClient.getQueryData([
         'movieDetail',
@@ -106,7 +95,7 @@ export const usePollMovie = (movieId: string) => {
             }
           }
           mainTargetMovie = { ...shallow[targetMovieIndex] };
-          console.log('shallow', shallow);
+
           queryClient.setQueryData(['pollingMovies'], {
             movieList: shallow,
             movieListCount: mainPollingMovies.movieListCount,
@@ -256,7 +245,6 @@ export const usePollMovie = (movieId: string) => {
         prevMyPageMovieListResponse,
       };
     },
-
     onSuccess: () => {},
     onError: (error, variables, context: any) => {
       const {

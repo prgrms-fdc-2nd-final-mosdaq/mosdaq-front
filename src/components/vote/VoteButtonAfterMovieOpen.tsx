@@ -33,7 +33,7 @@ export default function VoteButtonAfterMovieOpen({
         $pollAnswer={pollAnswer}
       >
         <div className="container">
-          <VoteIconRight
+          <VoteIconLeft
             src={
               pollAnswer === myPollResult && myPollResult === 'up'
                 ? upIcon
@@ -63,7 +63,7 @@ export default function VoteButtonAfterMovieOpen({
             {downPercentage}%
           </VoteStatusRight>
 
-          <VoteIconLeft
+          <VoteIconRight
             src={
               pollAnswer === myPollResult && myPollResult === 'down'
                 ? downIcon
@@ -181,17 +181,17 @@ const VoteRightZone = styled(VoteItem)<PollResultProps>`
   }};
 `;
 
-const VoteIcon = styled.img`
+export const VoteIcon = styled.img`
   width: 52px;
   height: 57px;
   padding 10px;
 `;
 
-const VoteIconRight = styled(VoteIcon)`
-  margin-right: 8px;
-`;
-const VoteIconLeft = styled(VoteIcon)`
+export const VoteIconRight = styled(VoteIcon)`
   margin-left: 8px;
+`;
+export const VoteIconLeft = styled(VoteIcon)`
+  margin-right: 8px;
 `;
 
 const VoteStatusRight = styled.span<VoteStatusProps>`
