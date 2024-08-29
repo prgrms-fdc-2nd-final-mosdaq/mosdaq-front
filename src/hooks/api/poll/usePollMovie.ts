@@ -246,7 +246,7 @@ export const usePollMovie = (movieId: string) => {
       };
     },
     onSuccess: () => {},
-    onError: (error, variables, context: any) => {
+    onError: (_error, _variables, context: any) => {
       const {
         prevPollBox,
         prevMainPollingMovies,
