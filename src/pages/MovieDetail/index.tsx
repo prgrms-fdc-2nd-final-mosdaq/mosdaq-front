@@ -45,14 +45,19 @@ export default function MovieDetail() {
 
 // 전체 페이지를 감싸는 컨테이너
 const PageContainer = styled.div`
+  box-sizing: border-box;
   max-width: 1440px;
   margin: 0 auto;
-  height: calc(100vh - 77px);
+  min-height: calc(100vh - 77px);
+  height: 100%;
   display: flex;
   align-items: center;
+
   .wrapper {
     display: flex;
     width: 100%;
+    height: max-content;
+    box-sizing: border-box;
     align-items: center;
   }
 `;
