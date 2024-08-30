@@ -1,3 +1,4 @@
+import colors from '@/constants/colors';
 import { IMovie } from '@/models/main-movie.model';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -9,7 +10,9 @@ interface IMovieItemProps {
 
 export default function MovieListItem({ movieData }: IMovieItemProps) {
   return (
-    <StyledMovieItem $isPolled={movieData.myPollResult !== null}>
+    <StyledMovieItem>
+      {movieData.myPollResult && <AlreadyVote>투표함</AlreadyVote>}
+
       <Link to={`/movie-list/${movieData.movieId}`}>
         <StyledMoviePoster
           className="img-hover-effect"
@@ -23,7 +26,7 @@ export default function MovieListItem({ movieData }: IMovieItemProps) {
 }
 
 // TODO: 투표 결과에 따라 스타일 변경
-const StyledMovieItem = styled.div<{ $isPolled: boolean }>`
+const StyledMovieItem = styled.div`
   width: 300px;
   overflow: hidden;
   position: relative;
@@ -32,5 +35,13 @@ const StyledMovieItem = styled.div<{ $isPolled: boolean }>`
 
 const StyledMoviePoster = styled.img`
   width: 100%;
-  height: auto;
+  height: 100%;
+  /* height: auto; */
+`;
+
+const AlreadyVote = styled.div`
+  position: absolute;
+  background-color: ${colors.black};
+  color: ${colors.white};
+  padding: 5px 10px;
 `;
