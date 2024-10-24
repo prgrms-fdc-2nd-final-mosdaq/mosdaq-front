@@ -1,5 +1,4 @@
-import { useCallback, useState } from 'react';
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { fetchGetMainBannerMovie } from '../../../apis/main-movie.api';
 import { BannerMovie } from '@/models/movie.model';
 

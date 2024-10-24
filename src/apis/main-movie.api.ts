@@ -1,4 +1,4 @@
-import { IMovie, IPollingMovies } from '@/models/main-movie.model';
+import { IPollingMovies } from '@/models/main-movie.model';
 import { IPolledMovieResponse } from '@/hooks/api/main-movie/useGetPolledMovie';
 import axiosInstance from './axiosInstance';
 import { BannerResponse } from '@/hooks/api/main-movie/useGetBannerMovie';

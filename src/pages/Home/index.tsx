@@ -8,8 +8,9 @@ import {
 import CustomSuspenseErrorResetBoundary from '@/components/common/CustomSuspenseErrorResetBoundary';
 import { lazy } from 'react';
 import Footer from '@/components/layout/Footer';
+import Banner from '../../components/home/Banner';
 
-const Banner = lazy(() => import('../../components/home/Banner'));
+// const Banner = lazy(() => import('../../components/home/Banner'));
 const Upcoming = lazy(() => import('../../components/home/Upcoming'));
 const VoteEnd = lazy(() => import('../../components/home/VoteEnd'));
 

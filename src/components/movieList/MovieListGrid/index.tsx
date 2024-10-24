@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import MovieListItem from './MovieListItem';
 import { useGetMovieListInfinite } from '@/hooks/api/movie-list/useGetMovieListInfinite';
@@ -9,20 +9,19 @@ export default function MovieListGrid() {
   const { movieListData, isFetching, fetchNextPage, hasNextPage } =
     useGetMovieListInfinite();
 
-  // // console.log(movieListData);
   const moreRef = useIntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
       loadMore();
     }
   });
 
-  const loadMore = () => {
+  const loadMore = useCallback(() => {
     if (!hasNextPage || isFetching) return;
     fetchNextPage();
-  };
+  }, [hasNextPage, isFetching, fetchNextPage]);
 
   useEffect(() => {
-    if (!isFetching && moreRef.current) {
+    if (moreRef.current) {
       const observer = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
           loadMore();
@@ -33,7 +32,7 @@ export default function MovieListGrid() {
 
       return () => observer.disconnect();
     }
-  }, [isFetching, hasNextPage]);
+  }, [isFetching, hasNextPage, loadMore, moreRef]);
 
   return (
     <StyledMovieListGrid>
@@ -42,7 +41,9 @@ export default function MovieListGrid() {
           <MovieListItem movieData={movieData} key={movieData.movieId} />
         ))}
       </StyledGrid>
-      <div ref={moreRef}>{/* <Txt>...</Txt> */}</div>
+      <div ref={moreRef} style={{ backgroundColor: 'red' }}>
+        {/* <Txt>...</Txt> */}
+      </div>
     </StyledMovieListGrid>
   );
 }

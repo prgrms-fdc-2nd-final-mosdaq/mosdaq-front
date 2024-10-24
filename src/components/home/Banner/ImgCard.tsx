@@ -45,11 +45,7 @@ const ImgCard = forwardRef<HTMLDivElement, ImgCardProps>(
           $isCardFliped={isCardFliped}
         >
           <div className="front">
-            <img
-              src={movie.posterUrl[0]}
-              alt={movie.movieTitle}
-              loading="lazy"
-            />
+            <img src={movie.posterUrl[0]} alt={movie.movieTitle} />
           </div>
           {index === centerIndex && (
             <div className="back">
