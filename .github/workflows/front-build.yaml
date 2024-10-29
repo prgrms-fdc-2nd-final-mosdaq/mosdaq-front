@@ -3,8 +3,7 @@ name: Front Deployment
 on:
   push:
     branches:
-      - dev
-      - feat/cicd
+      - production
 
 jobs:
   build:
