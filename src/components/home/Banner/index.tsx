@@ -54,7 +54,7 @@ export default function Banner() {
     <StyledBannerWrapper>
       <div className="indicator">
         <Txt className="text" typography="Pretendard24bold" color="watcha">
-          개봉 전후 제작사 주가를 확인!
+          개봉 전후 제작사 주가를 확인해봐요!
         </Txt>
       </div>
 
