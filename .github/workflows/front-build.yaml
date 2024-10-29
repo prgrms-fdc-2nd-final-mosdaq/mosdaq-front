@@ -3,7 +3,7 @@ name: Front Deployment
 on:
   push:
     branches:
-      - dev
+      - production
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -32,7 +32,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
 
       - name: Build
         run: yarn build
@@ -52,8 +52,7 @@ jobs:
             ./dist s3://$BUCKET_NAME
 
       - name: CloudFront invalidate cache
-        env:
-          CLOUD_FRONT_ID: ${{ secrets.AWS_CLOUDFRONT_ID }}
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id $CLOUD_FRONT_ID --paths /*
+            --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} \
+            --paths '/*'
