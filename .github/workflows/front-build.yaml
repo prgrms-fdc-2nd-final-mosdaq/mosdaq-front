@@ -53,9 +53,7 @@ jobs:
             ./dist s3://$BUCKET_NAME
 
       - name: CloudFront invalidate cache
-        env:
-          CLOUD_FRONT_ID: ${{ secrets.AWS_CLOUDFRONT_ID }}
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id $CLOUD_FRONT_ID \
-            --paths /*
+            --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} \
+            --paths '/*'
