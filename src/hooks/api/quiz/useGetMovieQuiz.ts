@@ -6,7 +6,7 @@ export const useGetMovieQuiz = () => {
     queryKey: ['movieQuiz'],
     queryFn: fetchGetMovieQuiz,
     staleTime: 0,
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: false,
   });
 
   // // console.log(data);
