@@ -1,22 +1,24 @@
-import React, { Suspense, useEffect } from 'react';
-import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
-import { useGetMovieDetail } from '@/hooks/api/movie-detail/useGetMovieDetail';
-import { useNavigate } from 'react-router-dom';
-import { useGetPollBox } from '@/hooks/api/movie-detail/useGetPollBox';
 import MovieDetailAfterOpen from '@/components/movieDetail/MovieDetailAfterOpen';
 import MovieDetailBeforeOpen from '@/components/movieDetail/MovieDetailBeforeOpen';
-import { getTodayYYYYMMDD } from '@/utils/date';
 import MovieDetailPoster from '@/components/movieDetail/MovieDetailPoster';
+import { useGetMovieDetail } from '@/hooks/api/movie-detail/useGetMovieDetail';
+import { useGetPollBox } from '@/hooks/api/movie-detail/useGetPollBox';
+import { getTodayYYYYMMDD } from '@/utils/date';
+
+import React, { Suspense, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import styled from 'styled-components';
 
 export default function MovieDetail() {
   const navigate = useNavigate();
   const { movieId } = useParams<{ movieId: string }>();
 
-  if (!movieId) return null;
+  const { movieDetail } = useGetMovieDetail(movieId || '');
+  const { pollBox } = useGetPollBox(movieId || '');
 
-  const { movieDetail } = useGetMovieDetail(movieId);
-  const { pollBox } = useGetPollBox(movieId);
+  if (!movieId) return null;
 
   return (
     <PageContainer>
@@ -25,17 +27,9 @@ export default function MovieDetail() {
 
         <RightContainer>
           {getTodayYYYYMMDD() < movieDetail.movieOpenDate ? (
-            <MovieDetailBeforeOpen
-              movieId={movieId}
-              movieDetail={movieDetail}
-              pollBox={pollBox}
-            />
+            <MovieDetailBeforeOpen movieId={movieId} movieDetail={movieDetail} pollBox={pollBox} />
           ) : (
-            <MovieDetailAfterOpen
-              movieDetail={movieDetail}
-              pollBox={pollBox}
-              movieId={movieId}
-            />
+            <MovieDetailAfterOpen movieDetail={movieDetail} pollBox={pollBox} movieId={movieId} />
           )}
         </RightContainer>
       </div>
