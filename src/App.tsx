@@ -1,43 +1,43 @@
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import { lazy, Suspense } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import RootLayout from './pages/root';
-import CustomSuspenseErrorResetBoundary from './components/common/CustomSuspenseErrorResetBoundary';
+import { Suspense, lazy, useEffect, useState } from 'react';
+import React from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
 import { MovieDetailWrapper } from './components/CLSWrapper';
+import CustomSuspenseErrorResetBoundary from './components/common/CustomSuspenseErrorResetBoundary';
 import NotFoundPage from './pages/NotFound';
+import RootLayout from './pages/root';
 
 const HomePage = Object.assign(
   lazy(() => import('./pages/Home')),
   {
     preload: () => import('./pages/Home'),
-  },
+  }
 );
 
 const MovieListPage = Object.assign(
   lazy(() => import('./pages/MovieList')),
   {
     preload: () => import('./pages/MovieList'),
-  },
+  }
 );
 
 const LoginPage = Object.assign(
   lazy(() => import('./pages/Login')),
   {
     preload: () => import('./pages/Login'),
-  },
+  }
 );
 const MyPage = Object.assign(
   lazy(() => import('./pages/MyPage')),
   {
     preload: () => import('./pages/MyPage'),
-  },
+  }
 );
 const QuizPage = Object.assign(
   lazy(() => import('./pages/Quiz')),
   {
     preload: () => import('./pages/Quiz'),
-  },
+  }
 );
 const MovieDetail = lazy(() => import('./pages/MovieDetail'));
 
