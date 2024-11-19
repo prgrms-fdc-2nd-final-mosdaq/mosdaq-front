@@ -63,23 +63,60 @@ export default axiosInstance;
 ```json
 {
   "singleQuote": true,
-  "trailingComma": "all",
+  "semi": true,
   "tabWidth": 2,
-  "semi": true
+  "trailingComma": "es5",
+  "printWidth": 100,
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": ["^react", "^[./]", "^@?\\w"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
+```
+
+#### `eslint.config.js`
+```js
+  ...
+  // 상세 규칙 설정
+  {
+    plugins: {
+      'react-hooks': pluginReactHooks,
+    },
+    rules: {
+      // TypeScript 관련 규칙
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+
+      // React 관련 규칙
+      'react/react-in-jsx-scope': 'off',
+      'react/no-unescaped-entities': 'off',
+      'react/display-name': 'off',
+
+      // React Hooks 관련 규칙
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+
+      // 일반 규칙
+      'no-unexpected-multiline': 'warn',
+    },
+  },
+];
 ```
 
 #### `package.json`
 ```json
-"lint-staged": {
-  "src/**/*.{ts,tsx,js,jsx,json,md}": [
-    "prettier --write",
-    "git add"
-  ]
-}
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
 ```
 
-코드 스타일의 일관성을 확보하기 위해 Prettier와 Husky를 사용하여 코드 포맷팅을 자동화하였습니다. 이는 코드 품질을 유지하고 팀원 간의 협업을 원활하게 합니다.
+코드 스타일의 일관성을 확보하기 위해 Prettier와 ESLint를 Husky를 사용하여 자동화하였습니다. 이는 코드 품질을 유지하고 팀원 간의 협업을 원활하게 합니다.
 
 ### 최적화
 
